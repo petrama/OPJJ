@@ -1,0 +1,632 @@
+<?xml version="1.0" encoding="WINDOWS-1252" standalone="no"?>
+<pmd-cpd>
+<duplication lines="5" tokens="59">
+<file line="65" path="C:\tecaj_1\HW03-0036473653\src\test\java\hr\fer\zemris\java\tecaj\hw3\CStringTest.java"/>
+<file line="100" path="C:\tecaj_1\HW03-0036473653\src\test\java\hr\fer\zemris\java\tecaj\hw3\CStringTest.java"/>
+<file line="108" path="C:\tecaj_1\HW03-0036473653\src\test\java\hr\fer\zemris\java\tecaj\hw3\CStringTest.java"/>
+<codefragment><![CDATA[	public void indexOfTest(){
+		char[] c = new char[] { 'p', 'e', 't', 'r', 'a', ' ', 'j', 'e', ' ',
+				'l', 'e', 'g', 'e', 'n', 'd', 'a' };
+		CString novi = new CString(c);
+		Assert.assertTrue(novi.indexOf('e')==1);]]></codefragment>
+</duplication>
+<duplication lines="5" tokens="59">
+<file line="73" path="C:\tecaj_1\HW03-0036473653\src\test\java\hr\fer\zemris\java\tecaj\hw3\CStringTest.java"/>
+<file line="82" path="C:\tecaj_1\HW03-0036473653\src\test\java\hr\fer\zemris\java\tecaj\hw3\CStringTest.java"/>
+<file line="91" path="C:\tecaj_1\HW03-0036473653\src\test\java\hr\fer\zemris\java\tecaj\hw3\CStringTest.java"/>
+<codefragment><![CDATA[	public void startsWithTest(){
+		char[] c = new char[] {'p', 'e', 't', 'r', 'a',' ', 'j', 'e', ' ',
+				'l', 'e', 'g', 'e', 'n', 'd', 'a' };
+		CString novi = new CString(c);
+		Assert.assertFalse(novi.startsWith(new CString("ana")));]]></codefragment>
+</duplication>
+<duplication lines="5" tokens="55">
+<file line="65" path="C:\tecaj_1\HW03-0036473653\src\test\java\hr\fer\zemris\java\tecaj\hw3\CStringTest.java"/>
+<file line="73" path="C:\tecaj_1\HW03-0036473653\src\test\java\hr\fer\zemris\java\tecaj\hw3\CStringTest.java"/>
+<file line="82" path="C:\tecaj_1\HW03-0036473653\src\test\java\hr\fer\zemris\java\tecaj\hw3\CStringTest.java"/>
+<file line="91" path="C:\tecaj_1\HW03-0036473653\src\test\java\hr\fer\zemris\java\tecaj\hw3\CStringTest.java"/>
+<file line="100" path="C:\tecaj_1\HW03-0036473653\src\test\java\hr\fer\zemris\java\tecaj\hw3\CStringTest.java"/>
+<file line="108" path="C:\tecaj_1\HW03-0036473653\src\test\java\hr\fer\zemris\java\tecaj\hw3\CStringTest.java"/>
+<codefragment><![CDATA[	public void indexOfTest(){
+		char[] c = new char[] { 'p', 'e', 't', 'r', 'a', ' ', 'j', 'e', ' ',
+				'l', 'e', 'g', 'e', 'n', 'd', 'a' };
+		CString novi = new CString(c);
+		Assert.assertTrue(novi.indexOf('e')==1);]]></codefragment>
+</duplication>
+<duplication lines="4" tokens="53">
+<file line="55" path="C:\tecaj_1\HW03-0036473653\src\test\java\hr\fer\zemris\java\tecaj\hw3\CStringTest.java"/>
+<file line="65" path="C:\tecaj_1\HW03-0036473653\src\test\java\hr\fer\zemris\java\tecaj\hw3\CStringTest.java"/>
+<file line="73" path="C:\tecaj_1\HW03-0036473653\src\test\java\hr\fer\zemris\java\tecaj\hw3\CStringTest.java"/>
+<file line="82" path="C:\tecaj_1\HW03-0036473653\src\test\java\hr\fer\zemris\java\tecaj\hw3\CStringTest.java"/>
+<file line="91" path="C:\tecaj_1\HW03-0036473653\src\test\java\hr\fer\zemris\java\tecaj\hw3\CStringTest.java"/>
+<file line="100" path="C:\tecaj_1\HW03-0036473653\src\test\java\hr\fer\zemris\java\tecaj\hw3\CStringTest.java"/>
+<file line="108" path="C:\tecaj_1\HW03-0036473653\src\test\java\hr\fer\zemris\java\tecaj\hw3\CStringTest.java"/>
+<codefragment><![CDATA[	public void toChArrTest() {
+		char[] c = new char[] { 'p', 'e', 't', 'r', 'a', ' ', 'j', 'e', ' ',
+				'l', 'e', 'g', 'e', 'n', 'd', 'a' };
+		CString novi = new CString(c);]]></codefragment>
+</duplication>
+<duplication lines="3" tokens="45">
+<file line="31" path="C:\tecaj_1\HW03-0036473653\src\test\java\hr\fer\zemris\java\tecaj\hw3\CStringTest.java"/>
+<file line="55" path="C:\tecaj_1\HW03-0036473653\src\test\java\hr\fer\zemris\java\tecaj\hw3\CStringTest.java"/>
+<file line="65" path="C:\tecaj_1\HW03-0036473653\src\test\java\hr\fer\zemris\java\tecaj\hw3\CStringTest.java"/>
+<file line="73" path="C:\tecaj_1\HW03-0036473653\src\test\java\hr\fer\zemris\java\tecaj\hw3\CStringTest.java"/>
+<file line="82" path="C:\tecaj_1\HW03-0036473653\src\test\java\hr\fer\zemris\java\tecaj\hw3\CStringTest.java"/>
+<file line="91" path="C:\tecaj_1\HW03-0036473653\src\test\java\hr\fer\zemris\java\tecaj\hw3\CStringTest.java"/>
+<file line="100" path="C:\tecaj_1\HW03-0036473653\src\test\java\hr\fer\zemris\java\tecaj\hw3\CStringTest.java"/>
+<file line="108" path="C:\tecaj_1\HW03-0036473653\src\test\java\hr\fer\zemris\java\tecaj\hw3\CStringTest.java"/>
+<codefragment><![CDATA[	public void konstruktor12() {
+		char[] c = new char[] { 'p', 'e', 't', 'r', 'a', ' ', 'j', 'e', ' ',
+				'l', 'e', 'g', 'e', 'n', 'd', 'a' };]]></codefragment>
+</duplication>
+<duplication lines="5" tokens="36">
+<file line="239" path="C:\tecaj_1\HW03-0036473653\src\main\java\hr\fer\zemris\java\tecaj\hw3\CString.java"/>
+<file line="252" path="C:\tecaj_1\HW03-0036473653\src\main\java\hr\fer\zemris\java\tecaj\hw3\CString.java"/>
+<codefragment><![CDATA[	public CString left(int n) {
+		if (n < 0 || n > this.length)
+			throw new IllegalArgumentException(
+					"Invalid length of left side od string!");
+		CString t = new CString(this.data, this.offset, n, true);]]></codefragment>
+</duplication>
+<duplication lines="3" tokens="29">
+<file line="134" path="C:\tecaj_1\HW03-0036473653\src\main\java\hr\fer\zemris\java\tecaj\hw3\CString.java"/>
+<file line="287" path="C:\tecaj_1\HW03-0036473653\src\main\java\hr\fer\zemris\java\tecaj\hw3\CString.java"/>
+<codefragment><![CDATA[	public char[] toCharArray() {
+		char[] n = new char[this.length];
+		for (int i = 0; i < this.length; i++) {]]></codefragment>
+</duplication>
+<duplication lines="3" tokens="26">
+<file line="174" path="C:\tecaj_1\HW03-0036473653\src\main\java\hr\fer\zemris\java\tecaj\hw3\CString.java"/>
+<file line="188" path="C:\tecaj_1\HW03-0036473653\src\main\java\hr\fer\zemris\java\tecaj\hw3\CString.java"/>
+<codefragment><![CDATA[	public boolean startsWith(CString s) {
+		for (int i = 0; i < s.length; i++) {
+			if (this.data[this.offset + i] != s.data[s.offset + i])]]></codefragment>
+</duplication>
+<duplication lines="5" tokens="26">
+<file line="34" path="C:\tecaj_1\HW03-0036473653\src\test\java\hr\fer\zemris\java\tecaj\hw3\ComplexNumberTest.java"/>
+<file line="112" path="C:\tecaj_1\HW03-0036473653\src\test\java\hr\fer\zemris\java\tecaj\hw3\ComplexNumberTest.java"/>
+<codefragment><![CDATA[	public void konsKut() {
+		double eksp = -6;
+		double dozvOdstupanje = Math.pow(10, eksp);
+
+		ComplexNumber c = ComplexNumber.fromMagnitudeAndAngle(5, -Math.PI);]]></codefragment>
+</duplication>
+<duplication lines="13" tokens="23">
+<file line="176" path="C:\tecaj_1\HW03-0036473653\src\main\java\hr\fer\zemris\java\tecaj\hw3\CString.java"/>
+<file line="190" path="C:\tecaj_1\HW03-0036473653\src\main\java\hr\fer\zemris\java\tecaj\hw3\CString.java"/>
+<codefragment><![CDATA[			if (this.data[this.offset + i] != s.data[s.offset + i])
+				return false;
+		}
+		return true;
+	}
+	
+	/**
+	 * Metoda koja provjerava kraj niza.
+	 * @param s zadani podniz.
+	 * @return vraÄ‡a true ako niz zavrÅ¡ava podnizom, false inaÄ]]>&#65533;<![CDATA[e
+	 */
+
+	public boolean endsWith(CString s) {]]></codefragment>
+</duplication>
+<duplication lines="7" tokens="23">
+<file line="147" path="C:\tecaj_1\HW03-0036473653\src\main\java\hr\fer\zemris\java\tecaj\hw3\ComplexNumber.java"/>
+<file line="154" path="C:\tecaj_1\HW03-0036473653\src\main\java\hr\fer\zemris\java\tecaj\hw3\ComplexNumber.java"/>
+<codefragment><![CDATA[		int middle = s.indexOf('+'); // indeks sredine
+		if (middle != -1) { // ako smo nasli plus,broj je dvodijelni
+			isLastChari(s);
+			divideTwoParts(s, middle);
+			return;
+
+		} else {]]></codefragment>
+</duplication>
+<duplication lines="6" tokens="21">
+<file line="23" path="C:\tecaj_1\HW03-0036473653\src\main\java\hr\fer\zemris\java\tecaj\hw3\CString.java"/>
+<file line="39" path="C:\tecaj_1\HW03-0036473653\src\main\java\hr\fer\zemris\java\tecaj\hw3\CString.java"/>
+<codefragment><![CDATA[	public CString(char[] data, int offset, int length) {
+		if (data == null)
+			throw new IllegalArgumentException(
+					"Poslano je polje sa null vrijednosti");
+
+		this.data = new char[length];]]></codefragment>
+</duplication>
+<duplication lines="3" tokens="21">
+<file line="135" path="C:\tecaj_1\HW03-0036473653\src\main\java\hr\fer\zemris\java\tecaj\hw3\CString.java"/>
+<file line="269" path="C:\tecaj_1\HW03-0036473653\src\main\java\hr\fer\zemris\java\tecaj\hw3\CString.java"/>
+<codefragment><![CDATA[		char[] n = new char[this.length];
+		for (int i = 0; i < this.length; i++) {
+			n[i] = data[i + this.offset];]]></codefragment>
+</duplication>
+<duplication lines="6" tokens="18">
+<file line="113" path="C:\tecaj_1\HW03-0036473653\src\test\java\hr\fer\zemris\java\tecaj\hw3\CStringTest.java"/>
+<file line="124" path="C:\tecaj_1\HW03-0036473653\src\test\java\hr\fer\zemris\java\tecaj\hw3\CStringTest.java"/>
+<codefragment><![CDATA[	Assert.assertTrue(novi.left(500).toString().compareTo("petra")==0);
+	}
+	
+	
+	
+	@Test (expected=IllegalArgumentException.class)]]></codefragment>
+</duplication>
+<duplication lines="3" tokens="18">
+<file line="142" path="C:\tecaj_1\HW03-0036473653\src\test\java\hr\fer\zemris\java\tecaj\hw3\ComplexNumberTest.java"/>
+<file line="149" path="C:\tecaj_1\HW03-0036473653\src\test\java\hr\fer\zemris\java\tecaj\hw3\ComplexNumberTest.java"/>
+<codefragment><![CDATA[	public void getAddTest() {
+		ComplexNumber c = new ComplexNumber(5, 7);
+		ComplexNumber zbroj = c.add(new ComplexNumber(8, 9));]]></codefragment>
+</duplication>
+<duplication lines="3" tokens="18">
+<file line="156" path="C:\tecaj_1\HW03-0036473653\src\test\java\hr\fer\zemris\java\tecaj\hw3\ComplexNumberTest.java"/>
+<file line="164" path="C:\tecaj_1\HW03-0036473653\src\test\java\hr\fer\zemris\java\tecaj\hw3\ComplexNumberTest.java"/>
+<codefragment><![CDATA[	public void getDivTest() {
+		ComplexNumber c = new ComplexNumber(2, 2);
+		ComplexNumber rez = c.div(new ComplexNumber(1, 1));]]></codefragment>
+</duplication>
+<duplication lines="6" tokens="17">
+<file line="165" path="C:\tecaj_1\HW03-0036473653\src\main\java\hr\fer\zemris\java\tecaj\hw3\ComplexNumber.java"/>
+<file line="174" path="C:\tecaj_1\HW03-0036473653\src\main\java\hr\fer\zemris\java\tecaj\hw3\ComplexNumber.java"/>
+<codefragment><![CDATA[								Double.parseDouble(s.substring(0, s.length() - 1));
+
+					} catch (RuntimeException e) {
+						throw new IllegalArgumentException("Cannot parse,invalid argument!");
+					}
+					this.realPart = 0;]]></codefragment>
+</duplication>
+<duplication lines="12" tokens="17">
+<file line="256" path="C:\tecaj_1\HW03-0036473653\src\main\java\hr\fer\zemris\java\tecaj\hw3\ComplexNumber.java"/>
+<file line="269" path="C:\tecaj_1\HW03-0036473653\src\main\java\hr\fer\zemris\java\tecaj\hw3\ComplexNumber.java"/>
+<codefragment><![CDATA[		double an = this.getAngle() + c.getAngle();
+		return ComplexNumber.fromMagnitudeAndAngle(mag, an);
+	}
+
+	/**
+	 * Metoda koja kompleksni broj dijeli zadanim brojem.
+	 * @param c broj s kojim treba dijeliti
+	 * @return kvocijent
+	 * 
+	 */
+
+	public ComplexNumber div(ComplexNumber c) {]]></codefragment>
+</duplication>
+<duplication lines="2" tokens="17">
+<file line="144" path="C:\tecaj_1\HW03-0036473653\src\test\java\hr\fer\zemris\java\tecaj\hw3\ComplexNumberTest.java"/>
+<file line="151" path="C:\tecaj_1\HW03-0036473653\src\test\java\hr\fer\zemris\java\tecaj\hw3\ComplexNumberTest.java"/>
+<codefragment><![CDATA[		ComplexNumber zbroj = c.add(new ComplexNumber(8, 9));
+		Assert.assertTrue(zbroj.realPart == 13 && zbroj.imagPart == 16);]]></codefragment>
+</duplication>
+<duplication lines="2" tokens="16">
+<file line="269" path="C:\tecaj_1\HW03-0036473653\src\main\java\hr\fer\zemris\java\tecaj\hw3\CString.java"/>
+<file line="288" path="C:\tecaj_1\HW03-0036473653\src\main\java\hr\fer\zemris\java\tecaj\hw3\CString.java"/>
+<codefragment><![CDATA[		char[] n = new char[l];
+		for (int i = 0; i < this.length; i++) {]]></codefragment>
+</duplication>
+<duplication lines="5" tokens="16">
+<file line="104" path="C:\tecaj_1\HW03-0036473653\src\test\java\hr\fer\zemris\java\tecaj\hw3\CStringTest.java"/>
+<file line="113" path="C:\tecaj_1\HW03-0036473653\src\test\java\hr\fer\zemris\java\tecaj\hw3\CStringTest.java"/>
+<codefragment><![CDATA[	Assert.assertTrue(novi.substring(3, 7).toString().compareTo("ra j")==0);
+	}
+	
+	@Test (expected=IllegalArgumentException.class)
+	public void leftTestTest(){]]></codefragment>
+</duplication>
+<duplication lines="1" tokens="15">
+<file line="175" path="C:\tecaj_1\HW03-0036473653\src\main\java\hr\fer\zemris\java\tecaj\hw3\CString.java"/>
+<file line="189" path="C:\tecaj_1\HW03-0036473653\src\main\java\hr\fer\zemris\java\tecaj\hw3\CString.java"/>
+<file line="273" path="C:\tecaj_1\HW03-0036473653\src\main\java\hr\fer\zemris\java\tecaj\hw3\CString.java"/>
+<codefragment><![CDATA[		for (int i = 0; i < s.length; i++) {]]></codefragment>
+</duplication>
+<duplication lines="2" tokens="15">
+<file line="340" path="C:\tecaj_1\HW03-0036473653\src\main\java\hr\fer\zemris\java\tecaj\hw3\ComplexNumber.java"/>
+<file line="343" path="C:\tecaj_1\HW03-0036473653\src\main\java\hr\fer\zemris\java\tecaj\hw3\ComplexNumber.java"/>
+<codefragment><![CDATA[		if(Math.abs(realPart)>Math.pow(10,-6)){
+			novi+=formatterReal.format(realPart) ;]]></codefragment>
+</duplication>
+<duplication lines="2" tokens="15">
+<file line="31" path="C:\tecaj_1\HW03-0036473653\src\test\java\hr\fer\zemris\java\tecaj\hw3\CStringTest.java"/>
+<file line="55" path="C:\tecaj_1\HW03-0036473653\src\test\java\hr\fer\zemris\java\tecaj\hw3\CStringTest.java"/>
+<file line="65" path="C:\tecaj_1\HW03-0036473653\src\test\java\hr\fer\zemris\java\tecaj\hw3\CStringTest.java"/>
+<file line="73" path="C:\tecaj_1\HW03-0036473653\src\test\java\hr\fer\zemris\java\tecaj\hw3\CStringTest.java"/>
+<file line="82" path="C:\tecaj_1\HW03-0036473653\src\test\java\hr\fer\zemris\java\tecaj\hw3\CStringTest.java"/>
+<file line="91" path="C:\tecaj_1\HW03-0036473653\src\test\java\hr\fer\zemris\java\tecaj\hw3\CStringTest.java"/>
+<file line="100" path="C:\tecaj_1\HW03-0036473653\src\test\java\hr\fer\zemris\java\tecaj\hw3\CStringTest.java"/>
+<file line="108" path="C:\tecaj_1\HW03-0036473653\src\test\java\hr\fer\zemris\java\tecaj\hw3\CStringTest.java"/>
+<file line="119" path="C:\tecaj_1\HW03-0036473653\src\test\java\hr\fer\zemris\java\tecaj\hw3\CStringTest.java"/>
+<codefragment><![CDATA[	public void konstruktor12() {
+		char[] c = new char[] { 'p', 'e', 't', 'r', 'a', ' ', 'j', 'e', ' ',]]></codefragment>
+</duplication>
+<duplication lines="3" tokens="15">
+<file line="67" path="C:\tecaj_1\HW03-0036473653\src\test\java\hr\fer\zemris\java\tecaj\hw3\CStringTest.java"/>
+<file line="102" path="C:\tecaj_1\HW03-0036473653\src\test\java\hr\fer\zemris\java\tecaj\hw3\CStringTest.java"/>
+<file line="110" path="C:\tecaj_1\HW03-0036473653\src\test\java\hr\fer\zemris\java\tecaj\hw3\CStringTest.java"/>
+<file line="121" path="C:\tecaj_1\HW03-0036473653\src\test\java\hr\fer\zemris\java\tecaj\hw3\CStringTest.java"/>
+<codefragment><![CDATA[				'l', 'e', 'g', 'e', 'n', 'd', 'a' };
+		CString novi = new CString(c);
+		Assert.assertTrue(novi.indexOf('e')==1);]]></codefragment>
+</duplication>
+<duplication lines="5" tokens="15">
+<file line="176" path="C:\tecaj_1\HW03-0036473653\src\test\java\hr\fer\zemris\java\tecaj\hw3\ComplexNumberTest.java"/>
+<file line="195" path="C:\tecaj_1\HW03-0036473653\src\test\java\hr\fer\zemris\java\tecaj\hw3\ComplexNumberTest.java"/>
+<codefragment><![CDATA[				&& c.getReal()+2*2*2*2<1E-6);
+	}
+	
+	@Test (expected=IllegalArgumentException.class)
+	public void getPowExTest(){]]></codefragment>
+</duplication>
+<duplication lines="4" tokens="14">
+<file line="23" path="C:\tecaj_1\HW03-0036473653\src\main\java\hr\fer\zemris\java\tecaj\hw3\CString.java"/>
+<file line="39" path="C:\tecaj_1\HW03-0036473653\src\main\java\hr\fer\zemris\java\tecaj\hw3\CString.java"/>
+<file line="96" path="C:\tecaj_1\HW03-0036473653\src\main\java\hr\fer\zemris\java\tecaj\hw3\CString.java"/>
+<codefragment><![CDATA[	public CString(char[] data, int offset, int length) {
+		if (data == null)
+			throw new IllegalArgumentException(
+					"Poslano je polje sa null vrijednosti");]]></codefragment>
+</duplication>
+<duplication lines="2" tokens="14">
+<file line="77" path="C:\tecaj_1\HW03-0036473653\src\test\java\hr\fer\zemris\java\tecaj\hw3\CStringTest.java"/>
+<file line="86" path="C:\tecaj_1\HW03-0036473653\src\test\java\hr\fer\zemris\java\tecaj\hw3\CStringTest.java"/>
+<file line="95" path="C:\tecaj_1\HW03-0036473653\src\test\java\hr\fer\zemris\java\tecaj\hw3\CStringTest.java"/>
+<codefragment><![CDATA[		Assert.assertFalse(novi.startsWith(new CString("ana")));
+		Assert.assertTrue(novi.startsWith(new CString("petra j")));]]></codefragment>
+</duplication>
+<duplication lines="1" tokens="14">
+<file line="130" path="C:\tecaj_1\HW03-0036473653\src\test\java\hr\fer\zemris\java\tecaj\hw3\ComplexNumberTest.java"/>
+<file line="195" path="C:\tecaj_1\HW03-0036473653\src\test\java\hr\fer\zemris\java\tecaj\hw3\ComplexNumberTest.java"/>
+<codefragment><![CDATA[				Math.abs(new ComplexNumber(1, 1).getMagnitude() - Math.sqrt(2)) < 1E-6,]]></codefragment>
+</duplication>
+<duplication lines="2" tokens="13">
+<file line="254" path="C:\tecaj_1\HW03-0036473653\src\main\java\hr\fer\zemris\java\tecaj\hw3\ComplexNumber.java"/>
+<file line="267" path="C:\tecaj_1\HW03-0036473653\src\main\java\hr\fer\zemris\java\tecaj\hw3\ComplexNumber.java"/>
+<codefragment><![CDATA[	public ComplexNumber mul(ComplexNumber c) {
+		double mag = this.getMagnitude() * c.getMagnitude();]]></codefragment>
+</duplication>
+<duplication lines="2" tokens="13">
+<file line="255" path="C:\tecaj_1\HW03-0036473653\src\main\java\hr\fer\zemris\java\tecaj\hw3\ComplexNumber.java"/>
+<file line="268" path="C:\tecaj_1\HW03-0036473653\src\main\java\hr\fer\zemris\java\tecaj\hw3\ComplexNumber.java"/>
+<codefragment><![CDATA[		double mag = this.getMagnitude() * c.getMagnitude();
+		double an = this.getAngle() + c.getAngle();]]></codefragment>
+</duplication>
+<duplication lines="2" tokens="13">
+<file line="15" path="C:\tecaj_1\HW03-0036473653\src\test\java\hr\fer\zemris\java\tecaj\hw3\CStringTest.java"/>
+<file line="23" path="C:\tecaj_1\HW03-0036473653\src\test\java\hr\fer\zemris\java\tecaj\hw3\CStringTest.java"/>
+<codefragment><![CDATA[		System.out.println(primjer);          
+		Assert.assertTrue(primjer.toString().compareTo("Marko")==0);]]></codefragment>
+</duplication>
+<duplication lines="2" tokens="13">
+<file line="44" path="C:\tecaj_1\HW03-0036473653\src\test\java\hr\fer\zemris\java\tecaj\hw3\CStringTest.java"/>
+<file line="49" path="C:\tecaj_1\HW03-0036473653\src\test\java\hr\fer\zemris\java\tecaj\hw3\CStringTest.java"/>
+<codefragment><![CDATA[	public void lenTest(){
+		Assert.assertTrue(new CString("Umor").length==4);]]></codefragment>
+</duplication>
+<duplication lines="5" tokens="13">
+<file line="104" path="C:\tecaj_1\HW03-0036473653\src\test\java\hr\fer\zemris\java\tecaj\hw3\CStringTest.java"/>
+<file line="113" path="C:\tecaj_1\HW03-0036473653\src\test\java\hr\fer\zemris\java\tecaj\hw3\CStringTest.java"/>
+<file line="91" path="C:\tecaj_1\HW03-0036473653\src\test\java\hr\fer\zemris\java\tecaj\hw3\ComplexNumberTest.java"/>
+<file line="96" path="C:\tecaj_1\HW03-0036473653\src\test\java\hr\fer\zemris\java\tecaj\hw3\ComplexNumberTest.java"/>
+<file line="101" path="C:\tecaj_1\HW03-0036473653\src\test\java\hr\fer\zemris\java\tecaj\hw3\ComplexNumberTest.java"/>
+<file line="176" path="C:\tecaj_1\HW03-0036473653\src\test\java\hr\fer\zemris\java\tecaj\hw3\ComplexNumberTest.java"/>
+<file line="195" path="C:\tecaj_1\HW03-0036473653\src\test\java\hr\fer\zemris\java\tecaj\hw3\ComplexNumberTest.java"/>
+<codefragment><![CDATA[	Assert.assertTrue(novi.substring(3, 7).toString().compareTo("ra j")==0);
+	}
+	
+	@Test (expected=IllegalArgumentException.class)
+	public void leftTestTest(){]]></codefragment>
+</duplication>
+<duplication lines="1" tokens="13">
+<file line="112" path="C:\tecaj_1\HW03-0036473653\src\test\java\hr\fer\zemris\java\tecaj\hw3\CStringTest.java"/>
+<file line="113" path="C:\tecaj_1\HW03-0036473653\src\test\java\hr\fer\zemris\java\tecaj\hw3\CStringTest.java"/>
+<file line="124" path="C:\tecaj_1\HW03-0036473653\src\test\java\hr\fer\zemris\java\tecaj\hw3\CStringTest.java"/>
+<codefragment><![CDATA[	Assert.assertTrue(novi.left(5).toString().compareTo("petra")==0);]]></codefragment>
+</duplication>
+<duplication lines="6" tokens="13">
+<file line="13" path="C:\tecaj_1\HW03-0036473653\src\test\java\hr\fer\zemris\java\tecaj\hw3\ComplexNumberTest.java"/>
+<file line="29" path="C:\tecaj_1\HW03-0036473653\src\test\java\hr\fer\zemris\java\tecaj\hw3\ComplexNumberTest.java"/>
+<codefragment><![CDATA[			Assert.assertTrue(c.realPart == -17.2 && c.imagPart == 18.9);
+		}
+	}
+
+	@Test
+	public void konsRealni() {]]></codefragment>
+</duplication>
+<duplication lines="5" tokens="13">
+<file line="61" path="C:\tecaj_1\HW03-0036473653\src\test\java\hr\fer\zemris\java\tecaj\hw3\ComplexNumberTest.java"/>
+<file line="67" path="C:\tecaj_1\HW03-0036473653\src\test\java\hr\fer\zemris\java\tecaj\hw3\ComplexNumberTest.java"/>
+<codefragment><![CDATA[		Assert.assertTrue(c.imagPart == -1 && c.realPart == 0);
+	}
+	
+	@Test
+	public void parserI2() {]]></codefragment>
+</duplication>
+<duplication lines="2" tokens="13">
+<file line="129" path="C:\tecaj_1\HW03-0036473653\src\test\java\hr\fer\zemris\java\tecaj\hw3\ComplexNumberTest.java"/>
+<file line="136" path="C:\tecaj_1\HW03-0036473653\src\test\java\hr\fer\zemris\java\tecaj\hw3\ComplexNumberTest.java"/>
+<codefragment><![CDATA[		Assert.assertEquals(
+				Math.abs(new ComplexNumber(1, 1).getMagnitude() - Math.sqrt(2)) < 1E-6,]]></codefragment>
+</duplication>
+<duplication lines="1" tokens="12">
+<file line="23" path="C:\tecaj_1\HW03-0036473653\src\main\java\hr\fer\zemris\java\tecaj\hw3\CString.java"/>
+<file line="96" path="C:\tecaj_1\HW03-0036473653\src\main\java\hr\fer\zemris\java\tecaj\hw3\CString.java"/>
+<codefragment><![CDATA[	public CString(char[] data, int offset, int length) {]]></codefragment>
+</duplication>
+<duplication lines="2" tokens="12">
+<file line="228" path="C:\tecaj_1\HW03-0036473653\src\main\java\hr\fer\zemris\java\tecaj\hw3\ComplexNumber.java"/>
+<file line="241" path="C:\tecaj_1\HW03-0036473653\src\main\java\hr\fer\zemris\java\tecaj\hw3\ComplexNumber.java"/>
+<codefragment><![CDATA[	public ComplexNumber add(ComplexNumber c) {
+		return new ComplexNumber(this.realPart + c.realPart, this.imagPart]]></codefragment>
+</duplication>
+<duplication lines="11" tokens="12">
+<file line="257" path="C:\tecaj_1\HW03-0036473653\src\main\java\hr\fer\zemris\java\tecaj\hw3\ComplexNumber.java"/>
+<file line="270" path="C:\tecaj_1\HW03-0036473653\src\main\java\hr\fer\zemris\java\tecaj\hw3\ComplexNumber.java"/>
+<file line="286" path="C:\tecaj_1\HW03-0036473653\src\main\java\hr\fer\zemris\java\tecaj\hw3\ComplexNumber.java"/>
+<codefragment><![CDATA[		return ComplexNumber.fromMagnitudeAndAngle(mag, an);
+	}
+
+	/**
+	 * Metoda koja kompleksni broj dijeli zadanim brojem.
+	 * @param c broj s kojim treba dijeliti
+	 * @return kvocijent
+	 * 
+	 */
+
+	public ComplexNumber div(ComplexNumber c) {]]></codefragment>
+</duplication>
+<duplication lines="5" tokens="12">
+<file line="61" path="C:\tecaj_1\HW03-0036473653\src\test\java\hr\fer\zemris\java\tecaj\hw3\ComplexNumberTest.java"/>
+<file line="67" path="C:\tecaj_1\HW03-0036473653\src\test\java\hr\fer\zemris\java\tecaj\hw3\ComplexNumberTest.java"/>
+<file line="84" path="C:\tecaj_1\HW03-0036473653\src\test\java\hr\fer\zemris\java\tecaj\hw3\ComplexNumberTest.java"/>
+<codefragment><![CDATA[		Assert.assertTrue(c.imagPart == -1 && c.realPart == 0);
+	}
+	
+	@Test
+	public void parserI2() {]]></codefragment>
+</duplication>
+<duplication lines="5" tokens="12">
+<file line="160" path="C:\tecaj_1\HW03-0036473653\src\test\java\hr\fer\zemris\java\tecaj\hw3\ComplexNumberTest.java"/>
+<file line="168" path="C:\tecaj_1\HW03-0036473653\src\test\java\hr\fer\zemris\java\tecaj\hw3\ComplexNumberTest.java"/>
+<codefragment><![CDATA[				&& Math.abs(rez.getReal() - 2) < 1E-6);
+	}
+
+	@Test
+	public void getMulTest() {]]></codefragment>
+</duplication>
+<duplication lines="2" tokens="12">
+<file line="185" path="C:\tecaj_1\HW03-0036473653\src\test\java\hr\fer\zemris\java\tecaj\hw3\ComplexNumberTest.java"/>
+<file line="193" path="C:\tecaj_1\HW03-0036473653\src\test\java\hr\fer\zemris\java\tecaj\hw3\ComplexNumberTest.java"/>
+<codefragment><![CDATA[	public void ispis(){
+		ComplexNumber[] polje=(new ComplexNumber(4,3)).root(2);]]></codefragment>
+</duplication>
+<duplication lines="3" tokens="11">
+<file line="29" path="C:\tecaj_1\HW03-0036473653\src\main\java\hr\fer\zemris\java\tecaj\hw3\CString.java"/>
+<file line="45" path="C:\tecaj_1\HW03-0036473653\src\main\java\hr\fer\zemris\java\tecaj\hw3\CString.java"/>
+<codefragment><![CDATA[		System.arraycopy(data, offset, this.data, 0, length);
+		this.offset = 0;
+		this.length = length;]]></codefragment>
+</duplication>
+<duplication lines="1" tokens="11">
+<file line="229" path="C:\tecaj_1\HW03-0036473653\src\main\java\hr\fer\zemris\java\tecaj\hw3\CString.java"/>
+<file line="256" path="C:\tecaj_1\HW03-0036473653\src\main\java\hr\fer\zemris\java\tecaj\hw3\CString.java"/>
+<codefragment><![CDATA[		return new CString(this.data, this.offset + startIndex, endIndex]]></codefragment>
+</duplication>
+<duplication lines="4" tokens="11">
+<file line="127" path="C:\tecaj_1\HW03-0036473653\src\main\java\hr\fer\zemris\java\tecaj\hw3\ComplexNumber.java"/>
+<file line="172" path="C:\tecaj_1\HW03-0036473653\src\main\java\hr\fer\zemris\java\tecaj\hw3\ComplexNumber.java"/>
+<codefragment><![CDATA[	public void divideTwoParts(String sub, int middle) {
+		try {
+			this.realPart = 
+					Double.parseDouble(sub.substring(0, middle));]]></codefragment>
+</duplication>
+<duplication lines="3" tokens="11">
+<file line="133" path="C:\tecaj_1\HW03-0036473653\src\main\java\hr\fer\zemris\java\tecaj\hw3\ComplexNumber.java"/>
+<file line="165" path="C:\tecaj_1\HW03-0036473653\src\main\java\hr\fer\zemris\java\tecaj\hw3\ComplexNumber.java"/>
+<codefragment><![CDATA[					sub.length() - 1));
+
+		} catch (IllegalArgumentException | IndexOutOfBoundsException pe) {]]></codefragment>
+</duplication>
+<duplication lines="1" tokens="11">
+<file line="284" path="C:\tecaj_1\HW03-0036473653\src\main\java\hr\fer\zemris\java\tecaj\hw3\ComplexNumber.java"/>
+<file line="301" path="C:\tecaj_1\HW03-0036473653\src\main\java\hr\fer\zemris\java\tecaj\hw3\ComplexNumber.java"/>
+<codefragment><![CDATA[		double mag = Math.pow(this.getMagnitude(), n);]]></codefragment>
+</duplication>
+<duplication lines="2" tokens="11">
+<file line="328" path="C:\tecaj_1\HW03-0036473653\src\main\java\hr\fer\zemris\java\tecaj\hw3\ComplexNumber.java"/>
+<file line="330" path="C:\tecaj_1\HW03-0036473653\src\main\java\hr\fer\zemris\java\tecaj\hw3\ComplexNumber.java"/>
+<codefragment><![CDATA[		if (Math.abs(realPart - Math.round(realPart)) > Math.pow(base,
+				precision)]]></codefragment>
+</duplication>
+<duplication lines="3" tokens="11">
+<file line="75" path="C:\tecaj_1\HW03-0036473653\src\test\java\hr\fer\zemris\java\tecaj\hw3\CStringTest.java"/>
+<file line="84" path="C:\tecaj_1\HW03-0036473653\src\test\java\hr\fer\zemris\java\tecaj\hw3\CStringTest.java"/>
+<file line="93" path="C:\tecaj_1\HW03-0036473653\src\test\java\hr\fer\zemris\java\tecaj\hw3\CStringTest.java"/>
+<file line="121" path="C:\tecaj_1\HW03-0036473653\src\test\java\hr\fer\zemris\java\tecaj\hw3\CStringTest.java"/>
+<codefragment><![CDATA[				'l', 'e', 'g', 'e', 'n', 'd', 'a' };
+		CString novi = new CString(c);
+		Assert.assertFalse(novi.startsWith(new CString("ana")));]]></codefragment>
+</duplication>
+<duplication lines="2" tokens="11">
+<file line="137" path="C:\tecaj_1\HW03-0036473653\src\test\java\hr\fer\zemris\java\tecaj\hw3\CStringTest.java"/>
+<file line="145" path="C:\tecaj_1\HW03-0036473653\src\test\java\hr\fer\zemris\java\tecaj\hw3\CStringTest.java"/>
+<codefragment><![CDATA[		CString novi=new CString("acaaa");
+		System.out.println(novi.replaceAll('a','B'));]]></codefragment>
+</duplication>
+<duplication lines="2" tokens="11">
+<file line="153" path="C:\tecaj_1\HW03-0036473653\src\test\java\hr\fer\zemris\java\tecaj\hw3\CStringTest.java"/>
+<file line="161" path="C:\tecaj_1\HW03-0036473653\src\test\java\hr\fer\zemris\java\tecaj\hw3\CStringTest.java"/>
+<codefragment><![CDATA[		CString novi=new CString("ababab");
+		CString trazeni=novi.replaceAll(new CString("ab"), new CString("abab"));]]></codefragment>
+</duplication>
+<duplication lines="3" tokens="11">
+<file line="11" path="C:\tecaj_1\HW03-0036473653\src\test\java\hr\fer\zemris\java\tecaj\hw3\ComplexNumberTest.java"/>
+<file line="27" path="C:\tecaj_1\HW03-0036473653\src\test\java\hr\fer\zemris\java\tecaj\hw3\ComplexNumberTest.java"/>
+<codefragment><![CDATA[		ComplexNumber c = new ComplexNumber(-17.2, 18.9);
+		{
+			Assert.assertTrue(c.realPart == -17.2 && c.imagPart == 18.9);]]></codefragment>
+</duplication>
+<duplication lines="3" tokens="11">
+<file line="11" path="C:\tecaj_1\HW03-0036473653\src\test\java\hr\fer\zemris\java\tecaj\hw3\ComplexNumberTest.java"/>
+<file line="51" path="C:\tecaj_1\HW03-0036473653\src\test\java\hr\fer\zemris\java\tecaj\hw3\ComplexNumberTest.java"/>
+<codefragment><![CDATA[		ComplexNumber c = new ComplexNumber(-17.2, 18.9);
+		{
+			Assert.assertTrue(c.realPart == -17.2 && c.imagPart == 18.9);]]></codefragment>
+</duplication>
+<duplication lines="1" tokens="11">
+<file line="40" path="C:\tecaj_1\HW03-0036473653\src\test\java\hr\fer\zemris\java\tecaj\hw3\ComplexNumberTest.java"/>
+<file line="118" path="C:\tecaj_1\HW03-0036473653\src\test\java\hr\fer\zemris\java\tecaj\hw3\ComplexNumberTest.java"/>
+<file line="120" path="C:\tecaj_1\HW03-0036473653\src\test\java\hr\fer\zemris\java\tecaj\hw3\ComplexNumberTest.java"/>
+<codefragment><![CDATA[		double greskaReal = Math.abs(Math.abs(c.realPart) - 5);]]></codefragment>
+</duplication>
+<duplication lines="1" tokens="11">
+<file line="159" path="C:\tecaj_1\HW03-0036473653\src\test\java\hr\fer\zemris\java\tecaj\hw3\ComplexNumberTest.java"/>
+<file line="168" path="C:\tecaj_1\HW03-0036473653\src\test\java\hr\fer\zemris\java\tecaj\hw3\ComplexNumberTest.java"/>
+<codefragment><![CDATA[		Assert.assertTrue(Math.abs(rez.getImaginary()) < 1E-6]]></codefragment>
+</duplication>
+<duplication lines="9" tokens="10">
+<file line="141" path="C:\tecaj_1\HW03-0036473653\src\main\java\hr\fer\zemris\java\tecaj\hw3\CString.java"/>
+<file line="314" path="C:\tecaj_1\HW03-0036473653\src\main\java\hr\fer\zemris\java\tecaj\hw3\ComplexNumber.java"/>
+<codefragment><![CDATA[	}
+
+	/**
+	 * Metoda koja vraÄ‡a sadrÅ¾aj objekta.
+	 * VraÄ‡a String
+	 */
+	@Override
+	public String toString() {
+		String n = new String(this.data, this.offset, this.length);]]></codefragment>
+</duplication>
+<duplication lines="2" tokens="10">
+<file line="161" path="C:\tecaj_1\HW03-0036473653\src\main\java\hr\fer\zemris\java\tecaj\hw3\CString.java"/>
+<file line="175" path="C:\tecaj_1\HW03-0036473653\src\main\java\hr\fer\zemris\java\tecaj\hw3\CString.java"/>
+<file line="189" path="C:\tecaj_1\HW03-0036473653\src\main\java\hr\fer\zemris\java\tecaj\hw3\CString.java"/>
+<codefragment><![CDATA[		for (int i = 0, kraj = this.length; i < kraj; i++) {
+			if (this.data[i + this.offset] == c)]]></codefragment>
+</duplication>
+<duplication lines="2" tokens="10">
+<file line="174" path="C:\tecaj_1\HW03-0036473653\src\main\java\hr\fer\zemris\java\tecaj\hw3\CString.java"/>
+<file line="188" path="C:\tecaj_1\HW03-0036473653\src\main\java\hr\fer\zemris\java\tecaj\hw3\CString.java"/>
+<file line="312" path="C:\tecaj_1\HW03-0036473653\src\main\java\hr\fer\zemris\java\tecaj\hw3\CString.java"/>
+<codefragment><![CDATA[	public boolean startsWith(CString s) {
+		for (int i = 0; i < s.length; i++) {]]></codefragment>
+</duplication>
+<duplication lines="1" tokens="10">
+<file line="176" path="C:\tecaj_1\HW03-0036473653\src\main\java\hr\fer\zemris\java\tecaj\hw3\CString.java"/>
+<file line="190" path="C:\tecaj_1\HW03-0036473653\src\main\java\hr\fer\zemris\java\tecaj\hw3\CString.java"/>
+<file line="209" path="C:\tecaj_1\HW03-0036473653\src\main\java\hr\fer\zemris\java\tecaj\hw3\CString.java"/>
+<codefragment><![CDATA[			if (this.data[this.offset + i] != s.data[s.offset + i])]]></codefragment>
+</duplication>
+<duplication lines="1" tokens="10">
+<file line="176" path="C:\tecaj_1\HW03-0036473653\src\main\java\hr\fer\zemris\java\tecaj\hw3\CString.java"/>
+<file line="190" path="C:\tecaj_1\HW03-0036473653\src\main\java\hr\fer\zemris\java\tecaj\hw3\CString.java"/>
+<file line="274" path="C:\tecaj_1\HW03-0036473653\src\main\java\hr\fer\zemris\java\tecaj\hw3\CString.java"/>
+<codefragment><![CDATA[			if (this.data[this.offset + i] != s.data[s.offset + i])]]></codefragment>
+</duplication>
+<duplication lines="2" tokens="10">
+<file line="208" path="C:\tecaj_1\HW03-0036473653\src\main\java\hr\fer\zemris\java\tecaj\hw3\CString.java"/>
+<file line="289" path="C:\tecaj_1\HW03-0036473653\src\main\java\hr\fer\zemris\java\tecaj\hw3\CString.java"/>
+<codefragment><![CDATA[			for (int j = 0; j < s.length; j++) {
+				if (data[offset + i + j] != s.data[s.offset + j]) {]]></codefragment>
+</duplication>
+<duplication lines="1" tokens="10">
+<file line="229" path="C:\tecaj_1\HW03-0036473653\src\main\java\hr\fer\zemris\java\tecaj\hw3\CString.java"/>
+<file line="243" path="C:\tecaj_1\HW03-0036473653\src\main\java\hr\fer\zemris\java\tecaj\hw3\CString.java"/>
+<codefragment><![CDATA[		return new CString(this.data, this.offset + startIndex, endIndex]]></codefragment>
+</duplication>
+<duplication lines="2" tokens="10">
+<file line="239" path="C:\tecaj_1\HW03-0036473653\src\main\java\hr\fer\zemris\java\tecaj\hw3\CString.java"/>
+<file line="252" path="C:\tecaj_1\HW03-0036473653\src\main\java\hr\fer\zemris\java\tecaj\hw3\CString.java"/>
+<file line="279" path="C:\tecaj_1\HW03-0036473653\src\main\java\hr\fer\zemris\java\tecaj\hw3\ComplexNumber.java"/>
+<codefragment><![CDATA[	public CString left(int n) {
+		if (n < 0 || n > this.length)]]></codefragment>
+</duplication>
+<duplication lines="10" tokens="10">
+<file line="243" path="C:\tecaj_1\HW03-0036473653\src\main\java\hr\fer\zemris\java\tecaj\hw3\CString.java"/>
+<file line="256" path="C:\tecaj_1\HW03-0036473653\src\main\java\hr\fer\zemris\java\tecaj\hw3\CString.java"/>
+<codefragment><![CDATA[		CString t = new CString(this.data, this.offset, n, true);
+		return t;
+	}
+	/**
+	 * VraÄ‡a CString koji je desni podniz niza
+	 * @param n duljina podniza s desna
+	 * @return podniz
+	 */
+
+	public CString right(int n) {]]></codefragment>
+</duplication>
+<duplication lines="3" tokens="10">
+<file line="294" path="C:\tecaj_1\HW03-0036473653\src\main\java\hr\fer\zemris\java\tecaj\hw3\CString.java"/>
+<file line="326" path="C:\tecaj_1\HW03-0036473653\src\main\java\hr\fer\zemris\java\tecaj\hw3\CString.java"/>
+<codefragment><![CDATA[			}
+		}
+		return new CString(n, 0, this.length);]]></codefragment>
+</duplication>
+<duplication lines="5" tokens="10">
+<file line="61" path="C:\tecaj_1\HW03-0036473653\src\test\java\hr\fer\zemris\java\tecaj\hw3\CStringTest.java"/>
+<file line="188" path="C:\tecaj_1\HW03-0036473653\src\test\java\hr\fer\zemris\java\tecaj\hw3\ComplexNumberTest.java"/>
+<codefragment><![CDATA[			Assert.assertTrue(c[i]==d[i]);
+		}
+	}
+	@Test
+	public void indexOfTest(){]]></codefragment>
+</duplication>
+<duplication lines="1" tokens="10">
+<file line="112" path="C:\tecaj_1\HW03-0036473653\src\test\java\hr\fer\zemris\java\tecaj\hw3\CStringTest.java"/>
+<file line="123" path="C:\tecaj_1\HW03-0036473653\src\test\java\hr\fer\zemris\java\tecaj\hw3\CStringTest.java"/>
+<codefragment><![CDATA[	Assert.assertTrue(novi.left(5).toString().compareTo("petra")==0);]]></codefragment>
+</duplication>
+<duplication lines="2" tokens="10">
+<file line="112" path="C:\tecaj_1\HW03-0036473653\src\test\java\hr\fer\zemris\java\tecaj\hw3\CStringTest.java"/>
+<file line="123" path="C:\tecaj_1\HW03-0036473653\src\test\java\hr\fer\zemris\java\tecaj\hw3\CStringTest.java"/>
+<codefragment><![CDATA[	Assert.assertTrue(novi.left(5).toString().compareTo("petra")==0);
+	Assert.assertTrue(novi.left(500).toString().compareTo("petra")==0);]]></codefragment>
+</duplication>
+<duplication lines="2" tokens="10">
+<file line="138" path="C:\tecaj_1\HW03-0036473653\src\test\java\hr\fer\zemris\java\tecaj\hw3\CStringTest.java"/>
+<file line="146" path="C:\tecaj_1\HW03-0036473653\src\test\java\hr\fer\zemris\java\tecaj\hw3\CStringTest.java"/>
+<codefragment><![CDATA[		System.out.println(novi.replaceAll('a','B'));
+		Assert.assertTrue(novi.replaceAll('a','B').toString().compareTo("BcBBB")==0);]]></codefragment>
+</duplication>
+<duplication lines="2" tokens="10">
+<file line="154" path="C:\tecaj_1\HW03-0036473653\src\test\java\hr\fer\zemris\java\tecaj\hw3\CStringTest.java"/>
+<file line="162" path="C:\tecaj_1\HW03-0036473653\src\test\java\hr\fer\zemris\java\tecaj\hw3\CStringTest.java"/>
+<codefragment><![CDATA[		CString trazeni=novi.replaceAll(new CString("ab"), new CString("abab"));
+		System.out.println(trazeni);]]></codefragment>
+</duplication>
+<duplication lines="3" tokens="10">
+<file line="19" path="C:\tecaj_1\HW03-0036473653\src\test\java\hr\fer\zemris\java\tecaj\hw3\ComplexNumberTest.java"/>
+<file line="27" path="C:\tecaj_1\HW03-0036473653\src\test\java\hr\fer\zemris\java\tecaj\hw3\ComplexNumberTest.java"/>
+<codefragment><![CDATA[		ComplexNumber c = ComplexNumber.fromReal(18.9);
+		{
+			Assert.assertTrue(c.getReal() == 18.9 && c.getImaginary() == 0);]]></codefragment>
+</duplication>
+<duplication lines="3" tokens="10">
+<file line="27" path="C:\tecaj_1\HW03-0036473653\src\test\java\hr\fer\zemris\java\tecaj\hw3\ComplexNumberTest.java"/>
+<file line="51" path="C:\tecaj_1\HW03-0036473653\src\test\java\hr\fer\zemris\java\tecaj\hw3\ComplexNumberTest.java"/>
+<codefragment><![CDATA[		ComplexNumber c = ComplexNumber.fromImaginary(18.9);
+		{
+			Assert.assertTrue(c.realPart == 0 && c.imagPart == 18.9);]]></codefragment>
+</duplication>
+<duplication lines="2" tokens="10">
+<file line="50" path="C:\tecaj_1\HW03-0036473653\src\test\java\hr\fer\zemris\java\tecaj\hw3\ComplexNumberTest.java"/>
+<file line="59" path="C:\tecaj_1\HW03-0036473653\src\test\java\hr\fer\zemris\java\tecaj\hw3\ComplexNumberTest.java"/>
+<file line="65" path="C:\tecaj_1\HW03-0036473653\src\test\java\hr\fer\zemris\java\tecaj\hw3\ComplexNumberTest.java"/>
+<file line="71" path="C:\tecaj_1\HW03-0036473653\src\test\java\hr\fer\zemris\java\tecaj\hw3\ComplexNumberTest.java"/>
+<file line="77" path="C:\tecaj_1\HW03-0036473653\src\test\java\hr\fer\zemris\java\tecaj\hw3\ComplexNumberTest.java"/>
+<file line="82" path="C:\tecaj_1\HW03-0036473653\src\test\java\hr\fer\zemris\java\tecaj\hw3\ComplexNumberTest.java"/>
+<file line="88" path="C:\tecaj_1\HW03-0036473653\src\test\java\hr\fer\zemris\java\tecaj\hw3\ComplexNumberTest.java"/>
+<codefragment><![CDATA[	public void parserRealni() {
+		ComplexNumber c = ComplexNumber.parse("-5.17");]]></codefragment>
+</duplication>
+<duplication lines="2" tokens="10">
+<file line="60" path="C:\tecaj_1\HW03-0036473653\src\test\java\hr\fer\zemris\java\tecaj\hw3\ComplexNumberTest.java"/>
+<file line="78" path="C:\tecaj_1\HW03-0036473653\src\test\java\hr\fer\zemris\java\tecaj\hw3\ComplexNumberTest.java"/>
+<file line="83" path="C:\tecaj_1\HW03-0036473653\src\test\java\hr\fer\zemris\java\tecaj\hw3\ComplexNumberTest.java"/>
+<codefragment><![CDATA[		ComplexNumber c = ComplexNumber.parse("-i");
+		Assert.assertTrue(c.imagPart == -1 && c.realPart == 0);]]></codefragment>
+</duplication>
+<duplication lines="2" tokens="10">
+<file line="158" path="C:\tecaj_1\HW03-0036473653\src\test\java\hr\fer\zemris\java\tecaj\hw3\ComplexNumberTest.java"/>
+<file line="166" path="C:\tecaj_1\HW03-0036473653\src\test\java\hr\fer\zemris\java\tecaj\hw3\ComplexNumberTest.java"/>
+<codefragment><![CDATA[		ComplexNumber rez = c.div(new ComplexNumber(1, 1));
+		Assert.assertTrue(Math.abs(rez.getImaginary()) < 1E-6]]></codefragment>
+</duplication>
+<duplication lines="1" tokens="10">
+<file line="167" path="C:\tecaj_1\HW03-0036473653\src\test\java\hr\fer\zemris\java\tecaj\hw3\ComplexNumberTest.java"/>
+<file line="168" path="C:\tecaj_1\HW03-0036473653\src\test\java\hr\fer\zemris\java\tecaj\hw3\ComplexNumberTest.java"/>
+<codefragment><![CDATA[		Assert.assertTrue(Math.abs(Math.abs(rez.getReal()) - 2) < 1E-6]]></codefragment>
+</duplication>
+</pmd-cpd>

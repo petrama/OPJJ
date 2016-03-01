@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>NamesCounter.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">HW04-0036473653</a> &gt; <a href="index.source.html" class="el_package">hr.fer.zemris.java.tecaj.hw4</a> &gt; <span class="el_source">NamesCounter.java</span></div><h1>NamesCounter.java</h1><pre class="source lang-java linenums">package hr.fer.zemris.java.tecaj.hw4;
+
+
+import java.nio.charset.StandardCharsets;
+import java.util.HashMap;
+import java.util.Scanner;
+
+/**
+ * Program koji traži unos imena dok se ne unese riječ quit.
+ * Na zaslon ispisuje koliko je koje ime puta unešeno.
+ * @author Petra Marče
+ *
+ */
+<span class="nc" id="L14">public class NamesCounter {</span>
+	public static void main(String args[]) {
+<span class="nc" id="L16">		Scanner scanInput = new Scanner(System.in);</span>
+		String ulaznipodatak;
+<span class="nc" id="L18">		boolean ucitavanje = true;</span>
+<span class="nc" id="L19">		HashMap&lt;String, Integer&gt; names = new HashMap&lt;&gt;();</span>
+<span class="nc bnc" id="L20" title="All 2 branches missed.">		while (ucitavanje) {</span>
+<span class="nc" id="L21">			ulaznipodatak = scanInput.nextLine().trim();</span>
+<span class="nc bnc" id="L22" title="All 2 branches missed.">			if (obradiUlaz(ulaznipodatak, names) == false) {</span>
+<span class="nc" id="L23">				ucitavanje = false;</span>
+			}
+		}
+<span class="nc" id="L26">		scanInput.close();</span>
+<span class="nc" id="L27">		System.out.println(names);</span>
+<span class="nc" id="L28">	}</span>
+	/**
+	 * Metoda koja obrađuje ulaz. Dodaje ime u Mapu.
+	 * @param ulaz ulazni niz.
+	 * @param map mapa u koju se dodaje ime.
+	 * @return Vraća true ako unos nije gotov, false inače.
+	 */
+	public static boolean obradiUlaz(String ulaz, HashMap&lt;String, Integer&gt; map) {
+<span class="nc bnc" id="L36" title="All 2 branches missed.">		if (ulaz.compareTo(&quot;quit&quot;) == 0) {</span>
+<span class="nc" id="L37">			return false;</span>
+		}
+
+<span class="nc bnc" id="L40" title="All 2 branches missed.">		if (map.containsKey(ulaz)) {</span>
+<span class="nc" id="L41">			int broj = map.get(ulaz);</span>
+<span class="nc" id="L42">			broj++;</span>
+<span class="nc" id="L43">			map.put(ulaz, broj);</span>
+<span class="nc" id="L44">		} else {</span>
+<span class="nc" id="L45">			map.put(ulaz, 1);</span>
+		}
+
+<span class="nc" id="L48">		return true;</span>
+
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.0.201403182114</span></div></body></html>

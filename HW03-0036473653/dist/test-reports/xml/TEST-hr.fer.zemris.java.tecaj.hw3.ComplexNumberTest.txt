@@ -1,0 +1,35 @@
+Testsuite: hr.fer.zemris.java.tecaj.hw3.ComplexNumberTest
+Tests run: 26, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.103 sec
+------------- Standard Output ---------------
+1
+-5
+2+1i
+-2-1i
+------------- ---------------- ---------------
+
+Testcase: getRootExTest took 0.011 sec
+Testcase: getMulTest took 0 sec
+Testcase: getDivTest took 0 sec
+Testcase: getParserTested took 0.001 sec
+Testcase: getParseTest3 took 0 sec
+Testcase: parserImag took 0.001 sec
+Testcase: getSubTest took 0 sec
+Testcase: getMagnitudeTest took 0.001 sec
+Testcase: getAngleTest took 0.001 sec
+Testcase: getParserTested1 took 0.001 sec
+Testcase: konsKut took 0 sec
+Testcase: getDivideTested took 0 sec
+Testcase: kutIMod took 0 sec
+Testcase: getAddTest took 0.001 sec
+Testcase: getPowExTest took 0 sec
+Testcase: ispis took 0.001 sec
+Testcase: getPowTest took 0.001 sec
+Testcase: konsImaginarni took 0 sec
+Testcase: parserI1 took 0 sec
+Testcase: parserI2 took 0 sec
+Testcase: parserI3 took 0 sec
+Testcase: parserI4 took 0 sec
+Testcase: parserRealni took 0 sec
+Testcase: konstruktor took 0.001 sec
+Testcase: konsRealni took 0 sec
+Testcase: getRootTest took 0.001 sec

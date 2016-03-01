@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<BorderPane prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hr.tunjevinac.controller.MainController">
+   <bottom>
+      <AnchorPane maxHeight="-Infinity" maxWidth="1.7976931348623157E308" prefHeight="17.0" prefWidth="900.0" BorderPane.alignment="CENTER">
+         <children>
+            <Hyperlink layoutY="10.0" onAction="#webStranica" text="Web stranica" />
+            <Hyperlink layoutX="838.0" layoutY="10.0" onAction="#tunjevinac" text="tunjevinac" />
+            <Label layoutX="826.0" layoutY="11.0" text="By">
+               <padding>
+                  <Insets top="3.0" />
+               </padding>
+            </Label>
+         </children>
+      </AnchorPane>
+   </bottom>
+</BorderPane>

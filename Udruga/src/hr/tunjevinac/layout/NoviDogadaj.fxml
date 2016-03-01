@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.web.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hr.tunjevinac.controller.NoviDogadajController">
+   <top>
+      <MenuBar BorderPane.alignment="CENTER">
+        <menus>
+          <Menu mnemonicParsing="false" text="Naslovna">
+            <items>
+              <MenuItem mnemonicParsing="false" onAction="#idiNaNaslovnu" text="Idi na..." />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Članstvo">
+            <items>
+              <MenuItem mnemonicParsing="false" onAction="#idiNaClanstvo" text="Idi na..." />
+                  <MenuItem mnemonicParsing="false" onAction="#noviClan" text="Novi član" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Blagajna">
+            <items>
+              <MenuItem mnemonicParsing="false" onAction="#idiNaBlagajnu" text="Idi na..." />
+                  <MenuItem mnemonicParsing="false" onAction="#novaTransakcija" text="Nova transakcija" />
+            </items>
+          </Menu>
+            <Menu mnemonicParsing="false" text="Zapisnik">
+              <items>
+                <MenuItem mnemonicParsing="false" onAction="#idiNaZapisnik" text="Idi na..." />
+                  <MenuItem mnemonicParsing="false" onAction="#noviZapisnik" text="Nova stavka" />
+              </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Kalendar">
+              <items>
+                <MenuItem mnemonicParsing="false" onAction="#idiNaKalendar" text="Idi na..." />
+              </items>
+            </Menu>
+        </menus>
+      </MenuBar>
+   </top>
+   <center>
+      <AnchorPane prefHeight="112.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label layoutX="139.0" layoutY="35.0" text="Naslov:" />
+            <TextField fx:id="naslovTextField" layoutX="188.0" layoutY="31.0" prefHeight="25.0" prefWidth="315.0" />
+            <Label layoutX="139.0" layoutY="105.0" text="Datum:" />
+            <DatePicker fx:id="datumDatePicker" layoutX="188.0" layoutY="101.0" prefHeight="25.0" prefWidth="140.0" />
+            <Label layoutX="135.0" layoutY="70.0" text="Vrijeme:" />
+            <ComboBox fx:id="satComboBox" layoutX="188.0" layoutY="66.0" prefHeight="25.0" prefWidth="70.0" />
+            <ComboBox fx:id="minComboBox" layoutX="258.0" layoutY="66.0" prefHeight="25.0" prefWidth="70.0" />
+            <Label layoutX="139.0" layoutY="140.0" text="Mjesto:" />
+            <TextField fx:id="mjestoTextField" layoutX="188.0" layoutY="136.0" prefHeight="25.0" prefWidth="315.0" />
+            <Label layoutX="151.0" layoutY="174.0" text="Opis:" />
+            <TextArea fx:id="opisTextArea" layoutX="188.0" layoutY="172.0" prefHeight="122.0" prefWidth="315.0" />
+            <Button layoutX="233.0" layoutY="320.0" mnemonicParsing="false" onAction="#dodajDogadaj" text="Dodaj događaj" />
+         </children></AnchorPane>
+   </center>
+</BorderPane>

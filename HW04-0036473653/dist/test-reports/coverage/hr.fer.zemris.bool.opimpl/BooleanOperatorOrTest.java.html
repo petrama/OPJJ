@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>BooleanOperatorOrTest.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">HW04-0036473653</a> &gt; <a href="index.source.html" class="el_package">hr.fer.zemris.bool.opimpl</a> &gt; <span class="el_source">BooleanOperatorOrTest.java</span></div><h1>BooleanOperatorOrTest.java</h1><pre class="source lang-java linenums">package hr.fer.zemris.bool.opimpl;
+
+
+	
+
+	import hr.fer.zemris.bool.BooleanOperator;
+
+	import hr.fer.zemris.bool.BooleanValue;
+	import hr.fer.zemris.bool.BooleanVariable;
+
+	import org.junit.Assert;
+	import org.junit.Test;
+
+<span class="fc" id="L14">	public class BooleanOperatorOrTest {</span>
+		@Test
+		public void andTest(){
+<span class="fc" id="L17">			BooleanVariable var1=new BooleanVariable(&quot;A&quot;);</span>
+<span class="fc" id="L18">			BooleanVariable var2=new BooleanVariable(&quot;B&quot;);</span>
+<span class="fc" id="L19">			BooleanVariable var3=new BooleanVariable(&quot;C&quot;);</span>
+<span class="fc" id="L20">			var1.setValue(BooleanValue.TRUE);</span>
+			
+			
+<span class="fc" id="L23">			BooleanOperator or=  BooleanOperators.or(var1,var2,var3);</span>
+<span class="pc bpc" id="L24" title="1 of 2 branches missed.">			Assert.assertTrue(or.getValue()==BooleanValue.TRUE);</span>
+			
+<span class="fc" id="L26">		}</span>
+		
+
+	}
+
+
+
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.0.201403182114</span></div></body></html>

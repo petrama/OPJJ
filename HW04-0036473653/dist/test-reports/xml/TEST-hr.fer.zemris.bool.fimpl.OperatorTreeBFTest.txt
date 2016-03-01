@@ -1,0 +1,15 @@
+Testsuite: hr.fer.zemris.bool.fimpl.OperatorTreeBFTest
+Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.03 sec
+------------- Standard Output ---------------
+Imam minterm: 1
+Imam minterm: 3
+Imam minterm: 4
+Imam minterm: 5
+Imam minterm: 7
+Imam maxterm: 0
+Imam maxterm: 2
+Imam maxterm: 6
+------------- ---------------- ---------------
+
+Testcase: testgetValue took 0.01 sec
+Testcase: test1 took 0.01 sec

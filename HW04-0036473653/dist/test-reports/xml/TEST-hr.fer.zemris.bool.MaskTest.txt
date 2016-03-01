@@ -1,0 +1,16 @@
+Testsuite: hr.fer.zemris.bool.MaskTest
+Tests run: 10, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.19 sec
+------------- Standard Output ---------------
+null
+------------- ---------------- ---------------
+
+Testcase: numOfDontsTest took 0.02 sec
+Testcase: parseTest took 0.01 sec
+Testcase: testGetValue took 0 sec
+Testcase: combineTest took 0 sec
+Testcase: getNumOfZerosTest took 0 sec
+Testcase: equalsHashTest took 0 sec
+Testcase: testConstruct took 0 sec
+Testcase: getNumOfOnesTest took 0 sec
+Testcase: fromIndexTest took 0 sec
+Testcase: isMoreGeneralThanTest took 0 sec

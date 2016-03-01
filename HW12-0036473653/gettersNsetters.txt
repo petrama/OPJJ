@@ -1,0 +1,5 @@
+HTTP/1.1 200 OK
+Content-type: text/plain; charset=UTF-8
+Set-Cookie: sid="ABC"; Domain=127.0.0.1; Path=/; Max-Age=10; HttpOnly
+
+Pozdrav svima!

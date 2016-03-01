@@ -1,0 +1,6 @@
+		iinput @prizma
+		load r0, @prizma
+		echo r0
+		halt
+		
+@prizma: DEFSTR ""

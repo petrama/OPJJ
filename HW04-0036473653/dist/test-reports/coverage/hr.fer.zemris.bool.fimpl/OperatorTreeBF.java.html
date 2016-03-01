@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>OperatorTreeBF.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">HW04-0036473653</a> &gt; <a href="index.source.html" class="el_package">hr.fer.zemris.bool.fimpl</a> &gt; <span class="el_source">OperatorTreeBF.java</span></div><h1>OperatorTreeBF.java</h1><pre class="source lang-java linenums">package hr.fer.zemris.bool.fimpl;
+
+import java.util.ArrayList;
+import java.util.List;
+import hr.fer.zemris.bool.*;
+
+/**
+ * Razred koji predstavlja funkciju zadanu logičkim izrazom.
+ * @author Petra Marče
+ *
+ */
+
+public class OperatorTreeBF implements BooleanFunction {
+	String name;
+	List&lt;BooleanVariable&gt; domain;
+	BooleanOperator OperatorTree;
+
+	public OperatorTreeBF(String name, List&lt;BooleanVariable&gt; domain,
+<span class="fc" id="L19">			BooleanOperator OperatorTree) {</span>
+<span class="fc" id="L20">		this.name = new String(name);</span>
+<span class="fc" id="L21">		this.domain = new ArrayList&lt;&gt;(domain);</span>
+<span class="fc" id="L22">		this.OperatorTree = OperatorTree;</span>
+
+<span class="fc" id="L24">	}</span>
+
+	public String getName() {
+<span class="nc" id="L27">		return name;</span>
+	}
+
+	public List&lt;BooleanVariable&gt; getDomain() {
+<span class="fc" id="L31">		return domain;</span>
+	}
+
+	public BooleanValue getValue() {
+
+<span class="fc" id="L36">		return OperatorTree.getValue();</span>
+	}
+
+	/**
+	 * Metoda koja postavlja varijable domene.
+	 * Postavlja varijable na sve valjane kombinacije vrijednosti,od manje prema većoj.
+	 * Provjerava vrijednost funkcije za tu vrijednost domene i gradi niz.
+	 * Taj niz je zapis funkcije pomoću niza 1,0 i x-eva.
+	 * @return niz koji prestavlja vrijednost funkcije.
+	 */
+	public String setAndCalculate() {
+<span class="fc" id="L47">		String s = &quot;&quot;;</span>
+<span class="fc" id="L48">		int n = (int) Math.pow(2, getDomain().size());</span>
+
+<span class="fc bfc" id="L50" title="All 2 branches covered.">		for (int i = 0; i &lt; n; i++) {</span>
+<span class="fc" id="L51">		 setFromIndex(i);</span>
+
+//			for (int j = 0; j &lt; getDomain().size(); j++) {
+//				if (numberAsMask.getValue(j) == MaskValue.ONE) {
+//					getDomain().get(j).setValue(BooleanValue.TRUE);
+//
+//				} else if (numberAsMask.getValue(j) == MaskValue.ZERO) {
+//					getDomain().get(j).setValue(BooleanValue.FALSE);
+//
+//				} else {
+//					getDomain().get(j).setValue(BooleanValue.DONT_CARE);
+//
+//				}
+//
+//			}
+			
+<span class="fc bfc" id="L67" title="All 2 branches covered.">			if (getValue() == BooleanValue.TRUE) {</span>
+<span class="fc" id="L68">				s += &quot;1&quot;;</span>
+<span class="pc bpc" id="L69" title="1 of 2 branches missed.">			} else if (getValue() == BooleanValue.FALSE) {</span>
+<span class="fc" id="L70">				s += &quot;0&quot;;</span>
+<span class="nc bnc" id="L71" title="All 2 branches missed.">			} else if (getValue() == BooleanValue.DONT_CARE) {</span>
+<span class="nc" id="L72">				s += &quot;x&quot;;</span>
+
+			}
+
+		}
+
+<span class="fc" id="L78">		return s;</span>
+	}
+
+	public Iterable&lt;Integer&gt; mintermIterable() {
+<span class="fc" id="L82">		String functionValues = setAndCalculate();</span>
+<span class="fc" id="L83">		List&lt;Integer&gt; listOfMinterms = new ArrayList&lt;&gt;();</span>
+<span class="fc bfc" id="L84" title="All 2 branches covered.">		for (int i = 0; i &lt; functionValues.length(); i++) {</span>
+<span class="fc bfc" id="L85" title="All 2 branches covered.">			if (functionValues.charAt(i) == '1') {</span>
+<span class="fc" id="L86">				listOfMinterms.add(i);</span>
+			}
+
+		}
+<span class="fc" id="L90">		return listOfMinterms;</span>
+
+	}
+
+	public Iterable&lt;Integer&gt; maxtermIterable() {
+<span class="fc" id="L95">		String functionValues = setAndCalculate();</span>
+<span class="fc" id="L96">		List&lt;Integer&gt; listOfMaxterms = new ArrayList&lt;&gt;();</span>
+<span class="fc bfc" id="L97" title="All 2 branches covered.">		for (int i = 0; i &lt; functionValues.length(); i++) {</span>
+<span class="fc bfc" id="L98" title="All 2 branches covered.">			if (functionValues.charAt(i) == '0') {</span>
+<span class="fc" id="L99">				listOfMaxterms.add(i);</span>
+			}
+
+		}
+<span class="fc" id="L103">		return listOfMaxterms;</span>
+
+	}
+
+	public Iterable&lt;Integer&gt; dontcareIterable() {
+<span class="fc" id="L108">		String functionValues = setAndCalculate();</span>
+<span class="fc" id="L109">		List&lt;Integer&gt; listOfDonts = new ArrayList&lt;&gt;();</span>
+<span class="fc bfc" id="L110" title="All 2 branches covered.">		for (int i = 0; i &lt; functionValues.length(); i++) {</span>
+<span class="pc bpc" id="L111" title="1 of 2 branches missed.">			if (functionValues.charAt(i) == 'x') {</span>
+<span class="nc" id="L112">				listOfDonts.add(i);</span>
+			}
+
+		}
+<span class="fc" id="L116">		return listOfDonts;</span>
+
+	}
+
+	/**
+	 * Metoda koja postavlja vrijednosti varijabli domene.
+	 * @param index broj na koji domenu treba postaviti
+	 */
+	public void setFromIndex(int index) {
+<span class="fc" id="L125">		Mask values = Mask.fromIndex(getDomain().size(), index);</span>
+
+<span class="fc bfc" id="L127" title="All 2 branches covered.">		for (int i = 0; i &lt; getDomain().size(); i++) {</span>
+<span class="pc bpc" id="L128" title="2 of 4 branches missed.">			switch (values.getValue(i)) {</span>
+			case ONE:
+<span class="fc" id="L130">				getDomain().get(i).setValue(BooleanValue.TRUE);</span>
+<span class="fc" id="L131">				break;</span>
+			case ZERO:
+<span class="fc" id="L133">				getDomain().get(i).setValue(BooleanValue.FALSE);</span>
+<span class="fc" id="L134">				break;</span>
+			case DONT_CARE:
+<span class="nc" id="L136">				getDomain().get(i).setValue(BooleanValue.FALSE);</span>
+<span class="nc" id="L137">				break;</span>
+			 default: break;
+			}
+		}
+
+<span class="fc" id="L142">	}</span>
+
+	public boolean hasMinterm(int index) {
+<span class="fc" id="L145">		setFromIndex(index);</span>
+<span class="pc bpc" id="L146" title="1 of 2 branches missed.">		if (getValue() == BooleanValue.TRUE) {</span>
+<span class="fc" id="L147">			return true;</span>
+		}
+<span class="nc" id="L149">		return false;</span>
+	}
+
+	public boolean hasMaxterm(int index) {
+<span class="fc" id="L153">		setFromIndex(index);</span>
+<span class="pc bpc" id="L154" title="1 of 2 branches missed.">		if (getValue() == BooleanValue.FALSE) {</span>
+<span class="fc" id="L155">			return true;</span>
+		}
+<span class="nc" id="L157">		return false;</span>
+	}
+
+	public boolean hasDontCare(int index) {
+<span class="fc" id="L161">		setFromIndex(index);</span>
+<span class="pc bpc" id="L162" title="1 of 2 branches missed.">		if (getValue() == BooleanValue.DONT_CARE) {</span>
+<span class="nc" id="L163">			return true;</span>
+		}
+<span class="fc" id="L165">		return false;</span>
+	}
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.0.201403182114</span></div></body></html>

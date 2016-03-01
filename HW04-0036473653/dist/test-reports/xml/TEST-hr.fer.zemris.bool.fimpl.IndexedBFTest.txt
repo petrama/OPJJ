@@ -1,0 +1,15 @@
+Testsuite: hr.fer.zemris.bool.fimpl.IndexedBFTest
+Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.04 sec
+------------- Standard Output ---------------
+Imam minterm: 0
+Imam minterm: 1
+Imam minterm: 5
+Imam minterm: 7
+Imam maxterm: 4
+Imam maxterm: 6
+Imam dontcare: 2
+Imam dontcare: 3
+------------- ---------------- ---------------
+
+Testcase: getValueTest took 0.03 sec
+Testcase: test1 took 0 sec

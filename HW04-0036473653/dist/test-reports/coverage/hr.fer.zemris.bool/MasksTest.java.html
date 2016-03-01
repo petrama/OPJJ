@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>MasksTest.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">HW04-0036473653</a> &gt; <a href="index.source.html" class="el_package">hr.fer.zemris.bool</a> &gt; <span class="el_source">MasksTest.java</span></div><h1>MasksTest.java</h1><pre class="source lang-java linenums">package hr.fer.zemris.bool;
+
+import java.util.List;
+
+import org.junit.Assert;
+import org.junit.Test;
+
+<span class="fc" id="L8">public class MasksTest {</span>
+	
+ @Test
+	public void fromStringsTest(){
+<span class="fc" id="L12">	 List&lt;Mask&gt; maske=Masks.fromStrings(&quot;101&quot;,&quot;100&quot;,&quot;000&quot;);</span>
+<span class="fc" id="L13">	 Assert.assertTrue(maske.get(0).equals(Masks.parse(&quot;101&quot;)));</span>
+<span class="fc" id="L14">	 Assert.assertTrue(maske.get(1).equals(Masks.parse(&quot;100&quot;)));</span>
+<span class="fc" id="L15">	 Assert.assertTrue(maske.get(2).equals(Masks.parse(&quot;000&quot;)));</span>
+<span class="fc" id="L16"> }</span>
+ 
+
+ @Test
+	public void fromIndexesTest(){
+<span class="fc" id="L21">	 List&lt;Mask&gt; maske=Masks.fromIndexes(3,5,4,0);</span>
+<span class="fc" id="L22">	 Assert.assertTrue(maske.get(0).equals(Masks.parse(&quot;101&quot;)));</span>
+<span class="fc" id="L23">	 Assert.assertTrue(maske.get(1).equals(Masks.parse(&quot;100&quot;)));</span>
+<span class="fc" id="L24">	 Assert.assertTrue(maske.get(2).equals(Masks.parse(&quot;000&quot;)));</span>
+<span class="fc" id="L25"> }</span>
+ 
+	
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.0.201403182114</span></div></body></html>

@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hr.tunjevinac.controller.NaslovnaController">
+   <top>
+      <MenuBar BorderPane.alignment="CENTER">
+        <menus>
+          <Menu mnemonicParsing="false" text="Članstvo">
+            <items>
+              <MenuItem mnemonicParsing="false" onAction="#noviClan" text="Novi član" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Blagajna">
+            <items>
+              <MenuItem mnemonicParsing="false" onAction="#novaTransakcija" text="Nova transakcija" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Zapisnik">
+            <items>
+              <MenuItem mnemonicParsing="false" onAction="#noviZapisnik" text="Nova stavka" />
+            </items>
+          </Menu>
+            <Menu mnemonicParsing="false" text="Kalendar">
+              <items>
+                <MenuItem mnemonicParsing="false" onAction="#noviDogadaj" text="Novi događaj" />
+              </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Korisnici (admin)">
+              <items>
+                <MenuItem mnemonicParsing="false" onAction="#idiNaKorisnike" text="Idi na..." />
+              </items>
+            </Menu>
+        </menus>
+      </MenuBar>
+   </top>
+   <center>
+      <GridPane BorderPane.alignment="CENTER">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0">
+               <children>
+                  <Button layoutX="105.0" layoutY="71.0" mnemonicParsing="false" onAction="#idiNaClanstvo" prefHeight="46.0" prefWidth="90.0" text="Članstvo" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="2.0">
+                     <font>
+                        <Font size="36.0" />
+                     </font>
+                  </Button>
+                  <Label fx:id="clanstvoLabel" layoutX="3.0" layoutY="162.0" text="Label">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
+               <children>
+                  <Button layoutX="124.0" layoutY="82.0" mnemonicParsing="false" onAction="#idiNaBlagajnu" text="Blagajna" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="2.0">
+                     <font>
+                        <Font size="36.0" />
+                     </font>
+                  </Button>
+                  <Label fx:id="blagajnaLabel" layoutX="2.0" layoutY="163.0" text="Label">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
+               <children>
+                  <Button layoutX="124.0" layoutY="81.0" mnemonicParsing="false" onAction="#idiNaZapisnik" text="Zapisnik" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="2.0">
+                     <font>
+                        <Font size="36.0" />
+                     </font>
+                  </Button>
+                  <Label fx:id="zapisnikLabel" layoutX="2.0" layoutY="162.0" text="Label">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <children>
+                  <Button layoutX="124.0" layoutY="81.0" mnemonicParsing="false" onAction="#idiNaKalendar" text="Kalendar" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="2.0">
+                     <font>
+                        <Font size="36.0" />
+                     </font>
+                  </Button>
+                  <Label fx:id="kalendarLabel" layoutX="2.0" layoutY="162.0" text="Label">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+         </children>
+      </GridPane>
+   </center>
+</BorderPane>

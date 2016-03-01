@@ -1,0 +1,25 @@
+
+@unos: 		iinput @pedeset;
+			jumpIfTrue @van;
+			jump @unos;
+
+@van: 		load r8,@poruka;
+			echo r8;
+			load r7,@pedeset;
+			increment r7;
+			load r1, @brojac;
+			load r2, @nula;
+@petlja:	testEquals r1,r2;
+			jumpIfTrue @gotovo;
+			echo r7;
+			increment r7;
+			decrement r1;
+			jump @petlja;
+
+@gotovo: 	halt		
+
+@poruka: DEFSTR "Sljedećih 5 brojeva je:\n"
+@pedeset: DEFINT 50
+@brojac: DEFINT 5
+@nula: DEFINT 0	
+

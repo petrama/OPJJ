@@ -1,0 +1,333 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>CString.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Projekt3</a> &gt; <a href="index.source.html" class="el_package">hr.fer.zemris.java.tecaj.hw3</a> &gt; <span class="el_source">CString.java</span></div><h1>CString.java</h1><pre class="source lang-java linenums">package hr.fer.zemris.java.tecaj.hw3;
+
+/**Razred koji nudi rad sa stringovima.
+ * Stringovi su nepromjenjivi.
+ * @author Petra Marče
+ * @version 1.0
+ */
+
+public class CString {
+
+	 int offset;
+	 int length;
+	 char[] data;
+	
+	/**
+	 * Konstruktor.
+	 * Kopira sadržaj predanog polja.
+	 * @param data polje koje će biti kopirano;
+	 * @param offset offset ulaznog polja
+	 * @param length duljina ulazng polja
+	 */
+
+<span class="fc" id="L23">	public CString(char[] data, int offset, int length) {</span>
+<span class="pc bpc" id="L24" title="1 of 2 branches missed.">		if (data == null)</span>
+<span class="nc" id="L25">			throw new IllegalArgumentException(</span>
+					&quot;Poslano je polje sa null vrijednosti&quot;);
+
+<span class="fc" id="L28">		this.data = new char[length];</span>
+<span class="fc" id="L29">		System.arraycopy(data, offset, this.data, 0, length);</span>
+<span class="fc" id="L30">		this.offset = 0;</span>
+<span class="fc" id="L31">		this.length = length;</span>
+<span class="fc" id="L32">	}</span>
+
+	/**
+	 * Konstruktor.
+	 * Kopira sadržaj predanog polja.
+	 * @param data predano polje
+	 */
+<span class="fc" id="L39">	public CString(char[] data) {</span>
+<span class="pc bpc" id="L40" title="1 of 2 branches missed.">		if (data == null)</span>
+<span class="nc" id="L41">			throw new IllegalArgumentException(</span>
+					&quot;Poslano je polje sa null vrijednosti&quot;);
+
+<span class="fc" id="L44">		this.data = new char[data.length];</span>
+<span class="fc" id="L45">		System.arraycopy(data, 0, this.data, 0, data.length);</span>
+<span class="fc" id="L46">		this.offset = 0;</span>
+<span class="fc" id="L47">		this.length = data.length;</span>
+<span class="fc" id="L48">	}</span>
+	
+	/**
+	 * Konstruktor prima sadrzaj u obliku stringa.
+	 * @param s predani string
+	 */
+<span class="fc" id="L54">	public CString(String s) {</span>
+<span class="fc" id="L55">		char[] n = s.toCharArray();</span>
+<span class="fc" id="L56">		data = n;</span>
+<span class="fc" id="L57">		length = data.length;</span>
+<span class="fc" id="L58">		offset = 0;</span>
+<span class="fc" id="L59">	}</span>
+	
+	/**
+	 * Konstruktor.
+	 * Stvara novi primjerak istog sadrzaja kao original.
+	 * Ako je polje originala veće no što treba
+	 * sadrzaj se kopira u novi niz. Inače ne.
+	 * @param orginal originalni primjerak.
+	 */
+
+<span class="fc" id="L69">	public CString(CString orginal) {</span>
+
+<span class="pc bpc" id="L71" title="1 of 2 branches missed.">		if (orginal.data.length &gt; orginal.length) {</span>
+
+<span class="nc" id="L73">			char[] pomocnopolje = new char[orginal.length];</span>
+<span class="nc" id="L74">			System.arraycopy(orginal.data, orginal.offset, pomocnopolje, 0,</span>
+					orginal.length);
+
+<span class="nc" id="L77">			this.data = pomocnopolje;</span>
+<span class="nc" id="L78">			this.offset = 0;</span>
+<span class="nc" id="L79">			this.length = orginal.length;</span>
+
+<span class="nc" id="L81">		} else {</span>
+<span class="fc" id="L82">			this.data = orginal.data;</span>
+<span class="fc" id="L83">			this.offset = orginal.offset;</span>
+<span class="fc" id="L84">			this.length = orginal.length;</span>
+		}
+<span class="fc" id="L86">	}</span>
+	/**
+	 * Privatni konstruktor.
+	 * Slozenost O(1).
+	 * @param data sadržaj koji pridruzujemo
+	 * @param offset pomak u originalnom polju
+	 * @param length duljina niza
+	 * @param flag zastavica. Kad je true stvara se novi element.
+	 */
+
+<span class="fc" id="L96">	private CString(char[] data, int offset, int length, boolean flag) {</span>
+<span class="pc bpc" id="L97" title="1 of 2 branches missed.">		if (data == null)</span>
+<span class="nc" id="L98">			throw new IllegalArgumentException(</span>
+					&quot;Poslano je polje sa null vrijednosti&quot;);
+<span class="pc bpc" id="L100" title="1 of 2 branches missed.">		if (!flag)</span>
+<span class="nc" id="L101">			throw new IllegalArgumentException(&quot;Pogrešna zastavica.&quot;);</span>
+<span class="fc" id="L102">		this.data = data;</span>
+<span class="fc" id="L103">		this.offset = offset;</span>
+<span class="fc" id="L104">		this.length = length;</span>
+<span class="fc" id="L105">	}</span>
+
+	/**
+	 * Metoda koja vraća duljinu stringa.
+	 * @return vraća duljinu.
+	 */
+	public int length() {
+
+<span class="nc" id="L113">		return this.length;</span>
+	}
+	/**
+	 * Vraća znak koji se nalazi na zadanoj poziciji.
+	 * Ako pozicija nije valjana baca se iznimka.
+	 * @param index pozicija
+	 * @return nađeni znak
+	 */
+
+	public char charAt(int index) {
+<span class="pc bpc" id="L123" title="2 of 4 branches missed.">		if (index&lt;0 || index&gt;length){</span>
+<span class="nc" id="L124">			throw new IndexOutOfBoundsException(&quot;Invalid Index&quot;);</span>
+		}
+<span class="fc" id="L126">		return this.data[offset + index];</span>
+
+	}
+
+	/**
+	 * Vraća sadržaj objekta kao polje znakova.
+	 * @return polje znakova
+	 */
+	public char[] toCharArray() {
+<span class="fc" id="L135">		char[] n = new char[this.length];</span>
+<span class="fc bfc" id="L136" title="All 2 branches covered.">		for (int i = 0; i &lt; this.length; i++) {</span>
+<span class="fc" id="L137">			n[i] = data[i + this.offset];</span>
+		}
+<span class="fc" id="L139">		return n;</span>
+
+	}
+
+	/**
+	 * Metoda koja vraća sadržaj objekta.
+	 * Vraća String
+	 */
+	@Override
+	public String toString() {
+<span class="fc" id="L149">		String n = new String(this.data, this.offset, this.length);</span>
+<span class="fc" id="L150">		return n;</span>
+	}
+	
+	/**
+	 * Metoda koja traži prvo pojavljivanje znaka.
+	 * @param c znak koji se traži
+	 * @return indeks prvog pojavljivanja.
+	 * Vraća -1 ako se znak ne pojavljuje
+	 */
+
+	public int indexOf(char c) {
+<span class="pc bpc" id="L161" title="1 of 2 branches missed.">		for (int i = 0, kraj = this.length; i &lt; kraj; i++) {</span>
+<span class="fc bfc" id="L162" title="All 2 branches covered.">			if (this.data[i + this.offset] == c)</span>
+<span class="fc" id="L163">				return i;</span>
+
+		}
+<span class="nc" id="L166">		return -1;</span>
+	}
+	/**
+	 * Metoda koja provjerava početak niza.
+	 * @param s zadani podniz.
+	 * @return vraća true ako niz započinje podnizom,false inače
+	 */
+	
+	public boolean startsWith(CString s) {
+<span class="fc bfc" id="L175" title="All 2 branches covered.">		for (int i = 0; i &lt; s.length; i++) {</span>
+<span class="fc bfc" id="L176" title="All 2 branches covered.">			if (this.data[this.offset + i] != s.data[s.offset + i])</span>
+<span class="fc" id="L177">				return false;</span>
+		}
+<span class="fc" id="L179">		return true;</span>
+	}
+	
+	/**
+	 * Metoda koja provjerava kraj niza.
+	 * @param s zadani podniz.
+	 * @return vraća true ako niz završava podnizom, false inače
+	 */
+
+	public boolean endsWith(CString s) {
+<span class="fc bfc" id="L189" title="All 2 branches covered.">		for (int i = 0; i &lt; s.length; i++) {</span>
+<span class="fc bfc" id="L190" title="All 2 branches covered.">			if (this.data[offset + length + -s.length + i] != s.data[s.offset</span>
+			                                                         + i])
+<span class="fc" id="L192">				return false;</span>
+		}
+<span class="fc" id="L194">		return true;</span>
+	}
+	/**
+	 * Metoda koja provjerava sadrži li niz zadani podniz.
+	 * @param s podniz koji se traži
+	 * @return
+	 */
+
+	public boolean contains(CString s) {
+<span class="fc" id="L203">		int numberOfChecks = this.length - s.length + 1;// broj provjera koje</span>
+<span class="pc bpc" id="L204" title="1 of 2 branches missed.">		if (numberOfChecks &lt;= 0)</span>
+<span class="nc" id="L205">			return false; // treba napraviti</span>
+<span class="fc bfc" id="L206" title="All 2 branches covered.">		for (int i = 0; i &lt; numberOfChecks; i++) {</span>
+<span class="fc" id="L207">			boolean check = true;</span>
+<span class="fc bfc" id="L208" title="All 2 branches covered.">			for (int j = 0; j &lt; s.length; j++) {</span>
+<span class="fc bfc" id="L209" title="All 2 branches covered.">				if (data[offset + i + j] != s.data[s.offset + j]) {</span>
+<span class="fc" id="L210">					check = false;</span>
+
+				}
+			}
+<span class="fc bfc" id="L214" title="All 2 branches covered.">			if (check == true)</span>
+<span class="fc" id="L215">				return true;</span>
+
+		}
+<span class="fc" id="L218">		return false;</span>
+
+	}
+	/**
+	 * Metoda koja vraća podniz niza.
+	 * @param startIndex početna pozicija
+	 * @param endIndex krajnja pozicija
+	 * @return vraća podniz
+	 */
+
+	public CString substring(int startIndex, int endIndex) {
+<span class="fc" id="L229">		return new CString(this.data, this.offset + startIndex, endIndex</span>
+				- startIndex, true);
+
+	}
+
+	/**
+	 * Vraća CString koji je lijevi podniz niza
+	 * @param n duljina podniza s lijeva
+	 * @return podniz
+	 */
+	public CString left(int n) {
+<span class="pc bpc" id="L240" title="1 of 4 branches missed.">		if (n &lt; 0 || n &gt; this.length)</span>
+<span class="fc" id="L241">			throw new IllegalArgumentException(</span>
+					&quot;Invalid length of left side od string!&quot;);
+<span class="fc" id="L243">		CString t = new CString(this.data, this.offset, n, true);</span>
+<span class="fc" id="L244">		return t;</span>
+	}
+	/**
+	 * Vraća CString koji je desni podniz niza
+	 * @param n duljina podniza s desna
+	 * @return podniz
+	 */
+
+	public CString right(int n) {
+<span class="pc bpc" id="L253" title="1 of 4 branches missed.">		if (n &lt; 0 || n &gt; this.length)</span>
+<span class="fc" id="L254">			throw new IllegalArgumentException(</span>
+					&quot;Invalid length of left side od string!&quot;);
+<span class="fc" id="L256">		CString t = new CString(this.data, this.offset + this.length - n, n,</span>
+				true);
+<span class="fc" id="L258">		return t;</span>
+	}
+	/**
+	 * Metoda obavlja konkatenaciju dva niza.
+	 * @param s niz koji se dodaje
+	 * @return vraća novu instancu objekta 
+	 * ciji je sadrzaj rezultat konkatenacije
+	 */
+
+	public CString add(CString s) {
+<span class="fc" id="L268">		int l = s.length + this.length;</span>
+<span class="fc" id="L269">		char[] n = new char[l];</span>
+<span class="fc bfc" id="L270" title="All 2 branches covered.">		for (int i = 0; i &lt; this.length; i++) {</span>
+<span class="fc" id="L271">			n[i] = this.data[offset + i];</span>
+		}
+<span class="fc bfc" id="L273" title="All 2 branches covered.">		for (int i = 0; i &lt; s.length; i++) {</span>
+<span class="fc" id="L274">			n[i + this.length] = s.data[s.offset + i];</span>
+
+		}
+<span class="fc" id="L277">		return new CString(n, 0, l);</span>
+
+	}
+	
+	/**
+	 * Metoda u nizu zamjenjuje svaku pojavu jednog znaka drugim.
+	 * @param oldChar Znak kojeg se mjenja.
+	 * @param newChar znak koji će ga zamjeniti.
+	 * @return vraća izmjenjeni niz
+	 */
+	public CString replaceAll(char oldChar, char newChar) {
+<span class="fc" id="L288">		char[] n = new char[this.length];</span>
+<span class="fc bfc" id="L289" title="All 2 branches covered.">		for (int i = 0; i &lt; this.length; i++) {</span>
+<span class="fc bfc" id="L290" title="All 2 branches covered.">			if (data[offset + i] == oldChar) {</span>
+<span class="fc" id="L291">				n[i] = newChar;</span>
+			} else {
+<span class="fc" id="L293">				n[i] = data[offset + i];</span>
+			}
+		}
+<span class="fc" id="L296">		return new CString(n, 0, this.length);</span>
+
+	}
+	
+	/**
+	 * Metoda koja u nizu svaku pojavu podniza mjenja drugim podnizom.
+	 * @param oldStr podniz koji se mjenja
+	 * @param newStr podniz koji će ga zamjeniti
+	 * @return vraća izmjenjeni niz
+	 */
+
+	public CString replaceAll(CString oldStr, CString newStr) {
+<span class="fc" id="L308">		CString pomocni = new CString(this);</span>
+<span class="fc" id="L309">		int poz = 0;</span>
+<span class="fc" id="L310">		char[] n = new char[(int)Math.ceil(((double)this.length)/oldStr.length*newStr.length)];</span>
+<span class="fc bfc" id="L311" title="All 2 branches covered.">		while (pomocni.length &gt; 0) {</span>
+<span class="fc bfc" id="L312" title="All 2 branches covered.">			if (pomocni.startsWith(oldStr) == true) {</span>
+<span class="fc bfc" id="L313" title="All 2 branches covered.">				for (int i = 0; i &lt; newStr.length; i++) {</span>
+<span class="fc" id="L314">					n[poz] = newStr.data[newStr.offset + i];</span>
+<span class="fc" id="L315">					poz++;</span>
+				}
+<span class="fc" id="L317">				pomocni.offset += oldStr.length;</span>
+<span class="fc" id="L318">				pomocni.length -= oldStr.length;</span>
+
+			} else {
+<span class="fc" id="L321">				n[poz] = pomocni.data[pomocni.offset];</span>
+<span class="fc" id="L322">				pomocni.offset++;</span>
+<span class="fc" id="L323">				pomocni.length--;</span>
+<span class="fc" id="L324">				poz++;</span>
+
+			}
+		}
+<span class="fc" id="L328">		return new CString(n, 0, poz);</span>
+
+	}
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.0.201403182114</span></div></body></html>

@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>MaskTest.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">HW04-0036473653</a> &gt; <a href="index.source.html" class="el_package">hr.fer.zemris.bool</a> &gt; <span class="el_source">MaskTest.java</span></div><h1>MaskTest.java</h1><pre class="source lang-java linenums">package hr.fer.zemris.bool;
+
+import org.junit.Assert;
+import org.junit.Test;
+
+<span class="fc" id="L6">public class MaskTest {</span>
+	
+	
+	@Test
+	public void testConstruct(){
+<span class="fc" id="L11">		MaskValue[] polje=new MaskValue[] {MaskValue.ONE,MaskValue.ZERO,MaskValue.DONT_CARE};</span>
+<span class="fc" id="L12">		Mask novaMaska=new Mask(polje);</span>
+<span class="pc bpc" id="L13" title="1 of 2 branches missed.">		Assert.assertTrue(novaMaska.toString().compareTo(&quot;10x&quot;)==0);</span>
+<span class="fc" id="L14">	}</span>
+	
+	@Test
+	public void testGetValue(){
+<span class="fc" id="L18">		MaskValue[] polje=new MaskValue[] {MaskValue.ONE,MaskValue.ZERO,MaskValue.DONT_CARE};</span>
+<span class="fc" id="L19">		Mask novaMaska=new Mask(polje);</span>
+<span class="pc bpc" id="L20" title="1 of 2 branches missed.">		Assert.assertTrue(novaMaska.getValue(2)==MaskValue.DONT_CARE);</span>
+<span class="fc" id="L21">	}</span>
+	
+	@Test
+	public void equalsHashTest(){
+<span class="fc" id="L25">		Mask m1=Mask.parse(&quot;111&quot;);</span>
+<span class="fc" id="L26">		Mask m2=Mask.parse(&quot;111&quot;);</span>
+<span class="fc" id="L27">		Assert.assertTrue(m1.equals(m2));</span>
+<span class="pc bpc" id="L28" title="1 of 2 branches missed.">		Assert.assertTrue(m1.hashCode()==m2.hashCode());</span>
+		
+<span class="fc" id="L30">	}</span>
+	
+	@Test
+	public void parseTest(){
+<span class="fc" id="L34">		String ulazna=&quot;0010xX10&quot;;</span>
+<span class="fc" id="L35">		Mask parsirana=Mask.parse(ulazna);</span>
+<span class="fc" id="L36">		Assert.assertTrue(parsirana.toString().equalsIgnoreCase(ulazna));</span>
+		
+<span class="fc" id="L38">	}</span>
+	@Test 
+	public void fromIndexTest() {
+<span class="fc" id="L41">		Mask nova = Mask.fromIndex(4, 0);</span>
+<span class="fc" id="L42">		Assert.assertTrue(nova.equals(Mask.parse(&quot;0000&quot;)));</span>
+<span class="fc" id="L43">	}</span>
+
+	@Test
+	public void numOfDontsTest(){
+<span class="fc" id="L47">		String ulazna=&quot;0010xX10&quot;;</span>
+<span class="fc" id="L48">		Mask parsirana=Mask.parse(ulazna);</span>
+<span class="pc bpc" id="L49" title="1 of 2 branches missed.">		Assert.assertTrue(parsirana.numberOfDontCares()==2);</span>
+		
+<span class="fc" id="L51">	}</span>
+	@Test
+	public void getNumOfOnesTest(){
+<span class="fc" id="L54">		String ulazna=&quot;0010xX10&quot;;</span>
+<span class="fc" id="L55">		Mask parsirana=Mask.parse(ulazna);</span>
+<span class="pc bpc" id="L56" title="1 of 2 branches missed.">		Assert.assertTrue(parsirana.getNumberOfOnes()==2);</span>
+		
+<span class="fc" id="L58">	}</span>
+	@Test
+	public void getNumOfZerosTest(){
+<span class="fc" id="L61">		String ulazna=&quot;0010xX10&quot;;</span>
+<span class="fc" id="L62">		Mask parsirana=Mask.parse(ulazna);</span>
+<span class="pc bpc" id="L63" title="1 of 2 branches missed.">		Assert.assertTrue(parsirana.getNumberOfZeros()==4);</span>
+		
+<span class="fc" id="L65">	}</span>
+	
+	@Test
+	public void isMoreGeneralThanTest() {
+<span class="fc" id="L69">		Mask visa = Mask.parse(&quot;x011x0&quot;);</span>
+<span class="fc" id="L70">		Mask niza = Mask.parse(&quot;1011x0&quot;);</span>
+<span class="fc" id="L71">		Assert.assertTrue(visa.isMoreGeneralThan(niza));</span>
+<span class="fc" id="L72">		Assert.assertFalse(niza.isMoreGeneralThan(visa));</span>
+
+<span class="fc" id="L74">		visa = Mask.parse(&quot;11x00&quot;);</span>
+<span class="fc" id="L75">		niza = Mask.parse(&quot;11x11&quot;);</span>
+<span class="fc" id="L76">		Assert.assertFalse(niza.isMoreGeneralThan(visa));</span>
+
+<span class="fc" id="L78">		visa = Mask.parse(&quot;11xx0&quot;);</span>
+<span class="fc" id="L79">		niza = Mask.parse(&quot;11x11&quot;);</span>
+<span class="fc" id="L80">		Assert.assertFalse(visa.isMoreGeneralThan(niza));</span>
+
+<span class="fc" id="L82">		visa = Mask.parse(&quot;11xx00&quot;);</span>
+<span class="fc" id="L83">		niza = Mask.parse(&quot;11x11&quot;);</span>
+<span class="fc" id="L84">		Assert.assertFalse(visa.isMoreGeneralThan(niza));</span>
+
+<span class="fc" id="L86">		visa = Mask.parse(&quot;1011x0000x&quot;);</span>
+<span class="fc" id="L87">		niza = Mask.parse(&quot;1011x00001&quot;);</span>
+<span class="fc" id="L88">		Assert.assertTrue(visa.isMoreGeneralThan(niza));</span>
+
+<span class="fc" id="L90">		visa = Mask.parse(&quot;1011x0000x&quot;);</span>
+<span class="fc" id="L91">		niza = Mask.parse(&quot;1011x0000x&quot;);</span>
+<span class="fc" id="L92">		Assert.assertFalse(visa.isMoreGeneralThan(niza));</span>
+<span class="fc" id="L93">	}</span>
+	
+	@Test
+	public void combineTest(){
+<span class="fc" id="L97">		Mask prva=Mask.parse(&quot;1110&quot;);</span>
+<span class="fc" id="L98">		Mask druga=Mask.parse(&quot;1111&quot;);</span>
+<span class="fc" id="L99">		Mask treca=Mask.combine(druga,prva);</span>
+<span class="fc" id="L100">		Assert.assertTrue(treca.equals(Mask.parse(&quot;111x&quot;)));</span>
+		
+<span class="fc" id="L102">		prva=Mask.parse(&quot;1010&quot;);</span>
+<span class="fc" id="L103">		druga=Mask.parse(&quot;0100&quot;);</span>
+<span class="fc" id="L104">		treca=Mask.combine(druga,prva);</span>
+<span class="fc" id="L105">		System.out.println(treca);</span>
+
+<span class="pc bpc" id="L107" title="1 of 2 branches missed.">		Assert.assertTrue(treca==null);</span>
+		
+<span class="fc" id="L109">	}</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.0.201403182114</span></div></body></html>

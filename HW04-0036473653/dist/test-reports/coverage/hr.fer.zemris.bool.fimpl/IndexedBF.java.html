@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>IndexedBF.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">HW04-0036473653</a> &gt; <a href="index.source.html" class="el_package">hr.fer.zemris.bool.fimpl</a> &gt; <span class="el_source">IndexedBF.java</span></div><h1>IndexedBF.java</h1><pre class="source lang-java linenums">package hr.fer.zemris.bool.fimpl;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import hr.fer.zemris.bool.BooleanConstant;
+import hr.fer.zemris.bool.BooleanFunction;
+import hr.fer.zemris.bool.BooleanValue;
+import hr.fer.zemris.bool.BooleanVariable;
+import hr.fer.zemris.bool.BooleanOperator;
+import hr.fer.zemris.bool.Mask;
+import hr.fer.zemris.bool.MaskValue;
+import hr.fer.zemris.bool.opimpl.BooleanOperators;
+
+/**
+ * Razred koji predtavlja Boolovu funkciju zadanu kao produkt suma ili sumu produkata.
+ * @author Petra Marče
+ *
+ */
+
+public class IndexedBF implements BooleanFunction {
+	private String name;
+	private List&lt;BooleanVariable&gt; domain;
+	private boolean indexesAreMinterms;
+	private List&lt;Integer&gt; indexes;
+	private List&lt;Integer&gt; dontcares;
+	
+	/**
+	 * Konstruktor.
+	 * Ako je presjek listi minterma/maksterma i liste dontcareova,
+	 * različit od praznog skupa funkcija ne može biti stvorena, baca se iznimka
+	 * @param name pridruzuje ime funkciji
+	 * @param domain zadaje domenu funkcije
+	 * @param indexesAreMinterms zastavica koja je true ako zadajemo minterme,false inače
+	 * @param indexes indeksi koji su mintermi ili makstermi ovisno o zastavici
+	 * @param dontcares indeksi koji su dontcareovi.
+	 * 
+	 */
+
+	public IndexedBF(String name, List&lt;BooleanVariable&gt; domain,
+			boolean indexesAreMinterms, List&lt;Integer&gt; indexes,
+<span class="fc" id="L42">			List&lt;Integer&gt; dontcares) {</span>
+<span class="fc" id="L43">		this.indexes = new ArrayList&lt;&gt;(indexes);</span>
+<span class="fc" id="L44">		this.dontcares = new ArrayList&lt;&gt;(dontcares);</span>
+
+<span class="pc bpc" id="L46" title="1 of 2 branches missed.">		if (this.indexes.removeAll(this.dontcares)) {</span>
+			;
+<span class="nc" id="L48">			throw new IllegalArgumentException(</span>
+					&quot;Boolean function can not have two values at the same time!&quot;);
+
+		}
+		;
+<span class="fc" id="L53">		this.name = new String(name);</span>
+<span class="fc" id="L54">		this.domain = new ArrayList&lt;&gt;(domain);</span>
+<span class="fc" id="L55">		this.indexesAreMinterms =new Boolean(indexesAreMinterms);</span>
+		
+		
+
+<span class="fc" id="L59">	}</span>
+	
+
+	public String getName() {
+<span class="nc" id="L63">		return name;</span>
+	}
+	
+
+	public List&lt;BooleanVariable&gt; getDomain() {
+<span class="fc" id="L68">		return domain;</span>
+	}
+	/**
+	 * Metoda koja vraća funkciju u algebarskom obliku.
+	 * @param listOfMinterms mintermi koje funkcija ima
+	 * @return vraća instancu razreda BooleanOperator koji predstavlja algebarski oblik funkcije.
+	 */
+
+	public BooleanOperator algebarskiOblikFunkcije(List&lt;Integer&gt; listOfMinterms) {
+<span class="fc" id="L77">		BooleanOperator funkcijaSumaMinterma = BooleanOperators</span>
+				.or(BooleanConstant.FALSE);
+<span class="fc bfc" id="L79" title="All 2 branches covered.">		for (Integer minterm : listOfMinterms) {</span>
+<span class="fc" id="L80">			BooleanOperator mintermProdukt = BooleanOperators</span>
+					.and(BooleanConstant.TRUE);
+<span class="fc" id="L82">			Mask mintermAsMask = Mask.fromIndex(getDomain().size(), minterm);</span>
+<span class="fc bfc" id="L83" title="All 2 branches covered.">			for (int i = 0; i &lt; getDomain().size(); i++) {</span>
+<span class="fc bfc" id="L84" title="All 2 branches covered.">				if (mintermAsMask.getValue(i) == MaskValue.ONE) {</span>
+<span class="fc" id="L85">					mintermProdukt = BooleanOperators.and(mintermProdukt,</span>
+							getDomain().get(i));
+
+				} else {
+<span class="fc" id="L89">					mintermProdukt = BooleanOperators.and(mintermProdukt,</span>
+							BooleanOperators.not(getDomain().get(i)));
+
+				}
+			}// stvoren je jedan produkt
+<span class="fc" id="L94">			funkcijaSumaMinterma = BooleanOperators.or(funkcijaSumaMinterma,</span>
+					mintermProdukt);
+<span class="fc" id="L96">		}</span>
+<span class="fc" id="L97">		return funkcijaSumaMinterma;</span>
+	}
+
+	
+	public BooleanValue getValue() {
+<span class="fc" id="L102">		boolean imaDontCareova = false;</span>
+
+<span class="fc bfc" id="L104" title="All 2 branches covered.">		for (BooleanVariable varijabla : getDomain()) { </span>
+<span class="fc bfc" id="L105" title="All 2 branches covered.">			if (varijabla.getValue() == BooleanValue.DONT_CARE) {</span>
+<span class="fc" id="L106">				imaDontCareova = true;</span>
+<span class="fc" id="L107">				break;</span>
+			}
+<span class="fc" id="L109">		}</span>
+<span class="fc bfc" id="L110" title="All 2 branches covered.">		if (imaDontCareova == true) {</span>
+<span class="fc" id="L111">			BooleanOperator funkcija = algebarskiOblikFunkcije(mintermIterable());</span>
+<span class="fc" id="L112">			return funkcija.getValue();</span>
+
+		} else {
+<span class="fc" id="L115">			Integer domainValueBinary = 0;</span>
+
+<span class="fc bfc" id="L117" title="All 2 branches covered.">			for (int i = 0; i &lt; domain.size(); i++) {</span>
+<span class="pc bpc" id="L118" title="1 of 2 branches missed.">				if (domain.get(i).getValue() == BooleanValue.TRUE) {</span>
+<span class="nc" id="L119">					domainValueBinary += (int) Math.pow(2, domain.size() - 1</span>
+							- i);
+
+				}
+
+			}
+
+<span class="pc bpc" id="L126" title="1 of 2 branches missed.">			if (hasMinterm(domainValueBinary)) {</span>
+<span class="fc" id="L127">				return BooleanValue.TRUE;</span>
+			}
+<span class="nc bnc" id="L129" title="All 2 branches missed.">			if (hasMaxterm(domainValueBinary)) {</span>
+<span class="nc" id="L130">				return BooleanValue.FALSE;</span>
+			}
+
+<span class="nc" id="L133">			return BooleanValue.DONT_CARE;</span>
+		}
+	}
+
+	/**
+	 * Metoda koja provjerava da li je indeks valjan.
+	 * @param index indeks koji se provjerava
+	 * @return vraća true ako je indeks valjan, false inače
+	 */
+
+	public boolean isValidIndex(int index) {
+<span class="pc bpc" id="L144" title="2 of 4 branches missed.">		if (index &lt; 0 || index &gt;= Math.pow(2, getDomain().size())) {</span>
+<span class="nc" id="L145">			return false;</span>
+		}
+<span class="fc" id="L147">		return true;</span>
+	}
+	
+	
+	
+	public boolean hasMinterm(int index) {
+<span class="pc bpc" id="L153" title="1 of 2 branches missed.">		if (indexesAreMinterms == true) {</span>
+<span class="fc" id="L154">			return indexes.contains(index);</span>
+		} else {
+<span class="nc bnc" id="L156" title="All 2 branches missed.">			if (isValidIndex(index) == false) {</span>
+<span class="nc" id="L157">				return false;</span>
+			} else {
+<span class="nc bnc" id="L159" title="All 4 branches missed.">				return !(hasMaxterm(index) || hasDontCare(index));</span>
+			}
+		}
+	}
+	
+
+	public boolean hasDontCare(int index) {
+
+<span class="fc bfc" id="L167" title="All 2 branches covered.">		if (dontcares.contains(index) == true) {</span>
+<span class="fc" id="L168">			return true;</span>
+
+		}
+<span class="fc" id="L171">		return false;</span>
+	}
+	
+	public boolean hasMaxterm(int index) {
+<span class="pc bpc" id="L175" title="1 of 2 branches missed.">		if (indexesAreMinterms == false) {</span>
+<span class="nc" id="L176">			return indexes.contains(index);</span>
+		} else {
+<span class="pc bpc" id="L178" title="1 of 2 branches missed.">			if (isValidIndex(index) == false) {</span>
+<span class="nc" id="L179">				return false;</span>
+			} else {
+<span class="pc bpc" id="L181" title="2 of 4 branches missed.">				return !(hasMinterm(index) || hasDontCare(index));</span>
+			}
+		}
+	}
+	
+	/**
+	 * Metoda koja vraća listu indeksa.
+	 * Indeksi  su u domeni valjanih kombinacija, a nisu u listi
+	 * članske varijable indexes i nisu u listi dontcareova.
+	 * Metoda vraća &quot;one treće&quot;.
+	 * @return Metoda vraća listu indeksa
+	 */
+
+	public List&lt;Integer&gt; getThirdList() {
+<span class="fc" id="L195">		int n = (int) (Math.pow(2, getDomain().size()));</span>
+<span class="fc" id="L196">		List&lt;Integer&gt; thirdList = new ArrayList&lt;&gt;(n);</span>
+<span class="fc bfc" id="L197" title="All 2 branches covered.">		for (int i = 0; i &lt; n; i++) {</span>
+<span class="fc" id="L198">			thirdList.add(i);</span>
+		}
+
+<span class="fc" id="L201">		thirdList.removeAll(dontcares);</span>
+<span class="fc" id="L202">		thirdList.removeAll(indexes);</span>
+<span class="fc" id="L203">		return thirdList;</span>
+
+	}
+	
+	
+
+	public List&lt;Integer&gt; mintermIterable() {
+<span class="pc bpc" id="L210" title="1 of 2 branches missed.">		if (indexesAreMinterms == true) {</span>
+<span class="fc" id="L211">			return indexes;</span>
+		}
+<span class="nc" id="L213">		return getThirdList();</span>
+
+	}
+	
+	public Iterable&lt;Integer&gt; maxtermIterable() {
+<span class="pc bpc" id="L218" title="1 of 2 branches missed.">		if (indexesAreMinterms == false) {</span>
+<span class="nc" id="L219">			return indexes;</span>
+		}
+<span class="fc" id="L221">		return getThirdList();</span>
+
+	}
+	
+
+	public Iterable&lt;Integer&gt; dontcareIterable() {
+<span class="fc" id="L227">		return dontcares;</span>
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.0.201403182114</span></div></body></html>

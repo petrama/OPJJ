@@ -1,0 +1,254 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script type="text/javascript">
+			function toggleCodeSection(btn, id)
+			{
+				area = document.getElementById(id);
+				if (area.style.display == 'none')
+					{
+					btn.innerHTML = '-';
+					area.style.display = 'inline';
+					}
+				else
+					{
+					btn.innerHTML = '+';
+					area.style.display = 'none';
+					}
+			}
+		</script>
+<style>
+			.SummaryTitle  { }
+			.SummaryNumber { background-color:#DDDDDD; text-align: center; }
+			.ItemNumber    { background-color: #DDDDDD; }
+			.CodeFragment  { background-color: #BBBBBB; display:none; font:normal normal normal 9pt Courier; }
+			.ExpandButton  { background-color: #FFFFFF; font-size: 8pt; width: 20px; height: 20px; margin:0px; }
+		</style>
+</head>
+<body>
+<h2>Summary of duplicated code</h2>
+    This page summarizes the code fragments that have been found to be replicated in the code.
+    Only those fragments longer than 30 lines of code are shown.
+    <p></p>
+<table cellpadding="2" class="summary" border="1">
+<tr style="background-color:#CCCCCC;">
+<th># duplications</th><th>Total lines</th><th>Total tokens</th><th>Approx # bytes</th>
+</tr>
+<tr>
+<td class="SummaryNumber">1</td><td class="SummaryNumber">89</td><td class="SummaryNumber">331</td><td class="SummaryNumber">1324</td>
+</tr>
+</table>
+<p></p>
+    You expand and collapse the code fragments using the + buttons. You can also navigate to the source code by clicking
+    on the file names.
+    <p></p>
+<table>
+<tr style="background-color: #444444; color: #DDDDDD;">
+<td>ID</td><td>Files</td><td>Lines</td>
+</tr>
+<tr>
+<td class="ItemNumber">1</td><td>
+<table>
+<tr>
+<td><a href="../src/C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\fimpl\IndexedBF.java.html#55">C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\fimpl\IndexedBF.java</a></td><td> line 55</td>
+</tr>
+<tr>
+<td><a href="../src/C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\fimpl\MaskBasedBF.java.html#38">C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\fimpl\MaskBasedBF.java</a></td><td> line 38</td>
+</tr>
+</table>
+</td><td># lines : 89</td>
+</tr>
+<tr>
+<td></td><td valign="top" colspan="2">
+<table>
+<tr>
+<td valign="top"><button class="ExpandButton" onclick="blur(); toggleCodeSection(this, 'frag_1')">+</button></td><td><textarea style="display:none;" class="CodeFragment" wrap="off" rows="30" cols="100" id="frag_1">		this.indexesAreMinterms =new Boolean(indexesAreMinterms);
+
+		
+
+		
+
+
+
+	}
+
+	
+
+
+
+	public String getName() {
+
+		return name;
+
+	}
+
+	
+
+
+
+	public List&lt;BooleanVariable&gt; getDomain() {
+
+		return domain;
+
+	}
+
+	/**
+
+	 * Metoda koja vra&Atilde;&bdquo;&acirc;&euro;&iexcl;a funkciju u algebarskom obliku.
+
+	 * @param listOfMinterms mintermi koje funkcija ima
+
+	 * @return vra&Atilde;&bdquo;&acirc;&euro;&iexcl;a instancu razreda BooleanOperator koji predstavlja algebarski oblik funkcije.
+
+	 */
+
+
+
+	public BooleanOperator algebarskiOblikFunkcije(List&lt;Integer&gt; listOfMinterms) {
+
+		BooleanOperator funkcijaSumaMinterma = BooleanOperators
+
+				.or(BooleanConstant.FALSE);
+
+		for (Integer minterm : listOfMinterms) {
+
+			BooleanOperator mintermProdukt = BooleanOperators
+
+					.and(BooleanConstant.TRUE);
+
+			Mask mintermAsMask = Mask.fromIndex(getDomain().size(), minterm);
+
+			for (int i = 0; i &lt; getDomain().size(); i++) {
+
+				if (mintermAsMask.getValue(i) == MaskValue.ONE) {
+
+					mintermProdukt = BooleanOperators.and(mintermProdukt,
+
+							getDomain().get(i));
+
+
+
+				} else {
+
+					mintermProdukt = BooleanOperators.and(mintermProdukt,
+
+							BooleanOperators.not(getDomain().get(i)));
+
+
+
+				}
+
+			}// stvoren je jedan produkt
+
+			funkcijaSumaMinterma = BooleanOperators.or(funkcijaSumaMinterma,
+
+					mintermProdukt);
+
+		}
+
+		return funkcijaSumaMinterma;
+
+	}
+
+
+
+	
+
+	public BooleanValue getValue() {
+
+		boolean imaDontCareova = false;
+
+
+
+		for (BooleanVariable varijabla : getDomain()) { 
+
+			if (varijabla.getValue() == BooleanValue.DONT_CARE) {
+
+				imaDontCareova = true;
+
+				break;
+
+			}
+
+		}
+
+		if (imaDontCareova == true) {
+
+			BooleanOperator funkcija = algebarskiOblikFunkcije(mintermIterable());
+
+			return funkcija.getValue();
+
+
+
+		} else {
+
+			Integer domainValueBinary = 0;
+
+
+
+			for (int i = 0; i &lt; domain.size(); i++) {
+
+				if (domain.get(i).getValue() == BooleanValue.TRUE) {
+
+					domainValueBinary += (int) Math.pow(2, domain.size() - 1
+
+							- i);
+
+
+
+				}
+
+
+
+			}
+
+
+
+			if (hasMinterm(domainValueBinary)) {
+
+				return BooleanValue.TRUE;
+
+			}
+
+			if (hasMaxterm(domainValueBinary)) {
+
+				return BooleanValue.FALSE;
+
+			}
+
+
+
+			return BooleanValue.DONT_CARE;
+
+		}
+
+	}
+
+
+
+	/**
+
+	 * Metoda koja provjerava da li je indeks valjan.
+
+	 * @param index indeks koji se provjerava
+
+	 * @return vra&Atilde;&bdquo;&acirc;&euro;&iexcl;a true ako je indeks valjan, false ina&Atilde;&bdquo;�e
+
+	 */
+
+
+
+	public boolean isValidIndex(int index) {</textarea></td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td colspan="2">
+<hr>
+</td>
+</tr>
+</table>
+</body>
+</html>

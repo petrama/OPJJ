@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>Mask.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">HW04-0036473653</a> &gt; <a href="index.source.html" class="el_package">hr.fer.zemris.bool</a> &gt; <span class="el_source">Mask.java</span></div><h1>Mask.java</h1><pre class="source lang-java linenums">package hr.fer.zemris.bool;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Arrays;
+/**
+ * Razred koji omogućuje rad sa maskama u Boolovoj algebri.
+ * @author Petra Marče
+ *
+ */
+public class Mask {
+	private List&lt;MaskValue&gt; values;
+
+	/**
+	 * Konstruktor.
+	 * Kopira ulazne vrijednosti i stavlja ih u privatnu listu.
+	 * @param val ulazne vrijednosti
+	 */
+<span class="fc" id="L19">	public Mask(MaskValue[] val) {</span>
+<span class="fc" id="L20">		values = Arrays.asList(val);</span>
+<span class="fc" id="L21">	}</span>
+
+	/**
+	 * Metoda koja vraća vrijednost maske na zadanoj poziciji.
+	 * @param index pozicija na kojoj nas zanima vrijednost
+	 * @return vrijednost maske
+	 */
+	public MaskValue getValue(int index) {
+<span class="fc" id="L29">		return values.get(index);</span>
+	}
+	/**
+	 * Metoda koja iz Stringa stvara novu masku.
+	 * String se smije sastojati od 0,1,x ili X
+	 * Ako string ne zadovoljava pravila metoda baca iznimku
+	 * @param homeString niz iz kojeg treba stvoriti masku
+	 * @return novostvorena instanca razreda Mask
+	 */
+
+	public static Mask parse(String homeString) {
+<span class="fc" id="L40">		MaskValue[] pomPolje = new MaskValue[homeString.length()];</span>
+
+<span class="fc bfc" id="L42" title="All 2 branches covered.">		for (int i = 0; i &lt; homeString.length(); i++) {</span>
+<span class="pc bpc" id="L43" title="1 of 5 branches missed.">			switch (homeString.charAt(i)) {</span>
+			case '1':
+<span class="fc" id="L45">				pomPolje[i] = MaskValue.ONE;</span>
+<span class="fc" id="L46">				break;</span>
+			case '0':
+<span class="fc" id="L48">				pomPolje[i] = MaskValue.ZERO;</span>
+<span class="fc" id="L49">				break;</span>
+
+			case 'x':
+<span class="fc" id="L52">				pomPolje[i] = MaskValue.DONT_CARE;</span>
+<span class="fc" id="L53">				break;</span>
+
+			case 'X':
+<span class="fc" id="L56">				pomPolje[i] = MaskValue.DONT_CARE;</span>
+<span class="fc" id="L57">				break;</span>
+
+			default:
+<span class="nc" id="L60">				throw new IllegalArgumentException(&quot;Unable to parse mask&quot;);</span>
+			}
+		}
+<span class="fc" id="L63">		return new Mask(pomPolje);</span>
+	}
+
+	/**
+	 * Metoda koja vraća broj dont-careova u maski.
+	 * @return broj dont-careova
+	 */
+	public int numberOfDontCares() {
+<span class="fc" id="L71">		int brojac = 0;</span>
+<span class="fc bfc" id="L72" title="All 2 branches covered.">		for (MaskValue v : values) {</span>
+<span class="fc bfc" id="L73" title="All 2 branches covered.">			if (v == MaskValue.DONT_CARE) {</span>
+<span class="fc" id="L74">				brojac++;</span>
+			}
+<span class="fc" id="L76">		}</span>
+<span class="fc" id="L77">		return brojac;</span>
+	}
+	/**
+	 * Metoda koja utvrđuje da li je maska nad kojom je pozvana metoda poopćenje zadane maske.
+	 * @param secondMask maska za koju se pita da li je obuhvaćena trenutnom maskom
+	 * @return vraća true ako je maska nad kojom smo pozvali metodu općenitija od zadane, false inače
+	 */
+	public boolean isMoreGeneralThan(Mask secondMask) {
+<span class="fc bfc" id="L85" title="All 4 branches covered.">		if (values.size() != secondMask.values.size()</span>
+				|| this.numberOfDontCares() &lt;= secondMask.numberOfDontCares()) {
+<span class="fc" id="L87">			return false; // ako su nizovi razlicite duljine ili prvi ima manje</span>
+			// x od drugog , prvi ne može biti generalniji
+		}
+<span class="fc" id="L90">		int i = 0;</span>
+<span class="fc bfc" id="L91" title="All 2 branches covered.">		for (MaskValue value : secondMask.values) {</span>
+<span class="fc bfc" id="L92" title="All 4 branches covered.">			if (value != values.get(i) &amp;&amp; values.get(i) != MaskValue.DONT_CARE) {</span>
+<span class="fc" id="L93">				return false;</span>
+			}
+			// ako su znamenke različite i viša maska na tom mjestu nema x onda
+<span class="fc" id="L96">			i++; // nije generalnija</span>
+<span class="fc" id="L97">		}</span>
+<span class="fc" id="L98">		return true;</span>
+
+	}
+
+
+	/**
+	 * Metoda koja ako je to moguće stvara masku koja je općenitja od zadanih maski.
+	 * @param secondMask maska koju želimo obuhvatiti novom maskom
+	 * @return vraća općenitiju masku
+	 */
+
+	public static Mask combine(Mask prvaMaska, Mask drugaMaska) {
+<span class="pc bpc" id="L110" title="3 of 6 branches missed.">		  if (prvaMaska == null || drugaMaska == null</span>
+		    || prvaMaska.values.size() != drugaMaska.values.size() ) {
+<span class="nc" id="L112">		   throw new IllegalArgumentException(&quot;Unesene su pogresne maske!&quot;);</span>
+		  }
+
+<span class="fc" id="L115">		  int pozicijaDontCare = -1;</span>
+<span class="fc" id="L116">		  boolean kompatibilni = false;</span>
+
+<span class="fc bfc" id="L118" title="All 2 branches covered.">		  for (int i = 0, duljina = prvaMaska.values.size(); i &lt; duljina; i++) {</span>
+
+<span class="fc bfc" id="L120" title="All 2 branches covered.">		   if (!prvaMaska.values.get(i).equals(drugaMaska.values.get(i))) {</span>
+
+<span class="fc bfc" id="L122" title="All 2 branches covered.">		    if (pozicijaDontCare &lt; 0) {</span>
+<span class="fc" id="L123">		     kompatibilni = true;</span>
+<span class="fc" id="L124">		     pozicijaDontCare = i;</span>
+
+		    } else {
+<span class="fc" id="L127">		     kompatibilni = false;</span>
+<span class="fc" id="L128">		     break;</span>
+
+		    }
+		   }
+		  }
+
+<span class="fc bfc" id="L134" title="All 2 branches covered.">		  if (!kompatibilni) {</span>
+<span class="fc" id="L135">		   return null;</span>
+
+		  } else {
+
+<span class="fc" id="L139">		   MaskValue[] pomocna = new MaskValue[prvaMaska.getSize()];</span>
+
+<span class="fc bfc" id="L141" title="All 2 branches covered.">		   for (int i = 0 ,duljina = prvaMaska.getSize() ; i &lt; duljina ;i++) {</span>
+		   
+<span class="fc bfc" id="L143" title="All 2 branches covered.">		    if ( i == pozicijaDontCare){</span>
+<span class="fc" id="L144">		     pomocna[i] = MaskValue.DONT_CARE;</span>
+		    } else {
+<span class="fc" id="L146">		     pomocna[i] = prvaMaska.getValue(i);</span>
+		    }
+		     
+		   }
+<span class="fc" id="L150">		   return new Mask(pomocna);</span>
+
+		  }
+		 }
+	/**
+	 * Metoda koja stvara novu masku zadane duljine, koja predstavlja zadani broj.
+	 * @param numOfVariables željena duljina maske
+	 * @param number broj koji maska mora reprezentirati
+	 * @return vraća novostvorenu masku
+	 */
+
+	public static Mask fromIndex(int numOfVariables, int number) {
+<span class="fc" id="L162">		String binaryNumber = Integer.toBinaryString(number);</span>
+<span class="fc" id="L163">		int zerosBefore = numOfVariables - binaryNumber.length();</span>
+<span class="pc bpc" id="L164" title="1 of 2 branches missed.">		if (zerosBefore &lt; 0) {</span>
+<span class="nc" id="L165">			throw new IllegalArgumentException(&quot;Invalid arguments!&quot;);</span>
+		}
+<span class="fc" id="L167">		String addZerosBefore = &quot;&quot;;</span>
+<span class="fc bfc" id="L168" title="All 2 branches covered.">		for (int i = 0; i &lt; zerosBefore; i++) {</span>
+<span class="fc" id="L169">			addZerosBefore += &quot;0&quot;;</span>
+		}
+<span class="fc" id="L171">		return parse(addZerosBefore + binaryNumber);</span>
+	}
+	
+	/**
+	 * Metoda koja vraća broj nula u maski.
+	 * @return broj nula.
+	 */
+
+	int getNumberOfZeros() {
+<span class="fc" id="L180">		int numOfZeros = 0;</span>
+<span class="fc bfc" id="L181" title="All 2 branches covered.">		for (MaskValue v : this.values) {</span>
+<span class="fc bfc" id="L182" title="All 2 branches covered.">			if (v == MaskValue.ZERO) {</span>
+<span class="fc" id="L183">				numOfZeros++;</span>
+			}
+<span class="fc" id="L185">		}</span>
+<span class="fc" id="L186">		return numOfZeros;</span>
+	}
+	/**
+	 * Metoda koja vraća broj jedinica u maski.
+	 * @return broj jedinica u maski.
+	 */
+
+	int getNumberOfOnes() {
+<span class="fc" id="L194">		int numOfOnes = 0;</span>
+<span class="fc bfc" id="L195" title="All 2 branches covered.">		for (MaskValue v : this.values) {</span>
+<span class="fc bfc" id="L196" title="All 2 branches covered.">			if (v == MaskValue.ONE) {</span>
+<span class="fc" id="L197">				numOfOnes++;</span>
+			}
+<span class="fc" id="L199">		}</span>
+<span class="fc" id="L200">		return numOfOnes;</span>
+	}
+	
+	/**
+	 * Metoda vraća duljinu maske.
+	 * @return duljina maske
+	 */
+
+	int getSize() {
+<span class="fc" id="L209">		return values.size();</span>
+	}
+	
+	/**
+	 * Metoda računa hash vrijednost objekta maske.
+	 * Za računanje uzima u obzir polje vrijednosti maske.
+	 */
+
+	@Override
+	public int hashCode() {
+<span class="fc" id="L219">		final int prime = 31;</span>
+<span class="fc" id="L220">		int result = 1;</span>
+<span class="pc bpc" id="L221" title="1 of 2 branches missed.">		result = prime * result + ((values == null) ? 0 : values.hashCode());</span>
+<span class="fc" id="L222">		return result;</span>
+	}
+	
+	/**
+	 * Metoda vraća true ako su dvije maske iste, false inače.
+	 * Dvije maske su iste ako imaju sve iste vrijednosti.
+	 * 
+	 */
+
+	@Override
+	public boolean equals(Object obj) {
+<span class="pc bpc" id="L233" title="1 of 2 branches missed.">		if (this == obj)</span>
+<span class="nc" id="L234">			return true;</span>
+<span class="pc bpc" id="L235" title="1 of 2 branches missed.">		if (obj == null)</span>
+<span class="nc" id="L236">			return false;</span>
+<span class="pc bpc" id="L237" title="1 of 2 branches missed.">		if (getClass() != obj.getClass())</span>
+<span class="nc" id="L238">			return false;</span>
+<span class="fc" id="L239">		Mask other = (Mask) obj;</span>
+<span class="pc bpc" id="L240" title="1 of 2 branches missed.">		if (values == null) {</span>
+<span class="nc bnc" id="L241" title="All 2 branches missed.">			if (other.values != null)</span>
+<span class="nc" id="L242">				return false;</span>
+<span class="fc bfc" id="L243" title="All 2 branches covered.">		} else if (!values.equals(other.values))</span>
+<span class="fc" id="L244">			return false;</span>
+<span class="fc" id="L245">		return true;</span>
+	}
+
+	@Override
+	public String toString() {
+<span class="fc" id="L250">		String s = &quot;&quot;;</span>
+<span class="fc bfc" id="L251" title="All 2 branches covered.">		for (MaskValue v : values) {</span>
+<span class="pc bpc" id="L252" title="1 of 4 branches missed.">			switch (v) {</span>
+			case ONE:
+<span class="fc" id="L254">				s += &quot;1&quot;;</span>
+<span class="fc" id="L255">				break;</span>
+			case ZERO:
+<span class="fc" id="L257">				s += &quot;0&quot;;</span>
+<span class="fc" id="L258">				break;</span>
+			case DONT_CARE:
+<span class="fc" id="L260">				s += &quot;x&quot;;</span>
+<span class="fc" id="L261">				break;</span>
+			default:
+				break;
+			}
+<span class="fc" id="L265">		}</span>
+
+<span class="fc" id="L267">		return s;</span>
+
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.0.201403182114</span></div></body></html>

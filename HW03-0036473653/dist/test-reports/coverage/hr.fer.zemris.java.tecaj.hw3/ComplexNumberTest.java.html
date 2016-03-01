@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>ComplexNumberTest.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Projekt3</a> &gt; <a href="index.source.html" class="el_package">hr.fer.zemris.java.tecaj.hw3</a> &gt; <span class="el_source">ComplexNumberTest.java</span></div><h1>ComplexNumberTest.java</h1><pre class="source lang-java linenums">package hr.fer.zemris.java.tecaj.hw3;
+
+import org.junit.Test;
+
+import org.junit.Assert;
+
+<span class="fc" id="L7">public class ComplexNumberTest {</span>
+
+	@Test
+	public void konstruktor() {
+<span class="fc" id="L11">		ComplexNumber c = new ComplexNumber(-17.2, 18.9);</span>
+		{
+<span class="pc bpc" id="L13" title="2 of 4 branches missed.">			Assert.assertTrue(c.realPart == -17.2 &amp;&amp; c.imagPart == 18.9);</span>
+		}
+<span class="fc" id="L15">	}</span>
+
+	@Test
+	public void konsRealni() {
+<span class="fc" id="L19">		ComplexNumber c = ComplexNumber.fromReal(18.9);</span>
+		{
+<span class="pc bpc" id="L21" title="2 of 4 branches missed.">			Assert.assertTrue(c.getReal() == 18.9 &amp;&amp; c.getImaginary() == 0);</span>
+		}
+<span class="fc" id="L23">	}</span>
+
+	@Test
+	public void konsImaginarni() {
+<span class="fc" id="L27">		ComplexNumber c = ComplexNumber.fromImaginary(18.9);</span>
+		{
+<span class="pc bpc" id="L29" title="2 of 4 branches missed.">			Assert.assertTrue(c.realPart == 0 &amp;&amp; c.imagPart == 18.9);</span>
+		}
+<span class="fc" id="L31">	}</span>
+
+	@Test
+	public void konsKut() {
+<span class="fc" id="L35">		double eksp = -6;</span>
+<span class="fc" id="L36">		double dozvOdstupanje = Math.pow(10, eksp);</span>
+
+<span class="fc" id="L38">		ComplexNumber c = ComplexNumber.fromMagnitudeAndAngle(5, -Math.PI);</span>
+
+<span class="fc" id="L40">		double greskaReal = Math.abs(Math.abs(c.realPart) - 5);</span>
+<span class="fc" id="L41">		double greskaImag = c.imagPart - 0;</span>
+<span class="fc" id="L42">		System.out.println(c);</span>
+
+<span class="pc bpc" id="L44" title="2 of 4 branches missed.">		Assert.assertTrue(greskaReal &lt; dozvOdstupanje</span>
+				&amp;&amp; greskaImag &lt; dozvOdstupanje);
+
+<span class="fc" id="L47">	}</span>
+
+	@Test
+	public void parserRealni() {
+<span class="fc" id="L51">		ComplexNumber c = ComplexNumber.parse(&quot;-5.17&quot;);</span>
+		{
+<span class="pc bpc" id="L53" title="1 of 2 branches missed.">			Assert.assertTrue(c.realPart == -5.17);</span>
+		}
+
+<span class="fc" id="L56">	}</span>
+
+	@Test
+	public void parserI1() {
+<span class="fc" id="L60">		ComplexNumber c = ComplexNumber.parse(&quot;-i&quot;);</span>
+<span class="pc bpc" id="L61" title="2 of 4 branches missed.">		Assert.assertTrue(c.imagPart == -1 &amp;&amp; c.realPart == 0);</span>
+<span class="fc" id="L62">	}</span>
+	
+	@Test
+	public void parserI2() {
+<span class="fc" id="L66">		ComplexNumber c = ComplexNumber.parse(&quot;i&quot;);</span>
+<span class="pc bpc" id="L67" title="2 of 4 branches missed.">		Assert.assertTrue(c.imagPart == 1 &amp;&amp; c.realPart == 0);</span>
+<span class="fc" id="L68">	}</span>
+
+	@Test
+	public void parserI3() {
+<span class="fc" id="L72">		ComplexNumber c = ComplexNumber.parse(&quot;5+6i&quot;);</span>
+<span class="pc bpc" id="L73" title="2 of 4 branches missed.">		Assert.assertTrue(c.imagPart == 6 &amp;&amp; c.realPart == 5);</span>
+<span class="fc" id="L74">	}</span>
+
+	@Test
+	public void parserI4() {
+<span class="fc" id="L78">		ComplexNumber c = ComplexNumber.parse(&quot;-5-6i&quot;);</span>
+<span class="pc bpc" id="L79" title="2 of 4 branches missed.">		Assert.assertTrue(c.imagPart ==- 6 &amp;&amp; c.realPart == -5);</span>
+<span class="fc" id="L80">	}</span>
+	@Test
+	public void parserImag() {
+<span class="fc" id="L83">		ComplexNumber c = ComplexNumber.parse(&quot;-7.4i&quot;);</span>
+<span class="pc bpc" id="L84" title="2 of 4 branches missed.">		Assert.assertTrue(c.imagPart == -7.4 &amp;&amp; c.realPart == 0);</span>
+<span class="fc" id="L85">	}</span>
+
+	@Test
+	public void getParserTested1() {
+<span class="fc" id="L89">		ComplexNumber c = ComplexNumber.parse(&quot;1&quot;);</span>
+<span class="pc bpc" id="L90" title="2 of 4 branches missed.">		Assert.assertTrue(c.imagPart == 0 &amp;&amp; c.realPart == 1);</span>
+<span class="fc" id="L91">		System.out.println(c);</span>
+<span class="fc" id="L92">	}</span>
+		
+	@Test (expected=IllegalArgumentException.class)
+	public void getParserTested(){
+<span class="nc" id="L96">		ComplexNumber.parse(&quot;5+78&quot;);</span>
+
+<span class="nc" id="L98">	}</span>
+	@Test(expected=IllegalArgumentException.class)
+	public void getDivideTested(){
+<span class="nc" id="L101">		(new ComplexNumber(1,1)).divideTwoParts(&quot;petra&quot;, 7);</span>
+<span class="nc" id="L102">	}</span>
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void getParseTest3(){
+<span class="nc" id="L106">		ComplexNumber.parse(&quot;i57ert8i&quot;);</span>
+
+<span class="nc" id="L108">	}</span>
+	
+
+	@Test
+	public void kutIMod() {
+<span class="fc" id="L113">		double eksp = -6;</span>
+<span class="fc" id="L114">		double dozvOdstupanje = Math.pow(10, eksp);</span>
+
+<span class="fc" id="L116">		ComplexNumber c = ComplexNumber.fromMagnitudeAndAngle(1, Math.PI / 2);</span>
+
+<span class="fc" id="L118">		double greskaModul = Math.abs(Math.abs(c.getMagnitude() - 1));</span>
+
+<span class="fc" id="L120">		double greskaKut = Math.abs(Math.abs(c.getAngle() - Math.atan2(0, 1)));</span>
+
+<span class="pc bpc" id="L122" title="2 of 4 branches missed.">		Assert.assertTrue(greskaModul &lt; dozvOdstupanje</span>
+				&amp;&amp; greskaKut &lt; dozvOdstupanje);
+
+<span class="fc" id="L125">	}</span>
+
+	@Test
+	public void getMagnitudeTest() {
+<span class="pc bpc" id="L129" title="1 of 2 branches missed.">		Assert.assertEquals(</span>
+				Math.abs(new ComplexNumber(1, 1).getMagnitude() - Math.sqrt(2)) &lt; 1E-6,
+				true);
+<span class="fc" id="L132">	}</span>
+
+	@Test
+	public void getAngleTest() {
+<span class="pc bpc" id="L136" title="1 of 2 branches missed.">		Assert.assertTrue(Math.abs(new ComplexNumber(1, 1).getAngle() - Math.PI</span>
+				/ 4) &lt; 1E-6);
+
+<span class="fc" id="L139">	}</span>
+
+	@Test
+	public void getAddTest() {
+<span class="fc" id="L143">		ComplexNumber c = new ComplexNumber(5, 7);</span>
+<span class="fc" id="L144">		ComplexNumber zbroj = c.add(new ComplexNumber(8, 9));</span>
+<span class="pc bpc" id="L145" title="2 of 4 branches missed.">		Assert.assertTrue(zbroj.realPart == 13 &amp;&amp; zbroj.imagPart == 16);</span>
+<span class="fc" id="L146">	}</span>
+
+	@Test
+	public void getSubTest() {
+<span class="fc" id="L150">		ComplexNumber c = new ComplexNumber(5, 7);</span>
+<span class="fc" id="L151">		ComplexNumber zbroj = c.sub(new ComplexNumber(8, 9));</span>
+<span class="pc bpc" id="L152" title="2 of 4 branches missed.">		Assert.assertTrue(zbroj.realPart == -3 &amp;&amp; zbroj.imagPart == -2);</span>
+<span class="fc" id="L153">	}</span>
+
+	@Test
+	public void getDivTest() {
+<span class="fc" id="L157">		ComplexNumber c = new ComplexNumber(2, 2);</span>
+<span class="fc" id="L158">		ComplexNumber rez = c.div(new ComplexNumber(1, 1));</span>
+<span class="pc bpc" id="L159" title="2 of 4 branches missed.">		Assert.assertTrue(Math.abs(rez.getImaginary()) &lt; 1E-6</span>
+				&amp;&amp; Math.abs(rez.getReal() - 2) &lt; 1E-6);
+<span class="fc" id="L161">	}</span>
+
+	@Test
+	public void getMulTest() {
+<span class="fc" id="L165">		ComplexNumber c = new ComplexNumber(2, 2);</span>
+<span class="fc" id="L166">		ComplexNumber rez = c.mul(new ComplexNumber(1, 0));</span>
+<span class="pc bpc" id="L167" title="2 of 4 branches missed.">		Assert.assertTrue(Math.abs(Math.abs(rez.getReal()) - 2) &lt; 1E-6</span>
+				&amp;&amp; Math.abs(Math.abs(rez.getImaginary()) - 2) &lt; 1E-6);
+
+<span class="fc" id="L170">	}</span>
+
+	@Test
+	public void getPowTest(){
+<span class="fc" id="L174">		ComplexNumber c = (new ComplexNumber(2, 2)).power(4);</span>
+<span class="pc bpc" id="L175" title="2 of 4 branches missed.">		Assert.assertTrue(c.getImaginary()&lt;1E-6</span>
+				&amp;&amp; c.getReal()+2*2*2*2&lt;1E-6);
+<span class="fc" id="L177">	}</span>
+	
+	@Test (expected=IllegalArgumentException.class)
+	public void getPowExTest(){
+<span class="nc" id="L181">		new ComplexNumber(2, 2).power(-5);</span>
+<span class="nc" id="L182">	}</span>
+	
+	@Test
+	public void ispis(){
+<span class="fc" id="L186">		ComplexNumber[] polje=(new ComplexNumber(4,3)).root(2);</span>
+<span class="fc bfc" id="L187" title="All 2 branches covered.">		for(int i=0;i&lt;2;i++){</span>
+<span class="fc" id="L188">			System.out.println(polje[i]);</span>
+		}
+<span class="fc" id="L190">	}</span>
+	
+	@Test
+	public void getRootTest(){
+<span class="fc" id="L194">		ComplexNumber[] polje=(new ComplexNumber(16,0)).root(8);</span>
+<span class="pc bpc" id="L195" title="1 of 2 branches missed.">		Assert.assertTrue(Math.abs(polje[0].getMagnitude()-Math.sqrt(2))&lt;1E-6);</span>
+				
+<span class="fc" id="L197">	}</span>
+	
+	@Test (expected=IllegalArgumentException.class)
+	public void getRootExTest(){
+<span class="nc" id="L201">		(new ComplexNumber(3,4)).root(-2);</span>
+		
+<span class="nc" id="L203">	}</span>
+	
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.0.201403182114</span></div></body></html>

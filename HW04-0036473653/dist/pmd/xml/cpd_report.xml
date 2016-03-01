@@ -1,0 +1,1394 @@
+<?xml version="1.0" encoding="WINDOWS-1252" standalone="no"?>
+<pmd-cpd>
+<duplication lines="89" tokens="331">
+<file line="55" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\fimpl\IndexedBF.java"/>
+<file line="38" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\fimpl\MaskBasedBF.java"/>
+<codefragment><![CDATA[		this.indexesAreMinterms =new Boolean(indexesAreMinterms);
+		
+		
+
+	}
+	
+
+	public String getName() {
+		return name;
+	}
+	
+
+	public List<BooleanVariable> getDomain() {
+		return domain;
+	}
+	/**
+	 * Metoda koja vraÄ‡a funkciju u algebarskom obliku.
+	 * @param listOfMinterms mintermi koje funkcija ima
+	 * @return vraÄ‡a instancu razreda BooleanOperator koji predstavlja algebarski oblik funkcije.
+	 */
+
+	public BooleanOperator algebarskiOblikFunkcije(List<Integer> listOfMinterms) {
+		BooleanOperator funkcijaSumaMinterma = BooleanOperators
+				.or(BooleanConstant.FALSE);
+		for (Integer minterm : listOfMinterms) {
+			BooleanOperator mintermProdukt = BooleanOperators
+					.and(BooleanConstant.TRUE);
+			Mask mintermAsMask = Mask.fromIndex(getDomain().size(), minterm);
+			for (int i = 0; i < getDomain().size(); i++) {
+				if (mintermAsMask.getValue(i) == MaskValue.ONE) {
+					mintermProdukt = BooleanOperators.and(mintermProdukt,
+							getDomain().get(i));
+
+				} else {
+					mintermProdukt = BooleanOperators.and(mintermProdukt,
+							BooleanOperators.not(getDomain().get(i)));
+
+				}
+			}// stvoren je jedan produkt
+			funkcijaSumaMinterma = BooleanOperators.or(funkcijaSumaMinterma,
+					mintermProdukt);
+		}
+		return funkcijaSumaMinterma;
+	}
+
+	
+	public BooleanValue getValue() {
+		boolean imaDontCareova = false;
+
+		for (BooleanVariable varijabla : getDomain()) { 
+			if (varijabla.getValue() == BooleanValue.DONT_CARE) {
+				imaDontCareova = true;
+				break;
+			}
+		}
+		if (imaDontCareova == true) {
+			BooleanOperator funkcija = algebarskiOblikFunkcije(mintermIterable());
+			return funkcija.getValue();
+
+		} else {
+			Integer domainValueBinary = 0;
+
+			for (int i = 0; i < domain.size(); i++) {
+				if (domain.get(i).getValue() == BooleanValue.TRUE) {
+					domainValueBinary += (int) Math.pow(2, domain.size() - 1
+							- i);
+
+				}
+
+			}
+
+			if (hasMinterm(domainValueBinary)) {
+				return BooleanValue.TRUE;
+			}
+			if (hasMaxterm(domainValueBinary)) {
+				return BooleanValue.FALSE;
+			}
+
+			return BooleanValue.DONT_CARE;
+		}
+	}
+
+	/**
+	 * Metoda koja provjerava da li je indeks valjan.
+	 * @param index indeks koji se provjerava
+	 * @return vraÄ‡a true ako je indeks valjan, false inaÄ]]>&#65533;<![CDATA[e
+	 */
+
+	public boolean isValidIndex(int index) {]]></codefragment>
+</duplication>
+<duplication lines="12" tokens="79">
+<file line="22" path="C:\tecaj_1\HW04-0036473653\src\test\java\hr\fer\zemris\bool\fimpl\IndexedBFTest.java"/>
+<file line="66" path="C:\tecaj_1\HW04-0036473653\src\test\java\hr\fer\zemris\bool\fimpl\MaskBasedBFTest.java"/>
+<codefragment><![CDATA[					Arrays.asList(0,1,5,7), Arrays.asList(2,3));
+			for (Integer i : f1.mintermIterable()) { // Ispis: 0, 1, 5, 7
+				System.out.println("Imam minterm: " + i);
+			}
+			for (Integer i : f1.maxtermIterable()) { // Ispis: 4, 6
+				System.out.println("Imam maxterm: " + i);
+			}
+			for (Integer i : f1.dontcareIterable()) { // 2, 3
+				System.out.println("Imam dontcare: " + i);
+			}
+			
+			int[] mintermi=new int[4];]]></codefragment>
+</duplication>
+<duplication lines="10" tokens="75">
+<file line="19" path="C:\tecaj_1\HW04-0036473653\src\test\java\hr\fer\zemris\bool\fimpl\OperatorTreeBFTest.java"/>
+<file line="67" path="C:\tecaj_1\HW04-0036473653\src\test\java\hr\fer\zemris\bool\fimpl\OperatorTreeBFTest.java"/>
+<codefragment><![CDATA[	public void test1() {
+		
+		BooleanVariable varA = new BooleanVariable("A");
+		BooleanVariable varB = new BooleanVariable("B");
+		BooleanVariable varC = new BooleanVariable("C");
+		
+		BooleanOperator izraz1 = BooleanOperators.or(BooleanConstant.FALSE,
+				varC, BooleanOperators.and(varA, BooleanOperators.not(varB)));
+		BooleanFunction f1 = new OperatorTreeBF("f1", Arrays.asList(varA, varB,
+				varC), izraz1);]]></codefragment>
+</duplication>
+<duplication lines="10" tokens="71">
+<file line="22" path="C:\tecaj_1\HW04-0036473653\src\test\java\hr\fer\zemris\bool\fimpl\IndexedBFTest.java"/>
+<file line="23" path="C:\tecaj_1\HW04-0036473653\src\test\java\hr\fer\zemris\bool\fimpl\MaskBasedBFTest.java"/>
+<file line="66" path="C:\tecaj_1\HW04-0036473653\src\test\java\hr\fer\zemris\bool\fimpl\MaskBasedBFTest.java"/>
+<codefragment><![CDATA[					Arrays.asList(0,1,5,7), Arrays.asList(2,3));
+			for (Integer i : f1.mintermIterable()) { // Ispis: 0, 1, 5, 7
+				System.out.println("Imam minterm: " + i);
+			}
+			for (Integer i : f1.maxtermIterable()) { // Ispis: 4, 6
+				System.out.println("Imam maxterm: " + i);
+			}
+			for (Integer i : f1.dontcareIterable()) { // 2, 3
+				System.out.println("Imam dontcare: " + i);
+			}]]></codefragment>
+</duplication>
+<duplication lines="8" tokens="70">
+<file line="15" path="C:\tecaj_1\HW04-0036473653\src\test\java\hr\fer\zemris\bool\fimpl\IndexedBFTest.java"/>
+<file line="71" path="C:\tecaj_1\HW04-0036473653\src\test\java\hr\fer\zemris\bool\fimpl\IndexedBFTest.java"/>
+<codefragment><![CDATA[	public void test1(){
+	
+			BooleanVariable varA = new BooleanVariable("A");
+			BooleanVariable varB = new BooleanVariable("B");
+			BooleanVariable varC = new BooleanVariable("C");
+			BooleanFunction f1 = new IndexedBF("f1",
+					Arrays.asList(varA, varB, varC), true,
+					Arrays.asList(0,1,5,7), Arrays.asList(2,3));]]></codefragment>
+</duplication>
+<duplication lines="10" tokens="70">
+<file line="22" path="C:\tecaj_1\HW04-0036473653\src\test\java\hr\fer\zemris\bool\fimpl\IndexedBFTest.java"/>
+<file line="23" path="C:\tecaj_1\HW04-0036473653\src\test\java\hr\fer\zemris\bool\fimpl\MaskBasedBFTest.java"/>
+<file line="66" path="C:\tecaj_1\HW04-0036473653\src\test\java\hr\fer\zemris\bool\fimpl\MaskBasedBFTest.java"/>
+<file line="28" path="C:\tecaj_1\HW04-0036473653\src\test\java\hr\fer\zemris\bool\fimpl\OperatorTreeBFTest.java"/>
+<codefragment><![CDATA[					Arrays.asList(0,1,5,7), Arrays.asList(2,3));
+			for (Integer i : f1.mintermIterable()) { // Ispis: 0, 1, 5, 7
+				System.out.println("Imam minterm: " + i);
+			}
+			for (Integer i : f1.maxtermIterable()) { // Ispis: 4, 6
+				System.out.println("Imam maxterm: " + i);
+			}
+			for (Integer i : f1.dontcareIterable()) { // 2, 3
+				System.out.println("Imam dontcare: " + i);
+			}]]></codefragment>
+</duplication>
+<duplication lines="5" tokens="65">
+<file line="12" path="C:\tecaj_1\HW04-0036473653\src\test\java\hr\fer\zemris\bool\MasksTest.java"/>
+<file line="21" path="C:\tecaj_1\HW04-0036473653\src\test\java\hr\fer\zemris\bool\MasksTest.java"/>
+<codefragment><![CDATA[	 List<Mask> maske=Masks.fromStrings("101","100","000");
+	 Assert.assertTrue(maske.get(0).equals(Masks.parse("101")));
+	 Assert.assertTrue(maske.get(1).equals(Masks.parse("100")));
+	 Assert.assertTrue(maske.get(2).equals(Masks.parse("000")));
+ }]]></codefragment>
+</duplication>
+<duplication lines="19" tokens="49">
+<file line="135" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\fimpl\IndexedBF.java"/>
+<file line="152" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\fimpl\MaskBasedBF.java"/>
+<codefragment><![CDATA[	}
+
+	/**
+	 * Metoda koja provjerava da li je indeks valjan.
+	 * @param index indeks koji se provjerava
+	 * @return vraÄ‡a true ako je indeks valjan, false inaÄ]]>&#65533;<![CDATA[e
+	 */
+
+	public boolean isValidIndex(int index) {
+		if (index < 0 || index >= Math.pow(2, getDomain().size())) {
+			return false;
+		}
+		return true;
+	}
+	
+	
+	
+	public boolean hasMinterm(int index) {
+		if (indexesAreMinterms == true) {]]></codefragment>
+</duplication>
+<duplication lines="18" tokens="48">
+<file line="221" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\Mask.java"/>
+<file line="36" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\java\tecaj\hw4\db\StudentRecord.java"/>
+<codefragment><![CDATA[		result = prime * result + ((values == null) ? 0 : values.hashCode());
+		return result;
+	}
+	
+	/**
+	 * Metoda vraÄ‡a true ako su dvije maske iste, false inaÄ]]>&#65533;<![CDATA[e.
+	 * Dvije maske su iste ako imaju sve iste vrijednosti.
+	 * 
+	 */
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;]]></codefragment>
+</duplication>
+<duplication lines="12" tokens="41">
+<file line="19" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\opimpl\BooleanOperatorAND.java"/>
+<file line="17" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\opimpl\BooleanOperatorOR.java"/>
+<codefragment><![CDATA[	public BooleanOperatorAND(List<BooleanSource> list){
+		super(list);
+	}
+	
+	/**
+	 * Metoda koja vraÄ‡a vrijednost koju je operator izraÄ]]>&#65533;<![CDATA[unao.
+	 * MoguÄ‡e vrijednosti su TRUE,FALSE i DONT-CARE
+	 */
+	public BooleanValue getValue() {
+
+		for (BooleanSource v : this.getSources()) { //idem po listi
+			if (v.getValue() == BooleanValue.FALSE) { //Ä]]>&#65533;<![CDATA[im naiÄ‘em na vrijednost false, ukupan rezultat je false]]></codefragment>
+</duplication>
+<duplication lines="7" tokens="41">
+<file line="13" path="C:\tecaj_1\HW04-0036473653\src\test\java\hr\fer\zemris\bool\opimpl\BooleanOperatorANDTest.java"/>
+<file line="14" path="C:\tecaj_1\HW04-0036473653\src\test\java\hr\fer\zemris\bool\opimpl\BooleanOperatorOrTest.java"/>
+<codefragment><![CDATA[public class BooleanOperatorANDTest {
+	@Test
+	public void andTest(){
+		BooleanVariable var1=new BooleanVariable("A");
+		BooleanVariable var2=new BooleanVariable("B");
+		BooleanVariable var3=new BooleanVariable("C");
+		var1.setValue(BooleanValue.TRUE);]]></codefragment>
+</duplication>
+<duplication lines="4" tokens="39">
+<file line="10" path="C:\tecaj_1\HW04-0036473653\src\test\java\hr\fer\zemris\bool\MaskTest.java"/>
+<file line="17" path="C:\tecaj_1\HW04-0036473653\src\test\java\hr\fer\zemris\bool\MaskTest.java"/>
+<codefragment><![CDATA[	public void testConstruct(){
+		MaskValue[] polje=new MaskValue[] {MaskValue.ONE,MaskValue.ZERO,MaskValue.DONT_CARE};
+		Mask novaMaska=new Mask(polje);
+		Assert.assertTrue(novaMaska.toString().compareTo("10x")==0);]]></codefragment>
+</duplication>
+<duplication lines="10" tokens="39">
+<file line="66" path="C:\tecaj_1\HW04-0036473653\src\test\java\hr\fer\zemris\bool\fimpl\IndexedBFTest.java"/>
+<file line="52" path="C:\tecaj_1\HW04-0036473653\src\test\java\hr\fer\zemris\bool\fimpl\MaskBasedBFTest.java"/>
+<codefragment><![CDATA[				Assert.fail("Metoda getValue ne radi!");
+			}
+			
+			}
+	@Test 
+	public void getValueTest(){
+		BooleanVariable varA = new BooleanVariable("A");
+		BooleanVariable varB = new BooleanVariable("B");
+		BooleanVariable varC = new BooleanVariable("C");
+		BooleanFunction f1 = new IndexedBF("f1",]]></codefragment>
+</duplication>
+<duplication lines="9" tokens="37">
+<file line="49" path="C:\tecaj_1\HW04-0036473653\src\test\java\hr\fer\zemris\bool\fimpl\IndexedBFTest.java"/>
+<file line="39" path="C:\tecaj_1\HW04-0036473653\src\test\java\hr\fer\zemris\bool\fimpl\MaskBasedBFTest.java"/>
+<codefragment><![CDATA[			if ( f1.hasMaxterm(4) != true ) {
+				Assert.fail("Metoda hasMaxterm ne radi!");
+			}
+			
+			if ( f1.hasMinterm(0) != true ) {
+				Assert.fail("Metoda hasMinterm ne radi!");
+			}
+			
+			if ( f1.hasDontCare(2) != true ) {]]></codefragment>
+</duplication>
+<duplication lines="11" tokens="36">
+<file line="32" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\opimpl\BooleanOperatorAND.java"/>
+<file line="28" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\opimpl\BooleanOperatorOR.java"/>
+<codefragment><![CDATA[			}
+		}
+			//Ako sam to preÅ¾ivio idem gledat ima li dont-careova
+		for (BooleanSource v : this.getSources()) {
+			if (v.getValue() == BooleanValue.DONT_CARE) { //ako naiÄ‘em na dont-care, ukupan razultat je dont care
+				return BooleanValue.DONT_CARE;
+			}
+		}
+		
+		//ako sam tu sve vrijednosti su true
+		return BooleanValue.TRUE;]]></codefragment>
+</duplication>
+<duplication lines="3" tokens="33">
+<file line="83" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\fimpl\OperatorTreeBF.java"/>
+<file line="96" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\fimpl\OperatorTreeBF.java"/>
+<file line="109" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\fimpl\OperatorTreeBF.java"/>
+<codefragment><![CDATA[		List<Integer> listOfMinterms = new ArrayList<>();
+		for (int i = 0; i < functionValues.length(); i++) {
+			if (functionValues.charAt(i) == '1') {]]></codefragment>
+</duplication>
+<duplication lines="7" tokens="33">
+<file line="13" path="C:\tecaj_1\HW04-0036473653\src\test\java\hr\fer\zemris\bool\fimpl\IndexedBFTest.java"/>
+<file line="17" path="C:\tecaj_1\HW04-0036473653\src\test\java\hr\fer\zemris\bool\fimpl\OperatorTreeBFTest.java"/>
+<codefragment><![CDATA[public class IndexedBFTest {
+	@Test
+	public void test1(){
+	
+			BooleanVariable varA = new BooleanVariable("A");
+			BooleanVariable varB = new BooleanVariable("B");
+			BooleanVariable varC = new BooleanVariable("C");]]></codefragment>
+</duplication>
+<duplication lines="6" tokens="31">
+<file line="15" path="C:\tecaj_1\HW04-0036473653\src\test\java\hr\fer\zemris\bool\fimpl\IndexedBFTest.java"/>
+<file line="59" path="C:\tecaj_1\HW04-0036473653\src\test\java\hr\fer\zemris\bool\fimpl\MaskBasedBFTest.java"/>
+<codefragment><![CDATA[	public void test1(){
+	
+			BooleanVariable varA = new BooleanVariable("A");
+			BooleanVariable varB = new BooleanVariable("B");
+			BooleanVariable varC = new BooleanVariable("C");
+			BooleanFunction f1 = new IndexedBF("f1",]]></codefragment>
+</duplication>
+<duplication lines="7" tokens="31">
+<file line="57" path="C:\tecaj_1\HW04-0036473653\src\test\java\hr\fer\zemris\bool\fimpl\IndexedBFTest.java"/>
+<file line="47" path="C:\tecaj_1\HW04-0036473653\src\test\java\hr\fer\zemris\bool\fimpl\OperatorTreeBFTest.java"/>
+<codefragment><![CDATA[			if ( f1.hasDontCare(2) != true ) {
+				Assert.fail("Metoda hasDontCare ne radi!");
+			}
+			
+			if ( f1.getDomain().size() != 3 ) {
+				Assert.fail("Metoda getDomain ne radi!");
+			}]]></codefragment>
+</duplication>
+<duplication lines="7" tokens="30">
+<file line="153" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\fimpl\IndexedBF.java"/>
+<file line="175" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\fimpl\IndexedBF.java"/>
+<codefragment><![CDATA[		if (indexesAreMinterms == true) {
+			return indexes.contains(index);
+		} else {
+			if (isValidIndex(index) == false) {
+				return false;
+			} else {
+				return !(hasMaxterm(index) || hasDontCare(index));]]></codefragment>
+</duplication>
+<duplication lines="3" tokens="29">
+<file line="194" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\fimpl\IndexedBF.java"/>
+<file line="121" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\fimpl\MaskBasedBF.java"/>
+<file line="132" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\fimpl\MaskBasedBF.java"/>
+<file line="143" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\fimpl\MaskBasedBF.java"/>
+<codefragment><![CDATA[	public List<Integer> getThirdList() {
+		int n = (int) (Math.pow(2, getDomain().size()));
+		List<Integer> thirdList = new ArrayList<>(n);]]></codefragment>
+</duplication>
+<duplication lines="10" tokens="28">
+<file line="15" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\java\tecaj\hw4\AboveAverage.java"/>
+<file line="14" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\java\tecaj\hw4\NamesCounter.java"/>
+<codefragment><![CDATA[public class AboveAverage {
+	/**
+	 * Metoda koja se poziva pri pokretanju programa.
+	 * @param args argumenti iz komandne linije.
+	 */
+
+	public static void main(String args[]) {
+		Scanner scanInput = new Scanner(System.in);
+		String ulaznipodatak;
+		boolean ucitavanje = true;]]></codefragment>
+</duplication>
+<duplication lines="13" tokens="27">
+<file line="209" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\Mask.java"/>
+<file line="28" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\java\tecaj\hw4\db\StudentRecord.java"/>
+<codefragment><![CDATA[		return values.size();
+	}
+	
+	/**
+	 * Metoda raÄ]]>&#65533;<![CDATA[una hash vrijednost objekta maske.
+	 * Za raÄ]]>&#65533;<![CDATA[unanje uzima u obzir polje vrijednosti maske.
+	 */
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((values == null) ? 0 : values.hashCode());]]></codefragment>
+</duplication>
+<duplication lines="5" tokens="27">
+<file line="15" path="C:\tecaj_1\HW04-0036473653\src\test\java\hr\fer\zemris\bool\fimpl\IndexedBFTest.java"/>
+<file line="71" path="C:\tecaj_1\HW04-0036473653\src\test\java\hr\fer\zemris\bool\fimpl\IndexedBFTest.java"/>
+<file line="16" path="C:\tecaj_1\HW04-0036473653\src\test\java\hr\fer\zemris\bool\fimpl\MaskBasedBFTest.java"/>
+<file line="59" path="C:\tecaj_1\HW04-0036473653\src\test\java\hr\fer\zemris\bool\fimpl\MaskBasedBFTest.java"/>
+<file line="19" path="C:\tecaj_1\HW04-0036473653\src\test\java\hr\fer\zemris\bool\fimpl\OperatorTreeBFTest.java"/>
+<file line="67" path="C:\tecaj_1\HW04-0036473653\src\test\java\hr\fer\zemris\bool\fimpl\OperatorTreeBFTest.java"/>
+<codefragment><![CDATA[	public void test1(){
+	
+			BooleanVariable varA = new BooleanVariable("A");
+			BooleanVariable varB = new BooleanVariable("B");
+			BooleanVariable varC = new BooleanVariable("C");]]></codefragment>
+</duplication>
+<duplication lines="7" tokens="26">
+<file line="171" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\fimpl\MaskBasedBF.java"/>
+<file line="182" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\fimpl\MaskBasedBF.java"/>
+<codefragment><![CDATA[		if (masksAreMinterms) {
+			return hasListIndex(masks, index);
+
+		} else {
+			if (isValidIndex(index) == false)
+				return false;
+			return !(hasMaxterm(index) || hasDontCare(index));]]></codefragment>
+</duplication>
+<duplication lines="4" tokens="26">
+<file line="25" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\java\tecaj\hw4\AboveAverage.java"/>
+<file line="19" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\java\tecaj\hw4\NamesCounter.java"/>
+<codefragment><![CDATA[		List<Double> poljeVrijednosti = new ArrayList<>();
+		while (ucitavanje) {
+			ulaznipodatak = scanInput.nextLine().trim();
+			if (obradiUlaz(ulaznipodatak, poljeVrijednosti) == false) {]]></codefragment>
+</duplication>
+<duplication lines="5" tokens="26">
+<file line="78" path="C:\tecaj_1\HW04-0036473653\src\test\java\hr\fer\zemris\bool\MaskTest.java"/>
+<file line="82" path="C:\tecaj_1\HW04-0036473653\src\test\java\hr\fer\zemris\bool\MaskTest.java"/>
+<codefragment><![CDATA[		visa = Mask.parse("11xx0");
+		niza = Mask.parse("11x11");
+		Assert.assertFalse(visa.isMoreGeneralThan(niza));
+
+		visa = Mask.parse("11xx00");]]></codefragment>
+</duplication>
+<duplication lines="4" tokens="25">
+<file line="33" path="C:\tecaj_1\HW04-0036473653\src\test\java\hr\fer\zemris\bool\fimpl\MaskBasedBFTest.java"/>
+<file line="90" path="C:\tecaj_1\HW04-0036473653\src\test\java\hr\fer\zemris\bool\fimpl\MaskBasedBFTest.java"/>
+<codefragment><![CDATA[		}
+		varA.setValue(BooleanValue.DONT_CARE);
+		varB.setValue(BooleanValue.TRUE);
+		varC.setValue(BooleanValue.TRUE);]]></codefragment>
+</duplication>
+<duplication lines="4" tokens="24">
+<file line="33" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\fimpl\MaskBasedBF.java"/>
+<file line="19" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\fimpl\OperatorTreeBF.java"/>
+<codefragment><![CDATA[			boolean masksAreMinterms, List<Mask> masks, List<Mask> dontCareMasks) {
+		this.name = new String(name);
+		this.domain = new ArrayList<>(domain);
+		this.masksAreMinterms = new Boolean(masksAreMinterms);]]></codefragment>
+</duplication>
+<duplication lines="6" tokens="24">
+<file line="42" path="C:\tecaj_1\HW04-0036473653\src\test\java\hr\fer\zemris\bool\fimpl\IndexedBFTest.java"/>
+<file line="85" path="C:\tecaj_1\HW04-0036473653\src\test\java\hr\fer\zemris\bool\fimpl\MaskBasedBFTest.java"/>
+<codefragment><![CDATA[			for(Integer i : f1.mintermIterable()) { // Ispis: 0, 1, 5, 7
+				if(i!=mintermi[j]){
+					Assert.fail("NetoÄ]]>&#65533;<![CDATA[an izraÄ]]>&#65533;<![CDATA[un minterma!");
+				}
+				j++;
+			}]]></codefragment>
+</duplication>
+<duplication lines="5" tokens="24">
+<file line="57" path="C:\tecaj_1\HW04-0036473653\src\test\java\hr\fer\zemris\bool\fimpl\IndexedBFTest.java"/>
+<file line="47" path="C:\tecaj_1\HW04-0036473653\src\test\java\hr\fer\zemris\bool\fimpl\MaskBasedBFTest.java"/>
+<codefragment><![CDATA[			if ( f1.hasDontCare(2) != true ) {
+				Assert.fail("Metoda hasDontCare ne radi!");
+			}
+			
+			if ( f1.getDomain().size() != 3 ) {]]></codefragment>
+</duplication>
+<duplication lines="18" tokens="23">
+<file line="59" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\fimpl\IndexedBF.java"/>
+<file line="39" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\fimpl\MaskBasedBF.java"/>
+<file line="24" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\fimpl\OperatorTreeBF.java"/>
+<codefragment><![CDATA[	}
+	
+
+	public String getName() {
+		return name;
+	}
+	
+
+	public List<BooleanVariable> getDomain() {
+		return domain;
+	}
+	/**
+	 * Metoda koja vraÄ‡a funkciju u algebarskom obliku.
+	 * @param listOfMinterms mintermi koje funkcija ima
+	 * @return vraÄ‡a instancu razreda BooleanOperator koji predstavlja algebarski oblik funkcije.
+	 */
+
+	public BooleanOperator algebarskiOblikFunkcije(List<Integer> listOfMinterms) {]]></codefragment>
+</duplication>
+<duplication lines="3" tokens="23">
+<file line="123" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\fimpl\MaskBasedBF.java"/>
+<file line="134" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\fimpl\MaskBasedBF.java"/>
+<file line="145" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\fimpl\MaskBasedBF.java"/>
+<codefragment><![CDATA[		List<Integer> listOfDonts = new ArrayList<>(n);
+		for (int i = 0; i < n; i++) {
+			if (hasDontCare(i)) {]]></codefragment>
+</duplication>
+<duplication lines="3" tokens="22">
+<file line="53" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\fimpl\IndexedBF.java"/>
+<file line="34" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\fimpl\MaskBasedBF.java"/>
+<file line="20" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\fimpl\OperatorTreeBF.java"/>
+<codefragment><![CDATA[		this.name = new String(name);
+		this.domain = new ArrayList<>(domain);
+		this.indexesAreMinterms =new Boolean(indexesAreMinterms);]]></codefragment>
+</duplication>
+<duplication lines="8" tokens="22">
+<file line="136" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\fimpl\MaskBasedBF.java"/>
+<file line="85" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\fimpl\OperatorTreeBF.java"/>
+<codefragment><![CDATA[			if (hasMinterm(i)) {
+				listOfMinterms.add(i);
+			}
+		}
+		return listOfMinterms;
+	}
+
+	public Iterable<Integer> maxtermIterable() {]]></codefragment>
+</duplication>
+<duplication lines="2" tokens="22">
+<file line="29" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\opimpl\BooleanOperatorAND.java"/>
+<file line="35" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\opimpl\BooleanOperatorAND.java"/>
+<file line="25" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\opimpl\BooleanOperatorOR.java"/>
+<file line="31" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\opimpl\BooleanOperatorOR.java"/>
+<codefragment><![CDATA[		for (BooleanSource v : this.getSources()) { //idem po listi
+			if (v.getValue() == BooleanValue.FALSE) { //Ä]]>&#65533;<![CDATA[im naiÄ‘em na vrijednost false, ukupan rezultat je false]]></codefragment>
+</duplication>
+<duplication lines="4" tokens="22">
+<file line="33" path="C:\tecaj_1\HW04-0036473653\src\test\java\hr\fer\zemris\bool\MaskTest.java"/>
+<file line="46" path="C:\tecaj_1\HW04-0036473653\src\test\java\hr\fer\zemris\bool\MaskTest.java"/>
+<file line="53" path="C:\tecaj_1\HW04-0036473653\src\test\java\hr\fer\zemris\bool\MaskTest.java"/>
+<file line="60" path="C:\tecaj_1\HW04-0036473653\src\test\java\hr\fer\zemris\bool\MaskTest.java"/>
+<codefragment><![CDATA[	public void parseTest(){
+		String ulazna="0010xX10";
+		Mask parsirana=Mask.parse(ulazna);
+		Assert.assertTrue(parsirana.toString().equalsIgnoreCase(ulazna));]]></codefragment>
+</duplication>
+<duplication lines="4" tokens="22">
+<file line="84" path="C:\tecaj_1\HW04-0036473653\src\test\java\hr\fer\zemris\bool\MaskTest.java"/>
+<file line="88" path="C:\tecaj_1\HW04-0036473653\src\test\java\hr\fer\zemris\bool\MaskTest.java"/>
+<codefragment><![CDATA[		Assert.assertFalse(visa.isMoreGeneralThan(niza));
+
+		visa = Mask.parse("1011x0000x");
+		niza = Mask.parse("1011x00001");]]></codefragment>
+</duplication>
+<duplication lines="3" tokens="22">
+<file line="55" path="C:\tecaj_1\HW04-0036473653\src\test\java\hr\fer\zemris\bool\fimpl\OperatorTreeBFTest.java"/>
+<file line="76" path="C:\tecaj_1\HW04-0036473653\src\test\java\hr\fer\zemris\bool\fimpl\OperatorTreeBFTest.java"/>
+<codefragment><![CDATA[		varA.setValue(BooleanValue.TRUE);
+		varB.setValue(BooleanValue.FALSE);
+		varC.setValue(BooleanValue.TRUE);]]></codefragment>
+</duplication>
+<duplication lines="2" tokens="21">
+<file line="196" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\fimpl\IndexedBF.java"/>
+<file line="123" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\fimpl\MaskBasedBF.java"/>
+<file line="134" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\fimpl\MaskBasedBF.java"/>
+<file line="145" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\fimpl\MaskBasedBF.java"/>
+<codefragment><![CDATA[		List<Integer> thirdList = new ArrayList<>(n);
+		for (int i = 0; i < n; i++) {]]></codefragment>
+</duplication>
+<duplication lines="6" tokens="21">
+<file line="28" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\java\tecaj\hw4\AboveAverage.java"/>
+<file line="22" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\java\tecaj\hw4\NamesCounter.java"/>
+<codefragment><![CDATA[			if (obradiUlaz(ulaznipodatak, poljeVrijednosti) == false) {
+				ucitavanje = false;
+			}
+		}
+		scanInput.close();
+		System.out.println("Unjeli ste:" + poljeVrijednosti);]]></codefragment>
+</duplication>
+<duplication lines="5" tokens="21">
+<file line="53" path="C:\tecaj_1\HW04-0036473653\src\test\java\hr\fer\zemris\bool\fimpl\IndexedBFTest.java"/>
+<file line="43" path="C:\tecaj_1\HW04-0036473653\src\test\java\hr\fer\zemris\bool\fimpl\OperatorTreeBFTest.java"/>
+<codefragment><![CDATA[			if ( f1.hasMinterm(0) != true ) {
+				Assert.fail("Metoda hasMinterm ne radi!");
+			}
+			
+			if ( f1.hasDontCare(2) != true ) {]]></codefragment>
+</duplication>
+<duplication lines="5" tokens="21">
+<file line="47" path="C:\tecaj_1\HW04-0036473653\src\test\java\hr\fer\zemris\bool\fimpl\MaskBasedBFTest.java"/>
+<file line="47" path="C:\tecaj_1\HW04-0036473653\src\test\java\hr\fer\zemris\bool\fimpl\OperatorTreeBFTest.java"/>
+<codefragment><![CDATA[		if ( f1.hasDontCare(8) != true ) {
+			Assert.fail("Metoda hasDontCare ne radi!");
+		}
+		
+		if ( f1.getDomain().size() != 4 ) {]]></codefragment>
+</duplication>
+<duplication lines="3" tokens="21">
+<file line="92" path="C:\tecaj_1\HW04-0036473653\src\test\java\hr\fer\zemris\bool\fimpl\MaskBasedBFTest.java"/>
+<file line="56" path="C:\tecaj_1\HW04-0036473653\src\test\java\hr\fer\zemris\bool\fimpl\OperatorTreeBFTest.java"/>
+<codefragment><![CDATA[		varB.setValue(BooleanValue.TRUE);
+		varC.setValue(BooleanValue.TRUE);
+		Assert.assertTrue(f1.getValue()==BooleanValue.FALSE);]]></codefragment>
+</duplication>
+<duplication lines="2" tokens="20">
+<file line="82" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\fimpl\IndexedBF.java"/>
+<file line="64" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\fimpl\MaskBasedBF.java"/>
+<file line="125" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\fimpl\OperatorTreeBF.java"/>
+<codefragment><![CDATA[			Mask mintermAsMask = Mask.fromIndex(getDomain().size(), minterm);
+			for (int i = 0; i < getDomain().size(); i++) {]]></codefragment>
+</duplication>
+<duplication lines="3" tokens="20">
+<file line="65" path="C:\tecaj_1\HW04-0036473653\src\test\java\hr\fer\zemris\bool\fimpl\IndexedBFTest.java"/>
+<file line="59" path="C:\tecaj_1\HW04-0036473653\src\test\java\hr\fer\zemris\bool\fimpl\OperatorTreeBFTest.java"/>
+<codefragment><![CDATA[			if ( f1.getValue()!= BooleanValue.TRUE ) {
+				Assert.fail("Metoda getValue ne radi!");
+			}]]></codefragment>
+</duplication>
+<duplication lines="14" tokens="19">
+<file line="41" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\BooleanVariable.java"/>
+<file line="59" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\fimpl\IndexedBF.java"/>
+<file line="39" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\fimpl\MaskBasedBF.java"/>
+<file line="24" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\fimpl\OperatorTreeBF.java"/>
+<codefragment><![CDATA[	}
+	/**
+	 * Metoda koja vraÄ‡a ime varijable.
+	 */
+
+	public String getName() {
+		return name;
+	}
+	/**
+	 * Metoda koja vraÄ‡a domenu varijable.
+	 * VraÄ‡a listu Ä]]>&#65533;<![CDATA[iji je jedini Ä]]>&#65533;<![CDATA[lan sama varijabla.
+	 */
+
+	public List<BooleanVariable> getDomain() {]]></codefragment>
+</duplication>
+<duplication lines="4" tokens="19">
+<file line="86" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\java\tecaj\hw4\db\StudentDB.java"/>
+<file line="90" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\java\tecaj\hw4\db\StudentDB.java"/>
+<codefragment><![CDATA[		for (int i = 0; i < maxPrezime; i++) {
+			System.out.print("=");
+		}
+		System.out.print("=+=");]]></codefragment>
+</duplication>
+<duplication lines="3" tokens="18">
+<file line="180" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\Mask.java"/>
+<file line="194" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\Mask.java"/>
+<codefragment><![CDATA[		int numOfZeros = 0;
+		for (MaskValue v : this.values) {
+			if (v == MaskValue.ZERO) {]]></codefragment>
+</duplication>
+<duplication lines="4" tokens="18">
+<file line="71" path="C:\tecaj_1\HW04-0036473653\src\test\java\hr\fer\zemris\bool\MaskTest.java"/>
+<file line="75" path="C:\tecaj_1\HW04-0036473653\src\test\java\hr\fer\zemris\bool\MaskTest.java"/>
+<codefragment><![CDATA[		Assert.assertTrue(visa.isMoreGeneralThan(niza));
+		Assert.assertFalse(niza.isMoreGeneralThan(visa));
+
+		visa = Mask.parse("11x00");]]></codefragment>
+</duplication>
+<duplication lines="5" tokens="18">
+<file line="49" path="C:\tecaj_1\HW04-0036473653\src\test\java\hr\fer\zemris\bool\fimpl\IndexedBFTest.java"/>
+<file line="39" path="C:\tecaj_1\HW04-0036473653\src\test\java\hr\fer\zemris\bool\fimpl\MaskBasedBFTest.java"/>
+<file line="39" path="C:\tecaj_1\HW04-0036473653\src\test\java\hr\fer\zemris\bool\fimpl\OperatorTreeBFTest.java"/>
+<codefragment><![CDATA[			if ( f1.hasMaxterm(4) != true ) {
+				Assert.fail("Metoda hasMaxterm ne radi!");
+			}
+			
+			if ( f1.hasMinterm(0) != true ) {]]></codefragment>
+</duplication>
+<duplication lines="3" tokens="18">
+<file line="20" path="C:\tecaj_1\HW04-0036473653\src\test\java\hr\fer\zemris\bool\fimpl\MaskBasedBFTest.java"/>
+<file line="62" path="C:\tecaj_1\HW04-0036473653\src\test\java\hr\fer\zemris\bool\fimpl\MaskBasedBFTest.java"/>
+<codefragment><![CDATA[		BooleanVariable varD = new BooleanVariable("D");
+		BooleanFunction f1 = new MaskBasedBF("f1", Arrays.asList(varA, varB,
+				varC, varD), true, Masks.fromStrings("00x0", "1xx1"),]]></codefragment>
+</duplication>
+<duplication lines="5" tokens="18">
+<file line="43" path="C:\tecaj_1\HW04-0036473653\src\test\java\hr\fer\zemris\bool\fimpl\MaskBasedBFTest.java"/>
+<file line="43" path="C:\tecaj_1\HW04-0036473653\src\test\java\hr\fer\zemris\bool\fimpl\OperatorTreeBFTest.java"/>
+<codefragment><![CDATA[		if ( f1.hasMinterm(0) != true ) {
+			Assert.fail("Metoda hasMinterm ne radi!");
+		}
+		
+		if ( f1.hasDontCare(8) != true ) {]]></codefragment>
+</duplication>
+<duplication lines="2" tokens="17">
+<file line="204" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\fimpl\MaskBasedBF.java"/>
+<file line="125" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\fimpl\OperatorTreeBF.java"/>
+<codefragment><![CDATA[		Mask maskaIzIndexa = Mask.fromIndex(getDomain().size(), index);
+		for (Mask m : listOfMasks) {]]></codefragment>
+</duplication>
+<duplication lines="3" tokens="17">
+<file line="132" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\fimpl\OperatorTreeBF.java"/>
+<file line="135" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\fimpl\OperatorTreeBF.java"/>
+<codefragment><![CDATA[			case ZERO:
+				getDomain().get(i).setValue(BooleanValue.FALSE);
+				break;]]></codefragment>
+</duplication>
+<duplication lines="3" tokens="17">
+<file line="144" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\fimpl\OperatorTreeBF.java"/>
+<file line="152" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\fimpl\OperatorTreeBF.java"/>
+<file line="160" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\fimpl\OperatorTreeBF.java"/>
+<codefragment><![CDATA[	public boolean hasMinterm(int index) {
+		setFromIndex(index);
+		if (getValue() == BooleanValue.TRUE) {]]></codefragment>
+</duplication>
+<duplication lines="4" tokens="17">
+<file line="60" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\java\tecaj\hw4\AboveAverage.java"/>
+<file line="35" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\java\tecaj\hw4\NamesCounter.java"/>
+<codefragment><![CDATA[	public static boolean obradiUlaz(String ulaz, List<Double> polje) {
+		if (ulaz.compareTo("quit") == 0) {
+			return false;
+		}]]></codefragment>
+</duplication>
+<duplication lines="8" tokens="16">
+<file line="167" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\fimpl\IndexedBF.java"/>
+<file line="146" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\fimpl\OperatorTreeBF.java"/>
+<codefragment><![CDATA[		if (dontcares.contains(index) == true) {
+			return true;
+
+		}
+		return false;
+	}
+	
+	public boolean hasMaxterm(int index) {]]></codefragment>
+</duplication>
+<duplication lines="2" tokens="16">
+<file line="20" path="C:\tecaj_1\HW04-0036473653\src\test\java\hr\fer\zemris\bool\fimpl\IndexedBFTest.java"/>
+<file line="75" path="C:\tecaj_1\HW04-0036473653\src\test\java\hr\fer\zemris\bool\fimpl\IndexedBFTest.java"/>
+<file line="64" path="C:\tecaj_1\HW04-0036473653\src\test\java\hr\fer\zemris\bool\fimpl\MaskBasedBFTest.java"/>
+<codefragment><![CDATA[			BooleanFunction f1 = new IndexedBF("f1",
+					Arrays.asList(varA, varB, varC), true,]]></codefragment>
+</duplication>
+<duplication lines="1" tokens="15">
+<file line="144" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\fimpl\IndexedBF.java"/>
+<file line="195" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\fimpl\IndexedBF.java"/>
+<file line="122" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\fimpl\MaskBasedBF.java"/>
+<file line="133" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\fimpl\MaskBasedBF.java"/>
+<file line="144" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\fimpl\MaskBasedBF.java"/>
+<file line="162" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\fimpl\MaskBasedBF.java"/>
+<codefragment><![CDATA[		if (index < 0 || index >= Math.pow(2, getDomain().size())) {]]></codefragment>
+</duplication>
+<duplication lines="3" tokens="15">
+<file line="159" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\fimpl\IndexedBF.java"/>
+<file line="177" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\fimpl\MaskBasedBF.java"/>
+<codefragment><![CDATA[				return !(hasMaxterm(index) || hasDontCare(index));
+			}
+		}]]></codefragment>
+</duplication>
+<duplication lines="3" tokens="15">
+<file line="181" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\fimpl\IndexedBF.java"/>
+<file line="188" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\fimpl\MaskBasedBF.java"/>
+<codefragment><![CDATA[				return !(hasMinterm(index) || hasDontCare(index));
+			}
+		}]]></codefragment>
+</duplication>
+<duplication lines="8" tokens="15">
+<file line="210" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\fimpl\IndexedBF.java"/>
+<file line="218" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\fimpl\IndexedBF.java"/>
+<codefragment><![CDATA[		if (indexesAreMinterms == true) {
+			return indexes;
+		}
+		return getThirdList();
+
+	}
+	
+	public Iterable<Integer> maxtermIterable() {]]></codefragment>
+</duplication>
+<duplication lines="2" tokens="15">
+<file line="57" path="C:\tecaj_1\HW04-0036473653\src\test\java\hr\fer\zemris\bool\fimpl\OperatorTreeBFTest.java"/>
+<file line="78" path="C:\tecaj_1\HW04-0036473653\src\test\java\hr\fer\zemris\bool\fimpl\OperatorTreeBFTest.java"/>
+<codefragment><![CDATA[		varC.setValue(BooleanValue.TRUE);
+		Assert.assertTrue(f1.getValue()==BooleanValue.TRUE);]]></codefragment>
+</duplication>
+<duplication lines="4" tokens="14">
+<file line="21" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\fimpl\IndexedBF.java"/>
+<file line="16" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\fimpl\MaskBasedBF.java"/>
+<codefragment><![CDATA[public class IndexedBF implements BooleanFunction {
+	private String name;
+	private List<BooleanVariable> domain;
+	private boolean indexesAreMinterms;]]></codefragment>
+</duplication>
+<duplication lines="1" tokens="14">
+<file line="144" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\fimpl\IndexedBF.java"/>
+<file line="195" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\fimpl\IndexedBF.java"/>
+<file line="122" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\fimpl\MaskBasedBF.java"/>
+<file line="133" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\fimpl\MaskBasedBF.java"/>
+<file line="144" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\fimpl\MaskBasedBF.java"/>
+<file line="162" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\fimpl\MaskBasedBF.java"/>
+<file line="48" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\fimpl\OperatorTreeBF.java"/>
+<codefragment><![CDATA[		if (index < 0 || index >= Math.pow(2, getDomain().size())) {]]></codefragment>
+</duplication>
+<duplication lines="3" tokens="14">
+<file line="154" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\fimpl\IndexedBF.java"/>
+<file line="176" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\fimpl\IndexedBF.java"/>
+<file line="172" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\fimpl\MaskBasedBF.java"/>
+<file line="183" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\fimpl\MaskBasedBF.java"/>
+<codefragment><![CDATA[			return indexes.contains(index);
+		} else {
+			if (isValidIndex(index) == false) {]]></codefragment>
+</duplication>
+<duplication lines="2" tokens="14">
+<file line="196" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\fimpl\IndexedBF.java"/>
+<file line="123" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\fimpl\MaskBasedBF.java"/>
+<file line="134" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\fimpl\MaskBasedBF.java"/>
+<file line="145" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\fimpl\MaskBasedBF.java"/>
+<file line="48" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\fimpl\OperatorTreeBF.java"/>
+<codefragment><![CDATA[		List<Integer> thirdList = new ArrayList<>(n);
+		for (int i = 0; i < n; i++) {]]></codefragment>
+</duplication>
+<duplication lines="8" tokens="14">
+<file line="125" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\fimpl\MaskBasedBF.java"/>
+<file line="111" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\fimpl\OperatorTreeBF.java"/>
+<codefragment><![CDATA[			if (hasDontCare(i)) {
+				listOfDonts.add(i);
+			}
+		}
+		return listOfDonts;
+	}
+
+	public List<Integer> mintermIterable() {]]></codefragment>
+</duplication>
+<duplication lines="15" tokens="14">
+<file line="147" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\fimpl\MaskBasedBF.java"/>
+<file line="98" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\fimpl\OperatorTreeBF.java"/>
+<codefragment><![CDATA[			if (hasMaxterm(i)) {
+				listOfMaxterms.add(i);
+			}
+		}
+		return listOfMaxterms;
+	}
+	
+
+
+	/**
+	 * Metoda koja provjerava da li je indeks valjan.
+	 * @param index indeks koji se ispituje.
+	 * @return vraÄ‡a true ako se indeks nalazi u domeni funkcije,false inaÄ]]>&#65533;<![CDATA[e.
+	 */
+	public boolean isValidIndex(int index) {]]></codefragment>
+</duplication>
+<duplication lines="2" tokens="14">
+<file line="129" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\fimpl\OperatorTreeBF.java"/>
+<file line="132" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\fimpl\OperatorTreeBF.java"/>
+<file line="135" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\fimpl\OperatorTreeBF.java"/>
+<codefragment><![CDATA[			case ONE:
+				getDomain().get(i).setValue(BooleanValue.TRUE);]]></codefragment>
+</duplication>
+<duplication lines="3" tokens="14">
+<file line="80" path="C:\tecaj_1\HW04-0036473653\src\test\java\hr\fer\zemris\bool\MaskTest.java"/>
+<file line="88" path="C:\tecaj_1\HW04-0036473653\src\test\java\hr\fer\zemris\bool\MaskTest.java"/>
+<codefragment><![CDATA[		Assert.assertFalse(visa.isMoreGeneralThan(niza));
+
+		visa = Mask.parse("11xx00");]]></codefragment>
+</duplication>
+<duplication lines="2" tokens="14">
+<file line="20" path="C:\tecaj_1\HW04-0036473653\src\test\java\hr\fer\zemris\bool\fimpl\IndexedBFTest.java"/>
+<file line="75" path="C:\tecaj_1\HW04-0036473653\src\test\java\hr\fer\zemris\bool\fimpl\IndexedBFTest.java"/>
+<file line="64" path="C:\tecaj_1\HW04-0036473653\src\test\java\hr\fer\zemris\bool\fimpl\MaskBasedBFTest.java"/>
+<file line="27" path="C:\tecaj_1\HW04-0036473653\src\test\java\hr\fer\zemris\bool\fimpl\OperatorTreeBFTest.java"/>
+<file line="73" path="C:\tecaj_1\HW04-0036473653\src\test\java\hr\fer\zemris\bool\fimpl\OperatorTreeBFTest.java"/>
+<codefragment><![CDATA[			BooleanFunction f1 = new IndexedBF("f1",
+					Arrays.asList(varA, varB, varC), true,]]></codefragment>
+</duplication>
+<duplication lines="5" tokens="14">
+<file line="38" path="C:\tecaj_1\HW04-0036473653\src\test\java\hr\fer\zemris\bool\fimpl\IndexedBFTest.java"/>
+<file line="81" path="C:\tecaj_1\HW04-0036473653\src\test\java\hr\fer\zemris\bool\fimpl\MaskBasedBFTest.java"/>
+<codefragment><![CDATA[			mintermi[3]=7;
+
+			int j=0;
+			
+			for(Integer i : f1.mintermIterable()) { // Ispis: 0, 1, 5, 7]]></codefragment>
+</duplication>
+<duplication lines="1" tokens="13">
+<file line="82" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\fimpl\IndexedBF.java"/>
+<file line="64" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\fimpl\MaskBasedBF.java"/>
+<file line="204" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\fimpl\MaskBasedBF.java"/>
+<file line="125" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\fimpl\OperatorTreeBF.java"/>
+<codefragment><![CDATA[			Mask mintermAsMask = Mask.fromIndex(getDomain().size(), minterm);]]></codefragment>
+</duplication>
+<duplication lines="7" tokens="13">
+<file line="129" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\fimpl\IndexedBF.java"/>
+<file line="113" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\fimpl\MaskBasedBF.java"/>
+<file line="35" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\opimpl\BooleanOperatorNOT.java"/>
+<codefragment><![CDATA[			if (hasMaxterm(domainValueBinary)) {
+				return BooleanValue.FALSE;
+			}
+
+			return BooleanValue.DONT_CARE;
+		}
+	}]]></codefragment>
+</duplication>
+<duplication lines="7" tokens="13">
+<file line="159" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\fimpl\IndexedBF.java"/>
+<file line="181" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\fimpl\IndexedBF.java"/>
+<codefragment><![CDATA[				return !(hasMaxterm(index) || hasDontCare(index));
+			}
+		}
+	}
+	
+
+	public boolean hasDontCare(int index) {]]></codefragment>
+</duplication>
+<duplication lines="5" tokens="13">
+<file line="177" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\fimpl\MaskBasedBF.java"/>
+<file line="188" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\fimpl\MaskBasedBF.java"/>
+<codefragment><![CDATA[			return !(hasMaxterm(index) || hasDontCare(index));
+		}
+	}
+
+	public boolean hasMaxterm(int index) {]]></codefragment>
+</duplication>
+<duplication lines="3" tokens="13">
+<file line="81" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\fimpl\OperatorTreeBF.java"/>
+<file line="94" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\fimpl\OperatorTreeBF.java"/>
+<file line="107" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\fimpl\OperatorTreeBF.java"/>
+<codefragment><![CDATA[	public Iterable<Integer> mintermIterable() {
+		String functionValues = setAndCalculate();
+		List<Integer> listOfMinterms = new ArrayList<>();]]></codefragment>
+</duplication>
+<duplication lines="3" tokens="13">
+<file line="26" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\java\tecaj\hw4\db\LastNameFilter.java"/>
+<file line="33" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\java\tecaj\hw4\db\LastNameFilter.java"/>
+<codefragment><![CDATA[			if (position == filter.length() - 1) {
+				prefix = filter.substring(0,position);
+				sufix = "";]]></codefragment>
+</duplication>
+<duplication lines="3" tokens="13">
+<file line="74" path="C:\tecaj_1\HW04-0036473653\src\test\java\hr\fer\zemris\bool\MaskTest.java"/>
+<file line="78" path="C:\tecaj_1\HW04-0036473653\src\test\java\hr\fer\zemris\bool\MaskTest.java"/>
+<file line="82" path="C:\tecaj_1\HW04-0036473653\src\test\java\hr\fer\zemris\bool\MaskTest.java"/>
+<codefragment><![CDATA[		visa = Mask.parse("11x00");
+		niza = Mask.parse("11x11");
+		Assert.assertFalse(niza.isMoreGeneralThan(visa));]]></codefragment>
+</duplication>
+<duplication lines="2" tokens="13">
+<file line="81" path="C:\tecaj_1\HW04-0036473653\src\test\java\hr\fer\zemris\bool\fimpl\IndexedBFTest.java"/>
+<file line="93" path="C:\tecaj_1\HW04-0036473653\src\test\java\hr\fer\zemris\bool\fimpl\MaskBasedBFTest.java"/>
+<file line="57" path="C:\tecaj_1\HW04-0036473653\src\test\java\hr\fer\zemris\bool\fimpl\OperatorTreeBFTest.java"/>
+<file line="78" path="C:\tecaj_1\HW04-0036473653\src\test\java\hr\fer\zemris\bool\fimpl\OperatorTreeBFTest.java"/>
+<codefragment><![CDATA[		varC.setValue(BooleanValue.FALSE);
+		Assert.assertTrue(f1.getValue()==BooleanValue.DONT_CARE);]]></codefragment>
+</duplication>
+<duplication lines="2" tokens="12">
+<file line="122" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\fimpl\MaskBasedBF.java"/>
+<file line="108" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\fimpl\OperatorTreeBF.java"/>
+<codefragment><![CDATA[		int n = (int) (Math.pow(2, getDomain().size()));
+		List<Integer> listOfDonts = new ArrayList<>(n);]]></codefragment>
+</duplication>
+<duplication lines="2" tokens="12">
+<file line="133" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\fimpl\MaskBasedBF.java"/>
+<file line="82" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\fimpl\OperatorTreeBF.java"/>
+<codefragment><![CDATA[		int n = (int) (Math.pow(2, getDomain().size()));
+		List<Integer> listOfMinterms = new ArrayList<>(n);]]></codefragment>
+</duplication>
+<duplication lines="2" tokens="12">
+<file line="144" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\fimpl\MaskBasedBF.java"/>
+<file line="95" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\fimpl\OperatorTreeBF.java"/>
+<codefragment><![CDATA[		int n = (int) (Math.pow(2, getDomain().size()));
+		List<Integer> listOfMaxterms = new ArrayList<>(n);]]></codefragment>
+</duplication>
+<duplication lines="17" tokens="12">
+<file line="51" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\fimpl\OperatorTreeBF.java"/>
+<file line="145" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\fimpl\OperatorTreeBF.java"/>
+<codefragment><![CDATA[		 setFromIndex(i);
+
+//			for (int j = 0; j < getDomain().size(); j++) {
+//				if (numberAsMask.getValue(j) == MaskValue.ONE) {
+//					getDomain().get(j).setValue(BooleanValue.TRUE);
+//
+//				} else if (numberAsMask.getValue(j) == MaskValue.ZERO) {
+//					getDomain().get(j).setValue(BooleanValue.FALSE);
+//
+//				} else {
+//					getDomain().get(j).setValue(BooleanValue.DONT_CARE);
+//
+//				}
+//
+//			}
+			
+			if (getValue() == BooleanValue.TRUE) {]]></codefragment>
+</duplication>
+<duplication lines="3" tokens="12">
+<file line="66" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\java\tecaj\hw4\AboveAverage.java"/>
+<file line="39" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\java\tecaj\hw4\db\StudentDatabase.java"/>
+<codefragment><![CDATA[			polje.add(broj);
+		} catch (RuntimeException e) {
+			throw new IllegalArgumentException("Invalid argument");]]></codefragment>
+</duplication>
+<duplication lines="2" tokens="12">
+<file line="70" path="C:\tecaj_1\HW04-0036473653\src\test\java\hr\fer\zemris\bool\MaskTest.java"/>
+<file line="87" path="C:\tecaj_1\HW04-0036473653\src\test\java\hr\fer\zemris\bool\MaskTest.java"/>
+<codefragment><![CDATA[		Mask niza = Mask.parse("1011x0");
+		Assert.assertTrue(visa.isMoreGeneralThan(niza));]]></codefragment>
+</duplication>
+<duplication lines="2" tokens="12">
+<file line="79" path="C:\tecaj_1\HW04-0036473653\src\test\java\hr\fer\zemris\bool\MaskTest.java"/>
+<file line="83" path="C:\tecaj_1\HW04-0036473653\src\test\java\hr\fer\zemris\bool\MaskTest.java"/>
+<file line="91" path="C:\tecaj_1\HW04-0036473653\src\test\java\hr\fer\zemris\bool\MaskTest.java"/>
+<codefragment><![CDATA[		niza = Mask.parse("11x11");
+		Assert.assertFalse(visa.isMoreGeneralThan(niza));]]></codefragment>
+</duplication>
+<duplication lines="2" tokens="12">
+<file line="20" path="C:\tecaj_1\HW04-0036473653\src\test\java\hr\fer\zemris\bool\fimpl\IndexedBFTest.java"/>
+<file line="75" path="C:\tecaj_1\HW04-0036473653\src\test\java\hr\fer\zemris\bool\fimpl\IndexedBFTest.java"/>
+<file line="21" path="C:\tecaj_1\HW04-0036473653\src\test\java\hr\fer\zemris\bool\fimpl\MaskBasedBFTest.java"/>
+<file line="27" path="C:\tecaj_1\HW04-0036473653\src\test\java\hr\fer\zemris\bool\fimpl\OperatorTreeBFTest.java"/>
+<file line="73" path="C:\tecaj_1\HW04-0036473653\src\test\java\hr\fer\zemris\bool\fimpl\OperatorTreeBFTest.java"/>
+<codefragment><![CDATA[			BooleanFunction f1 = new IndexedBF("f1",
+					Arrays.asList(varA, varB, varC), true,]]></codefragment>
+</duplication>
+<duplication lines="1" tokens="12">
+<file line="23" path="C:\tecaj_1\HW04-0036473653\src\test\java\hr\fer\zemris\bool\fimpl\IndexedBFTest.java"/>
+<file line="42" path="C:\tecaj_1\HW04-0036473653\src\test\java\hr\fer\zemris\bool\fimpl\IndexedBFTest.java"/>
+<file line="24" path="C:\tecaj_1\HW04-0036473653\src\test\java\hr\fer\zemris\bool\fimpl\MaskBasedBFTest.java"/>
+<file line="67" path="C:\tecaj_1\HW04-0036473653\src\test\java\hr\fer\zemris\bool\fimpl\MaskBasedBFTest.java"/>
+<file line="30" path="C:\tecaj_1\HW04-0036473653\src\test\java\hr\fer\zemris\bool\fimpl\OperatorTreeBFTest.java"/>
+<codefragment><![CDATA[			for (Integer i : f1.mintermIterable()) { // Ispis: 0, 1, 5, 7]]></codefragment>
+</duplication>
+<duplication lines="1" tokens="12">
+<file line="26" path="C:\tecaj_1\HW04-0036473653\src\test\java\hr\fer\zemris\bool\fimpl\IndexedBFTest.java"/>
+<file line="27" path="C:\tecaj_1\HW04-0036473653\src\test\java\hr\fer\zemris\bool\fimpl\MaskBasedBFTest.java"/>
+<file line="70" path="C:\tecaj_1\HW04-0036473653\src\test\java\hr\fer\zemris\bool\fimpl\MaskBasedBFTest.java"/>
+<file line="85" path="C:\tecaj_1\HW04-0036473653\src\test\java\hr\fer\zemris\bool\fimpl\MaskBasedBFTest.java"/>
+<file line="33" path="C:\tecaj_1\HW04-0036473653\src\test\java\hr\fer\zemris\bool\fimpl\OperatorTreeBFTest.java"/>
+<codefragment><![CDATA[			for (Integer i : f1.maxtermIterable()) { // Ispis: 4, 6]]></codefragment>
+</duplication>
+<duplication lines="15" tokens="11">
+<file line="23" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\BooleanConstant.java"/>
+<file line="25" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\BooleanVariable.java"/>
+<codefragment><![CDATA[	}
+
+	/**
+	 * Metoda koja vraÄ‡a vrijednost konstante.
+	 */
+	public BooleanValue getValue() {
+		return value;
+	}
+
+	/**
+	 * Metoda koja vraÄ‡a domenu konstante.
+	 * Domena su varijable o kojima vrijednost konstante ovisi.
+	 * Domena je prazan skup.
+	 */
+	public List<BooleanVariable> getDomain() {]]></codefragment>
+</duplication>
+<duplication lines="9" tokens="11">
+<file line="30" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\BooleanConstant.java"/>
+<file line="64" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\fimpl\IndexedBF.java"/>
+<file line="44" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\fimpl\MaskBasedBF.java"/>
+<file line="28" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\fimpl\OperatorTreeBF.java"/>
+<codefragment><![CDATA[	}
+
+	/**
+	 * Metoda koja vraÄ‡a domenu konstante.
+	 * Domena su varijable o kojima vrijednost konstante ovisi.
+	 * Domena je prazan skup.
+	 */
+	public List<BooleanVariable> getDomain() {
+		return new ArrayList<>();]]></codefragment>
+</duplication>
+<duplication lines="1" tokens="11">
+<file line="118" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\Mask.java"/>
+<file line="141" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\Mask.java"/>
+<codefragment><![CDATA[		  for (int i = 0, duljina = prvaMaska.values.size(); i < duljina; i++) {]]></codefragment>
+</duplication>
+<duplication lines="3" tokens="11">
+<file line="118" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\Mask.java"/>
+<file line="141" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\Mask.java"/>
+<codefragment><![CDATA[		  for (int i = 0, duljina = prvaMaska.values.size(); i < duljina; i++) {
+
+		   if (!prvaMaska.values.get(i).equals(drugaMaska.values.get(i))) {]]></codefragment>
+</duplication>
+<duplication lines="5" tokens="11">
+<file line="31" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\Masks.java"/>
+<file line="46" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\Masks.java"/>
+<codefragment><![CDATA[			arrayList[i] = parse(strings[i]);
+
+		}
+		return Arrays.asList(arrayList);
+	}]]></codefragment>
+</duplication>
+<duplication lines="2" tokens="11">
+<file line="40" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\fimpl\IndexedBF.java"/>
+<file line="32" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\fimpl\MaskBasedBF.java"/>
+<codefragment><![CDATA[	public IndexedBF(String name, List<BooleanVariable> domain,
+			boolean indexesAreMinterms, List<Integer> indexes,]]></codefragment>
+</duplication>
+<duplication lines="3" tokens="11">
+<file line="152" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\fimpl\IndexedBF.java"/>
+<file line="209" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\fimpl\IndexedBF.java"/>
+<codefragment><![CDATA[	public boolean hasMinterm(int index) {
+		if (indexesAreMinterms == true) {
+			return indexes.contains(index);]]></codefragment>
+</duplication>
+<duplication lines="3" tokens="11">
+<file line="159" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\fimpl\IndexedBF.java"/>
+<file line="188" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\fimpl\MaskBasedBF.java"/>
+<codefragment><![CDATA[				return !(hasMaxterm(index) || hasDontCare(index));
+			}
+		}]]></codefragment>
+</duplication>
+<duplication lines="4" tokens="11">
+<file line="172" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\fimpl\IndexedBF.java"/>
+<file line="179" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\fimpl\MaskBasedBF.java"/>
+<codefragment><![CDATA[	}
+	
+	public boolean hasMaxterm(int index) {
+		if (indexesAreMinterms == false) {]]></codefragment>
+</duplication>
+<duplication lines="3" tokens="11">
+<file line="174" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\fimpl\IndexedBF.java"/>
+<file line="217" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\fimpl\IndexedBF.java"/>
+<codefragment><![CDATA[	public boolean hasMaxterm(int index) {
+		if (indexesAreMinterms == false) {
+			return indexes.contains(index);]]></codefragment>
+</duplication>
+<duplication lines="3" tokens="11">
+<file line="181" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\fimpl\IndexedBF.java"/>
+<file line="177" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\fimpl\MaskBasedBF.java"/>
+<codefragment><![CDATA[				return !(hasMinterm(index) || hasDontCare(index));
+			}
+		}]]></codefragment>
+</duplication>
+<duplication lines="1" tokens="11">
+<file line="69" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\fimpl\OperatorTreeBF.java"/>
+<file line="154" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\fimpl\OperatorTreeBF.java"/>
+<codefragment><![CDATA[			} else if (getValue() == BooleanValue.FALSE) {]]></codefragment>
+</duplication>
+<duplication lines="1" tokens="11">
+<file line="71" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\fimpl\OperatorTreeBF.java"/>
+<file line="162" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\fimpl\OperatorTreeBF.java"/>
+<codefragment><![CDATA[			} else if (getValue() == BooleanValue.DONT_CARE) {]]></codefragment>
+</duplication>
+<duplication lines="7" tokens="11">
+<file line="15" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\java\tecaj\hw4\AboveAverage.java"/>
+<file line="14" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\java\tecaj\hw4\NamesCounter.java"/>
+<file line="17" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\java\tecaj\hw4\db\StudentDB.java"/>
+<codefragment><![CDATA[public class AboveAverage {
+	/**
+	 * Metoda koja se poziva pri pokretanju programa.
+	 * @param args argumenti iz komandne linije.
+	 */
+
+	public static void main(String args[]) {]]></codefragment>
+</duplication>
+<duplication lines="2" tokens="11">
+<file line="22" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\java\tecaj\hw4\AboveAverage.java"/>
+<file line="16" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\java\tecaj\hw4\NamesCounter.java"/>
+<file line="30" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\java\tecaj\hw4\db\StudentDB.java"/>
+<codefragment><![CDATA[		Scanner scanInput = new Scanner(System.in);
+		String ulaznipodatak;]]></codefragment>
+</duplication>
+<duplication lines="1" tokens="11">
+<file line="47" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\java\tecaj\hw4\db\StudentDB.java"/>
+<file line="71" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\java\tecaj\hw4\db\StudentDatabase.java"/>
+<codefragment><![CDATA[			List<StudentRecord> nova = new ArrayList<>(1);]]></codefragment>
+</duplication>
+<duplication lines="2" tokens="11">
+<file line="11" path="C:\tecaj_1\HW04-0036473653\src\test\java\hr\fer\zemris\bool\MasksTest.java"/>
+<file line="20" path="C:\tecaj_1\HW04-0036473653\src\test\java\hr\fer\zemris\bool\MasksTest.java"/>
+<codefragment><![CDATA[	public void fromStringsTest(){
+	 List<Mask> maske=Masks.fromStrings("101","100","000");]]></codefragment>
+</duplication>
+<duplication lines="2" tokens="11">
+<file line="13" path="C:\tecaj_1\HW04-0036473653\src\test\java\hr\fer\zemris\bool\MasksTest.java"/>
+<file line="14" path="C:\tecaj_1\HW04-0036473653\src\test\java\hr\fer\zemris\bool\MasksTest.java"/>
+<file line="22" path="C:\tecaj_1\HW04-0036473653\src\test\java\hr\fer\zemris\bool\MasksTest.java"/>
+<file line="23" path="C:\tecaj_1\HW04-0036473653\src\test\java\hr\fer\zemris\bool\MasksTest.java"/>
+<codefragment><![CDATA[	 Assert.assertTrue(maske.get(0).equals(Masks.parse("101")));
+	 Assert.assertTrue(maske.get(1).equals(Masks.parse("100")));]]></codefragment>
+</duplication>
+<duplication lines="3" tokens="11">
+<file line="24" path="C:\tecaj_1\HW04-0036473653\src\test\java\hr\fer\zemris\bool\fimpl\IndexedBFTest.java"/>
+<file line="27" path="C:\tecaj_1\HW04-0036473653\src\test\java\hr\fer\zemris\bool\fimpl\IndexedBFTest.java"/>
+<file line="25" path="C:\tecaj_1\HW04-0036473653\src\test\java\hr\fer\zemris\bool\fimpl\MaskBasedBFTest.java"/>
+<file line="29" path="C:\tecaj_1\HW04-0036473653\src\test\java\hr\fer\zemris\bool\fimpl\MaskBasedBFTest.java"/>
+<file line="68" path="C:\tecaj_1\HW04-0036473653\src\test\java\hr\fer\zemris\bool\fimpl\MaskBasedBFTest.java"/>
+<file line="71" path="C:\tecaj_1\HW04-0036473653\src\test\java\hr\fer\zemris\bool\fimpl\MaskBasedBFTest.java"/>
+<file line="31" path="C:\tecaj_1\HW04-0036473653\src\test\java\hr\fer\zemris\bool\fimpl\OperatorTreeBFTest.java"/>
+<file line="34" path="C:\tecaj_1\HW04-0036473653\src\test\java\hr\fer\zemris\bool\fimpl\OperatorTreeBFTest.java"/>
+<codefragment><![CDATA[				System.out.println("Imam minterm: " + i);
+			}
+			for (Integer i : f1.maxtermIterable()) { // Ispis: 4, 6]]></codefragment>
+</duplication>
+<duplication lines="2" tokens="11">
+<file line="53" path="C:\tecaj_1\HW04-0036473653\src\test\java\hr\fer\zemris\bool\fimpl\IndexedBFTest.java"/>
+<file line="43" path="C:\tecaj_1\HW04-0036473653\src\test\java\hr\fer\zemris\bool\fimpl\MaskBasedBFTest.java"/>
+<file line="39" path="C:\tecaj_1\HW04-0036473653\src\test\java\hr\fer\zemris\bool\fimpl\OperatorTreeBFTest.java"/>
+<codefragment><![CDATA[			if ( f1.hasMinterm(0) != true ) {
+				Assert.fail("Metoda hasMinterm ne radi!");]]></codefragment>
+</duplication>
+<duplication lines="2" tokens="11">
+<file line="39" path="C:\tecaj_1\HW04-0036473653\src\test\java\hr\fer\zemris\bool\fimpl\MaskBasedBFTest.java"/>
+<file line="43" path="C:\tecaj_1\HW04-0036473653\src\test\java\hr\fer\zemris\bool\fimpl\OperatorTreeBFTest.java"/>
+<codefragment><![CDATA[		if ( f1.hasMaxterm(1) != true ) {
+			Assert.fail("Metoda hasMaxterm ne radi!");]]></codefragment>
+</duplication>
+<duplication lines="5" tokens="11">
+<file line="79" path="C:\tecaj_1\HW04-0036473653\src\test\java\hr\fer\zemris\bool\fimpl\OperatorTreeBFTest.java"/>
+<file line="25" path="C:\tecaj_1\HW04-0036473653\src\test\java\hr\fer\zemris\bool\opimpl\BooleanOperatorANDTest.java"/>
+<file line="16" path="C:\tecaj_1\HW04-0036473653\src\test\java\hr\fer\zemris\bool\opimpl\BooleanOperatorNotTest.java"/>
+<file line="24" path="C:\tecaj_1\HW04-0036473653\src\test\java\hr\fer\zemris\bool\opimpl\BooleanOperatorOrTest.java"/>
+<codefragment><![CDATA[		Assert.assertTrue(f1.getValue()==BooleanValue.TRUE);
+		
+		}
+
+}]]></codefragment>
+</duplication>
+<duplication lines="2" tokens="11">
+<file line="24" path="C:\tecaj_1\HW04-0036473653\src\test\java\hr\fer\zemris\bool\opimpl\BooleanOperatorANDTest.java"/>
+<file line="23" path="C:\tecaj_1\HW04-0036473653\src\test\java\hr\fer\zemris\bool\opimpl\BooleanOperatorOrTest.java"/>
+<codefragment><![CDATA[		BooleanOperator and=  BooleanOperators.and(var1,var2,var3);
+		Assert.assertTrue(and.getValue()==BooleanValue.TRUE);]]></codefragment>
+</duplication>
+<duplication lines="8" tokens="10">
+<file line="30" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\BooleanConstant.java"/>
+<file line="34" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\BooleanOperator.java"/>
+<file line="48" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\BooleanVariable.java"/>
+<file line="64" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\fimpl\IndexedBF.java"/>
+<file line="44" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\fimpl\MaskBasedBF.java"/>
+<file line="28" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\fimpl\OperatorTreeBF.java"/>
+<codefragment><![CDATA[	}
+
+	/**
+	 * Metoda koja vraÄ‡a domenu konstante.
+	 * Domena su varijable o kojima vrijednost konstante ovisi.
+	 * Domena je prazan skup.
+	 */
+	public List<BooleanVariable> getDomain() {]]></codefragment>
+</duplication>
+<duplication lines="3" tokens="10">
+<file line="51" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\Mask.java"/>
+<file line="55" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\Mask.java"/>
+<codefragment><![CDATA[			case 'x':
+				pomPolje[i] = MaskValue.DONT_CARE;
+				break;]]></codefragment>
+</duplication>
+<duplication lines="3" tokens="10">
+<file line="241" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\Mask.java"/>
+<file line="50" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\java\tecaj\hw4\db\StudentRecord.java"/>
+<codefragment><![CDATA[			if (other.values != null)
+				return false;
+		} else if (!values.equals(other.values))]]></codefragment>
+</duplication>
+<duplication lines="2" tokens="10">
+<file line="28" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\Masks.java"/>
+<file line="43" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\Masks.java"/>
+<codefragment><![CDATA[	public static List<Mask> fromStrings(String... strings) {
+		Mask[] arrayList = new Mask[strings.length];]]></codefragment>
+</duplication>
+<duplication lines="1" tokens="10">
+<file line="40" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\fimpl\IndexedBF.java"/>
+<file line="32" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\fimpl\MaskBasedBF.java"/>
+<file line="18" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\fimpl\OperatorTreeBF.java"/>
+<codefragment><![CDATA[	public IndexedBF(String name, List<BooleanVariable> domain,]]></codefragment>
+</duplication>
+<duplication lines="2" tokens="10">
+<file line="83" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\fimpl\IndexedBF.java"/>
+<file line="117" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\fimpl\IndexedBF.java"/>
+<file line="65" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\fimpl\MaskBasedBF.java"/>
+<file line="101" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\fimpl\MaskBasedBF.java"/>
+<codefragment><![CDATA[			for (int i = 0; i < getDomain().size(); i++) {
+				if (mintermAsMask.getValue(i) == MaskValue.ONE) {]]></codefragment>
+</duplication>
+<duplication lines="1" tokens="10">
+<file line="105" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\fimpl\IndexedBF.java"/>
+<file line="89" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\fimpl\MaskBasedBF.java"/>
+<file line="36" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\opimpl\BooleanOperatorAND.java"/>
+<file line="32" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\opimpl\BooleanOperatorOR.java"/>
+<codefragment><![CDATA[			if (varijabla.getValue() == BooleanValue.DONT_CARE) {]]></codefragment>
+</duplication>
+<duplication lines="1" tokens="10">
+<file line="118" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\fimpl\IndexedBF.java"/>
+<file line="102" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\fimpl\MaskBasedBF.java"/>
+<file line="26" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\opimpl\BooleanOperatorOR.java"/>
+<codefragment><![CDATA[				if (domain.get(i).getValue() == BooleanValue.TRUE) {]]></codefragment>
+</duplication>
+<duplication lines="5" tokens="10">
+<file line="161" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\fimpl\IndexedBF.java"/>
+<file line="189" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\fimpl\MaskBasedBF.java"/>
+<codefragment><![CDATA[		}
+	}
+	
+
+	public boolean hasDontCare(int index) {]]></codefragment>
+</duplication>
+<duplication lines="8" tokens="10">
+<file line="167" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\fimpl\IndexedBF.java"/>
+<file line="146" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\fimpl\OperatorTreeBF.java"/>
+<file line="154" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\fimpl\OperatorTreeBF.java"/>
+<codefragment><![CDATA[		if (dontcares.contains(index) == true) {
+			return true;
+
+		}
+		return false;
+	}
+	
+	public boolean hasMaxterm(int index) {]]></codefragment>
+</duplication>
+<duplication lines="5" tokens="10">
+<file line="205" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\fimpl\IndexedBF.java"/>
+<file line="130" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\fimpl\MaskBasedBF.java"/>
+<codefragment><![CDATA[	}
+	
+	
+
+	public List<Integer> mintermIterable() {]]></codefragment>
+</duplication>
+<duplication lines="3" tokens="10">
+<file line="215" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\fimpl\IndexedBF.java"/>
+<file line="141" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\fimpl\MaskBasedBF.java"/>
+<file line="92" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\fimpl\OperatorTreeBF.java"/>
+<codefragment><![CDATA[	}
+	
+	public Iterable<Integer> maxtermIterable() {]]></codefragment>
+</duplication>
+<duplication lines="4" tokens="10">
+<file line="223" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\fimpl\IndexedBF.java"/>
+<file line="119" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\fimpl\MaskBasedBF.java"/>
+<file line="105" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\fimpl\OperatorTreeBF.java"/>
+<codefragment><![CDATA[	}
+	
+
+	public Iterable<Integer> dontcareIterable() {]]></codefragment>
+</duplication>
+<duplication lines="1" tokens="10">
+<file line="69" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\fimpl\OperatorTreeBF.java"/>
+<file line="71" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\fimpl\OperatorTreeBF.java"/>
+<codefragment><![CDATA[			} else if (getValue() == BooleanValue.FALSE) {]]></codefragment>
+</duplication>
+<duplication lines="2" tokens="10">
+<file line="146" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\fimpl\OperatorTreeBF.java"/>
+<file line="26" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\opimpl\BooleanOperatorOR.java"/>
+<codefragment><![CDATA[		if (getValue() == BooleanValue.TRUE) {
+			return true;]]></codefragment>
+</duplication>
+<duplication lines="2" tokens="10">
+<file line="154" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\fimpl\OperatorTreeBF.java"/>
+<file line="30" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\opimpl\BooleanOperatorAND.java"/>
+<codefragment><![CDATA[		if (getValue() == BooleanValue.FALSE) {
+			return true;]]></codefragment>
+</duplication>
+<duplication lines="2" tokens="10">
+<file line="162" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\fimpl\OperatorTreeBF.java"/>
+<file line="36" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\opimpl\BooleanOperatorAND.java"/>
+<file line="32" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\bool\opimpl\BooleanOperatorOR.java"/>
+<codefragment><![CDATA[		if (getValue() == BooleanValue.DONT_CARE) {
+			return true;]]></codefragment>
+</duplication>
+<duplication lines="1" tokens="10">
+<file line="27" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\java\tecaj\hw4\AboveAverage.java"/>
+<file line="21" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\java\tecaj\hw4\NamesCounter.java"/>
+<file line="34" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\java\tecaj\hw4\db\StudentDB.java"/>
+<codefragment><![CDATA[			ulaznipodatak = scanInput.nextLine().trim();]]></codefragment>
+</duplication>
+<duplication lines="12" tokens="10">
+<file line="49" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\java\tecaj\hw4\AboveAverage.java"/>
+<file line="27" path="C:\tecaj_1\HW04-0036473653\src\main\java\hr\fer\zemris\java\tecaj\hw4\NamesCounter.java"/>
+<codefragment><![CDATA[		System.out.println("Nova lista " + poljeVrijednosti);
+
+	}
+	/**
+	 * Metoda koja obraÄ‘uje ulazni niz.
+	 * Parsira ga i dodaje u listu brojeva.
+	 * @param ulaz ulazni niz
+	 * @param polje polje brojeva
+	 * @return vraÄ‡a true ako unos brojeva joÅ¡ nije zavrÅ¡io, false inaÄ]]>&#65533;<![CDATA[e
+	 */
+
+	public static boolean obradiUlaz(String ulaz, List<Double> polje) {]]></codefragment>
+</duplication>
+<duplication lines="5" tokens="10">
+<file line="49" path="C:\tecaj_1\HW04-0036473653\src\test\java\hr\fer\zemris\bool\MaskTest.java"/>
+<file line="56" path="C:\tecaj_1\HW04-0036473653\src\test\java\hr\fer\zemris\bool\MaskTest.java"/>
+<codefragment><![CDATA[		Assert.assertTrue(parsirana.numberOfDontCares()==2);
+		
+	}
+	@Test
+	public void getNumOfOnesTest(){]]></codefragment>
+</duplication>
+<duplication lines="1" tokens="10">
+<file line="99" path="C:\tecaj_1\HW04-0036473653\src\test\java\hr\fer\zemris\bool\MaskTest.java"/>
+<file line="104" path="C:\tecaj_1\HW04-0036473653\src\test\java\hr\fer\zemris\bool\MaskTest.java"/>
+<codefragment><![CDATA[		Mask treca=Mask.combine(druga,prva);]]></codefragment>
+</duplication>
+<duplication lines="2" tokens="10">
+<file line="23" path="C:\tecaj_1\HW04-0036473653\src\test\java\hr\fer\zemris\bool\fimpl\IndexedBFTest.java"/>
+<file line="26" path="C:\tecaj_1\HW04-0036473653\src\test\java\hr\fer\zemris\bool\fimpl\IndexedBFTest.java"/>
+<file line="29" path="C:\tecaj_1\HW04-0036473653\src\test\java\hr\fer\zemris\bool\fimpl\IndexedBFTest.java"/>
+<file line="24" path="C:\tecaj_1\HW04-0036473653\src\test\java\hr\fer\zemris\bool\fimpl\MaskBasedBFTest.java"/>
+<file line="27" path="C:\tecaj_1\HW04-0036473653\src\test\java\hr\fer\zemris\bool\fimpl\MaskBasedBFTest.java"/>
+<file line="31" path="C:\tecaj_1\HW04-0036473653\src\test\java\hr\fer\zemris\bool\fimpl\MaskBasedBFTest.java"/>
+<file line="67" path="C:\tecaj_1\HW04-0036473653\src\test\java\hr\fer\zemris\bool\fimpl\MaskBasedBFTest.java"/>
+<file line="70" path="C:\tecaj_1\HW04-0036473653\src\test\java\hr\fer\zemris\bool\fimpl\MaskBasedBFTest.java"/>
+<file line="73" path="C:\tecaj_1\HW04-0036473653\src\test\java\hr\fer\zemris\bool\fimpl\MaskBasedBFTest.java"/>
+<file line="30" path="C:\tecaj_1\HW04-0036473653\src\test\java\hr\fer\zemris\bool\fimpl\OperatorTreeBFTest.java"/>
+<file line="33" path="C:\tecaj_1\HW04-0036473653\src\test\java\hr\fer\zemris\bool\fimpl\OperatorTreeBFTest.java"/>
+<file line="36" path="C:\tecaj_1\HW04-0036473653\src\test\java\hr\fer\zemris\bool\fimpl\OperatorTreeBFTest.java"/>
+<codefragment><![CDATA[			for (Integer i : f1.mintermIterable()) { // Ispis: 0, 1, 5, 7
+				System.out.println("Imam minterm: " + i);]]></codefragment>
+</duplication>
+</pmd-cpd>

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hr.tunjevinac.controller.KalendarController">
+   <top>
+      <MenuBar BorderPane.alignment="CENTER">
+        <menus>
+          <Menu mnemonicParsing="false" text="Naslovna">
+            <items>
+              <MenuItem mnemonicParsing="false" onAction="#idiNaNaslovnu" text="Idi na..." />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Članstvo">
+            <items>
+              <MenuItem mnemonicParsing="false" onAction="#idiNaClanstvo" text="Idi na..." />
+                  <MenuItem mnemonicParsing="false" onAction="#noviClan" text="Novi član" />
+            </items>
+          </Menu>
+            <Menu mnemonicParsing="false" text="Blagajna">
+              <items>
+                <MenuItem mnemonicParsing="false" onAction="#idiNaBlagajnu" text="Idi na..." />
+                  <MenuItem mnemonicParsing="false" onAction="#novaTransakcija" text="Nova transakcija" />
+              </items>
+            </Menu>
+          <Menu mnemonicParsing="false" text="Zapisnik">
+            <items>
+              <MenuItem mnemonicParsing="false" onAction="#idiNaZapisnik" text="Idi na..." />
+                  <MenuItem mnemonicParsing="false" onAction="#noviZapisnik" text="Nova stavka" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+   </top>
+   <left>
+      <AnchorPane prefHeight="123.0" prefWidth="133.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button layoutX="41.0" layoutY="49.0" mnemonicParsing="false" onAction="#noviDogadaj" text="Novi događaj" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="2.0">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+         </children></AnchorPane>
+   </left>
+   <center>
+      <AnchorPane prefHeight="71.0" prefWidth="467.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label layoutX="16.0" layoutY="14.0" text="Pretraživanje događaja:" />
+            <Label layoutX="16.0" layoutY="44.0" text="Od:" />
+            <DatePicker fx:id="doDatePicker" layoutX="268.0" layoutY="40.0" prefHeight="25.0" prefWidth="175.0" />
+            <Label layoutX="239.0" layoutY="44.0" text="Do:" />
+            <DatePicker fx:id="odDatePicker" layoutX="45.0" layoutY="40.0" prefHeight="25.0" prefWidth="175.0" />
+            <TextField fx:id="naslovTextField" layoutX="109.0" layoutY="76.0" prefHeight="25.0" prefWidth="175.0" />
+            <Label layoutX="14.0" layoutY="80.0" text="Naziv događaja:" />
+            <Button layoutX="315.0" layoutY="88.0" mnemonicParsing="false" onAction="#dohvatiDogadaje" text="Dohvati događaje" />
+         </children></AnchorPane>
+   </center>
+   <bottom>
+      <TableView fx:id="kalendarTable" prefHeight="256.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+        <columns>
+          <TableColumn fx:id="datumColumn" prefWidth="101.0" text="Datum i vrijeme" />
+          <TableColumn fx:id="naslovColumn" prefWidth="76.0" text="Naslov" />
+            <TableColumn fx:id="mjestoColumn" prefWidth="127.0" text="Mjesto" />
+            <TableColumn fx:id="opisColumn" prefWidth="152.0" text="Opis" />
+            <TableColumn fx:id="autorColumn" prefWidth="143.0" text="Autor" />
+        </columns>
+         <contextMenu>
+            <ContextMenu>
+              <items>
+                <MenuItem fx:id="obrisiDogadaj" mnemonicParsing="false" text="Obriši događaj" />
+              </items>
+            </ContextMenu>
+         </contextMenu>
+      </TableView>
+   </bottom>
+</BorderPane>

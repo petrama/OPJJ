@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>StudentDB.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">HW04-0036473653</a> &gt; <a href="index.source.html" class="el_package">hr.fer.zemris.java.tecaj.hw4.db</a> &gt; <span class="el_source">StudentDB.java</span></div><h1>StudentDB.java</h1><pre class="source lang-java linenums">package hr.fer.zemris.java.tecaj.hw4.db;
+
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+import java.nio.charset.StandardCharsets;
+import java.io.IOException;
+
+/**
+ * Program koji čita iz datoteke liniju po liniju.
+ * Iz datoteke stvara bazu studenata.
+ * @author Petra Marče
+ *
+ */
+<span class="nc" id="L17">public class StudentDB {</span>
+	/**
+	 * Metoda koja se poziva pri pokretanju programa.
+	 * @param args argumenti iz komandne linije.
+	 * @throws IOException baca iznimku ako ne može pronaći datoteku ili čitati iz datoteke.
+	 */
+	public static void main(String args[]) throws IOException {
+
+<span class="nc" id="L25">		List&lt;String&gt; lines = Files.readAllLines(Paths.get(&quot;./database.txt&quot;),</span>
+				StandardCharsets.UTF_8);
+
+<span class="nc" id="L28">		StudentDatabase baza = new StudentDatabase(lines);</span>
+
+<span class="nc" id="L30">		Scanner scanInput = new Scanner(System.in);</span>
+		String ulaz;
+		do {
+<span class="nc" id="L33">			System.out.println(&quot;Command must start with a word \&quot;query\&quot;!&quot;);</span>
+<span class="nc" id="L34">			ulaz = scanInput.nextLine().trim();</span>
+<span class="nc bnc" id="L35" title="All 2 branches missed.">		} while (ulaz.startsWith(&quot;query&quot;) == false);</span>
+<span class="nc" id="L36">		scanInput.close();</span>
+<span class="nc" id="L37">		ulaz = ulaz.substring(5).trim();</span>
+
+<span class="nc bnc" id="L39" title="All 2 branches missed.">		if (ulaz.startsWith(&quot;lastName=&quot;)) {</span>
+<span class="nc" id="L40">			ulaz = ulaz.substring(10, ulaz.length() - 1).trim();</span>
+
+<span class="nc" id="L42">			LastNameFilter surnames = new LastNameFilter(ulaz);</span>
+<span class="nc" id="L43">			List&lt;StudentRecord&gt; nova = baza.filter(surnames);</span>
+<span class="nc" id="L44">			formattedPrint(nova);</span>
+<span class="nc bnc" id="L45" title="All 2 branches missed.">		} else if (ulaz.startsWith(&quot;jmbag=&quot;)) {</span>
+<span class="nc" id="L46">			ulaz = ulaz.substring(7, ulaz.length() - 1);</span>
+<span class="nc" id="L47">			List&lt;StudentRecord&gt; nova = new ArrayList&lt;&gt;(1);</span>
+<span class="nc" id="L48">			nova.add(baza.forJMBAG(ulaz));</span>
+<span class="nc" id="L49">			formattedPrint(nova);</span>
+			
+		}
+
+<span class="nc" id="L53">	}</span>
+	/**
+	 * Metoda koja formatirano ispisuje zapise studenata.
+	 * @param zapis lista studenata koju treba ispisati.
+	 */
+
+	public static void formattedPrint(List&lt;StudentRecord&gt; zapis) {
+<span class="nc" id="L60">		int maxIme = 0, maxPrezime = 0;</span>
+<span class="nc bnc" id="L61" title="All 2 branches missed.">		for (StudentRecord record : zapis) {</span>
+<span class="nc bnc" id="L62" title="All 2 branches missed.">			if (record.firstName.length() &gt; maxIme) {</span>
+<span class="nc" id="L63">				maxIme = record.firstName.length();</span>
+			}
+<span class="nc bnc" id="L65" title="All 2 branches missed.">			if (record.lastName.length() &gt; maxPrezime) {</span>
+<span class="nc" id="L66">				maxPrezime = record.lastName.length();</span>
+			}
+
+<span class="nc" id="L69">		}</span>
+<span class="nc bnc" id="L70" title="All 2 branches missed.">		if (zapis.isEmpty() == false) {</span>
+
+<span class="nc" id="L72">			printHeader(maxIme, maxPrezime);</span>
+<span class="nc" id="L73">			System.out.println();</span>
+<span class="nc bnc" id="L74" title="All 2 branches missed.">			for (StudentRecord record : zapis) {</span>
+<span class="nc" id="L75">				System.out.println(String.format(&quot;| %10s | %-&quot; + maxPrezime</span>
+						+ &quot;s | %-&quot; + maxIme + &quot;s | %1d |&quot;, record.jmbag,
+						record.lastName, record.firstName, record.finalGrade));
+<span class="nc" id="L78">			}</span>
+<span class="nc" id="L79">			printHeader(maxIme, maxPrezime);</span>
+			
+<span class="nc" id="L81">		}System.out.println(&quot;\nRecords selected: &quot;+zapis.size());</span>
+<span class="nc" id="L82">	}</span>
+
+	public static void printHeader(int maxIme, int maxPrezime) {
+<span class="nc" id="L85">		System.out.print(&quot;+============+=&quot;);</span>
+<span class="nc bnc" id="L86" title="All 2 branches missed.">		for (int i = 0; i &lt; maxPrezime; i++) {</span>
+<span class="nc" id="L87">			System.out.print(&quot;=&quot;);</span>
+		}
+<span class="nc" id="L89">		System.out.print(&quot;=+=&quot;);</span>
+<span class="nc bnc" id="L90" title="All 2 branches missed.">		for (int i = 0; i &lt; maxIme; i++) {</span>
+<span class="nc" id="L91">			System.out.print(&quot;=&quot;);</span>
+		}
+<span class="nc" id="L93">		System.out.print(&quot;=+===+&quot;);</span>
+
+<span class="nc" id="L95">	}</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.0.201403182114</span></div></body></html>

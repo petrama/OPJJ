@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>LastNameFilter.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">HW04-0036473653</a> &gt; <a href="index.source.html" class="el_package">hr.fer.zemris.java.tecaj.hw4.db</a> &gt; <span class="el_source">LastNameFilter.java</span></div><h1>LastNameFilter.java</h1><pre class="source lang-java linenums">package hr.fer.zemris.java.tecaj.hw4.db;
+/**
+ * Razred koji predstavlja filter za zapise po prezimenu.
+ * Dozvoljeni filteri koji sadrže najviše jedan znak *
+ * @author Petra Marče
+ *
+ */
+
+public class LastNameFilter implements IFilter {
+	String prefix;
+	String sufix;
+	int mode; // 0-bez zvjezdice,1-sa zvjezdicom
+	
+	/**
+	 * Metoda koja stvara novu instancu razreda filter iz zadanog niza.
+	 * @param filter iz kojeg se stvara razred.
+	 */
+<span class="nc" id="L18">	public LastNameFilter(String filter) {</span>
+<span class="nc" id="L19">		int position = filter.indexOf(&quot;*&quot;);</span>
+<span class="nc bnc" id="L20" title="All 2 branches missed.">		if (position == -1) {</span>
+<span class="nc" id="L21">			mode = 0;</span>
+<span class="nc" id="L22">			prefix = filter;</span>
+<span class="nc" id="L23">			sufix = &quot;&quot;;</span>
+		} else {
+<span class="nc" id="L25">			mode = 1;</span>
+<span class="nc bnc" id="L26" title="All 2 branches missed.">			if (position == filter.length() - 1) {</span>
+<span class="nc" id="L27">				prefix = filter.substring(0,position);</span>
+<span class="nc" id="L28">				sufix = &quot;&quot;;</span>
+<span class="nc bnc" id="L29" title="All 2 branches missed.">			} else if (position == 0) {</span>
+
+<span class="nc" id="L31">				prefix = &quot;&quot;;</span>
+<span class="nc" id="L32">				sufix = filter.substring(1);</span>
+			} else {
+
+<span class="nc" id="L35">				prefix = filter.substring(0, position);</span>
+<span class="nc" id="L36">				sufix = filter.substring(position + 1);</span>
+			}
+		}
+		
+<span class="nc" id="L40">	}</span>
+
+	public boolean accepts(StudentRecord record) {
+<span class="nc bnc" id="L43" title="All 2 branches missed.">		if (mode == 0) {</span>
+<span class="nc bnc" id="L44" title="All 2 branches missed.">			return record.lastName.compareTo(prefix)==0;</span>
+		} else {
+			
+<span class="nc bnc" id="L47" title="All 4 branches missed.">			return record.lastName.startsWith(prefix)</span>
+					&amp;&amp; record.lastName.endsWith(sufix);
+
+		}
+
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.0.201403182114</span></div></body></html>
